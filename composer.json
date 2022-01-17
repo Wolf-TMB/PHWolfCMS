@@ -1,0 +1,13 @@
+{
+    "name": "wolf_tmb/phwolfcms",
+    "autoload": {
+        "psr-4": {
+            "PHWolfCMS\\": "app/"
+        }
+    },
+    "require": {
+        "phroute/phroute": "^2.1",
+        "vlucas/phpdotenv": "^5.4",
+        "ext-pdo": "*"
+    }
+}

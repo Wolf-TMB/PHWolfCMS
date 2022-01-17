@@ -1,0 +1,241 @@
+
+
+
+
+****** [13.01.22 11:01:37] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:37] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:37] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:39] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:40] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:40] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:40] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:41] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:41] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:41] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:41] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:43] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:48] ******
+
+Uncaught PHWolfCMS\Exceptions\ConfigKeyNotFoundException in C:\OpenServer\domains\PHWolfCMS\app\Config.php:26
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\Config->get()
+#1 {main}
+  thrown
+
+
+
+
+****** [13.01.22 11:01:49] ******
+
+Uncaught Dotenv\Exception\InvalidFileException: Failed to parse dotenv file. Encountered an unexpected escape sequence at ["EOHW*h8092hhw\#9233y8289fg(HG#(H(@gh289gh"]. in C:\OpenServer\domains\PHWolfCMS\vendor\vlucas\phpdotenv\src\Parser\Parser.php:30
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\vendor\graham-campbell\result-type\src\Error.php(118): Dotenv\Parser\Parser::Dotenv\Parser\{closure}()
+#1 C:\OpenServer\domains\PHWolfCMS\vendor\vlucas\phpdotenv\src\Parser\Parser.php(31): GrahamCampbell\ResultType\Error->mapError()
+#2 C:\OpenServer\domains\PHWolfCMS\vendor\vlucas\phpdotenv\src\Dotenv.php(222): Dotenv\Parser\Parser->parse()
+#3 C:\OpenServer\domains\PHWolfCMS\app\Config.php(13): Dotenv\Dotenv->load()
+#4 C:\OpenServer\domains\PHWolfCMS\app\App.php(11): PHWolfCMS\Config->__construct()
+#5 C:\OpenServer\domains\PHWolfCMS\index.php(8): PHWolfCMS\App->__construct()
+#6 {main}
+  thrown
+
+
+
+
+****** [17.01.22 13:01:41] ******
+
+Uncaught Error: Call to a member function get() on null in C:\OpenServer\domains\PHWolfCMS\index.php:10
+Stack trace:
+#0 {main}
+  thrown
+
+
+
+
+****** [17.01.22 13:01:44] ******
+
+Uncaught Error: Call to a member function get() on null in C:\OpenServer\domains\PHWolfCMS\app\Database.php:12
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\app\App.php(22): PHWolfCMS\Database->__construct()
+#1 C:\OpenServer\domains\PHWolfCMS\app\App.php(18): PHWolfCMS\App->init()
+#2 C:\OpenServer\domains\PHWolfCMS\app\App.php(11): PHWolfCMS\App->preinit()
+#3 C:\OpenServer\domains\PHWolfCMS\index.php(8): PHWolfCMS\App->__construct()
+#4 {main}
+  thrown
+
+
+
+
+****** [17.01.22 13:01:48] ******
+
+Uncaught Error: Call to a member function get() on null in C:\OpenServer\domains\PHWolfCMS\app\Database.php:12
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\app\App.php(23): PHWolfCMS\Database->__construct()
+#1 C:\OpenServer\domains\PHWolfCMS\app\App.php(19): PHWolfCMS\App->init()
+#2 C:\OpenServer\domains\PHWolfCMS\app\App.php(12): PHWolfCMS\App->preinit()
+#3 C:\OpenServer\domains\PHWolfCMS\index.php(8): PHWolfCMS\App->__construct()
+#4 {main}
+  thrown
+
+
+
+
+****** [17.01.22 13:01:53] ******
+
+Uncaught PDOException: SQLSTATE[HY000] [2002] Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера in C:\OpenServer\domains\PHWolfCMS\app\Database.php:13
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\app\Database.php(13): PDO->__construct()
+#1 C:\OpenServer\domains\PHWolfCMS\app\App.php(23): PHWolfCMS\Database->__construct()
+#2 C:\OpenServer\domains\PHWolfCMS\index.php(10): PHWolfCMS\App->init()
+#3 {main}
+  thrown
+
+
+
+
+****** [17.01.22 14:01:05] ******
+
+syntax error, unexpected variable "$data"
+
+
+
+
+****** [17.01.22 14:01:05] ******
+
+Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BY id ASC LIMIT 1' at line 1 in C:\OpenServer\domains\PHWolfCMS\app\Database.php:21
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\app\Database.php(21): PDOStatement->execute()
+#1 C:\OpenServer\domains\PHWolfCMS\index.php(15): PHWolfCMS\Database->getRecord()
+#2 {main}
+  thrown
+
+
+
+
+****** [17.01.22 14:01:06] ******
+
+Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY id ASC' at line 1 in C:\OpenServer\domains\PHWolfCMS\app\Database.php:21
+Stack trace:
+#0 C:\OpenServer\domains\PHWolfCMS\app\Database.php(21): PDOStatement->execute()
+#1 C:\OpenServer\domains\PHWolfCMS\index.php(15): PHWolfCMS\Database->getRecord()
+#2 {main}
+  thrown
