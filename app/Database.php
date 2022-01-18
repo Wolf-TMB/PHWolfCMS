@@ -34,11 +34,25 @@ class Database {
         $columns = array_keys($params);
         $sql = "INSERT INTO $table (".implode(',', $columns).") VALUES(:".implode(', :', $columns).")";
         $stmt = $this->connect->prepare($sql);
+        echo '<pre>';
+            print_r($_SERVER);
+        echo '</pre>';
+        die();
+        die($stmt->queryString);
+        return $stmt->execute($params);
+    }
+
+    public function update($sql, $params): bool {
+        $stmt = $this->connect->prepare($sql);
         return $stmt->execute($params);
     }
 
     public function execute($sql, $params): bool {
         $stmt = $this->connect->prepare($sql);
         return $stmt->execute($params);
+    }
+
+    private function log($sql, $params) {
+
     }
 }
