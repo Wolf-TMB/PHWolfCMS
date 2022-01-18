@@ -41,6 +41,9 @@ class Dispatcher {
      * @param $httpMethod
      * @param $uri
      * @return mixed|null
+     *
+     * @throws HttpMethodNotAllowedException
+     * @throws HttpRouteNotFoundException
      */
     public function dispatch($httpMethod, $uri)
     {
