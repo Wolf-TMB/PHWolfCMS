@@ -3,5 +3,10 @@
 global $app;
 
 $app->router->get('/', function () {
-    echo 'main';
+    global $app;
+    $app->render->renderPage(
+        'index',
+        'main',
+        ['title' => 'title']
+    );
 });

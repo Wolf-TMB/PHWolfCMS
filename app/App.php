@@ -3,6 +3,7 @@
 namespace PHWolfCMS;
 
 use PHWolfCMS\Kernel\Router;
+use PHWolfCMS\Kernel\Render;
 use PHWolfCMS\Kernel\BaseApp;
 use PHWolfCMS\Kernel\ErrorCatcher;
 
@@ -21,8 +22,11 @@ class App extends BaseApp {
     }
 
     public function init(): static {
+        ob_start();
+
         $this->db = new Database();
         $this->router = new Router();
+        $this->render = new Render();
 
         return $this;
     }

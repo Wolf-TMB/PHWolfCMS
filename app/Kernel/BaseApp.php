@@ -11,4 +11,5 @@ class BaseApp {
     public Config $config;
     public Database $db;
     public Router $router;
+    public Render $render;
 }
