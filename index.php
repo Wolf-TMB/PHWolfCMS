@@ -9,5 +9,3 @@ $app = new App();
 $app->preInit()
     ->init()
     ->run();
-
-

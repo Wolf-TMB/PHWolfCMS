@@ -23,7 +23,7 @@ class Config {
         if (key_exists($key, $this->variables)) {
             return $this->variables[$key];
         } else {
-            throw new ConfigKeyNotFoundException();
+            throw new ConfigKeyNotFoundException("Config key \"<strong>$key</strong>\" not found!");
         }
     }
 }
