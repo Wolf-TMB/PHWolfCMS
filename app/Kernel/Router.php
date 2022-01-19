@@ -40,8 +40,49 @@ class Router {
 
     private function loadRouterFiles() {
         global $app;
-        $files = scandir($app->rootDir . $app->config->get('ROUTES_DIR'));
-        die('123');
+        $files = $this->searchFiles($app->rootDir . $app->config->get('ROUTES_DIR'), $app->config->get('ROUTES_DIR'));
+        $files = $this->prepareFileArrayToLoad($files);
+        $URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
+        if (key_exists($URIData[0], $files)) {
+            foreach ($files[$URIData[0]] as $file) {
+                require_once $file;
+            }
+        } else {
+            foreach ($files['web'] as $file) {
+                require_once $file;
+            }
+        }
+    }
+
+    private function searchFiles($path, $dir, &$files = [], $ext = '.php') {
+        $_files = scandir($path);
+        foreach ($_files as $file) {
+            if ($file == '.' || $file == '..') continue;
+            $item = $path . '/' . $file;
+            if (is_dir($item)) {
+                $this->searchFiles($item, $dir .'/'. $file, $files);
+            } else {
+                $files[] = $item;
+            }
+        }
+        return $files;
+    }
+
+    private function prepareFileArrayToLoad($files): array {
+        global $app;
+        $_files = $files;
+        $__files = $files;
+        $files = [];
+        $rmlen = strlen($app->rootDir) + strlen($app->config->get('ROUTES_DIR')) + 1;
+        foreach ($_files as $key => &$file) {
+            $fileData = explode('/', substr($file, $rmlen));
+            if (count($fileData) > 1) {
+                $files[$fileData[0]][] = $__files[$key];
+            } else {
+                $files['web'][] = $__files[$key];
+            }
+        }
+        return $files;
     }
 
 

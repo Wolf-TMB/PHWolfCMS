@@ -10,6 +10,7 @@ class App extends BaseApp {
 
     public function __construct() {
         $this->rootDir = $_SERVER['DOCUMENT_ROOT'] . '/';
+        $this->requestURI = $_SERVER['REQUEST_URI'];
         $this->preInit();
     }
 
