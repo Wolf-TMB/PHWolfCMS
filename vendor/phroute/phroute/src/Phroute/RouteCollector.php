@@ -404,6 +404,7 @@ class RouteCollector implements RouteDataProviderInterface {
      */
     private function trim($route)
     {
+        if (is_null($route)) return $route;
         return trim($route, '/');
     }
 
