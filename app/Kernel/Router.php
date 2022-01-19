@@ -54,7 +54,7 @@ class Router {
         }
     }
 
-    private function searchFiles($path, $dir, &$files = [], $ext = '.php') {
+    private function searchFiles($path, $dir, &$files = []) {
         $_files = scandir($path);
         foreach ($_files as $file) {
             if ($file == '.' || $file == '..') continue;
@@ -71,20 +71,18 @@ class Router {
     private function prepareFileArrayToLoad($files): array {
         global $app;
         $_files = $files;
-        $__files = $files;
         $files = [];
         $rmlen = strlen($app->rootDir) + strlen($app->config->get('ROUTES_DIR')) + 1;
-        foreach ($_files as $key => &$file) {
+        foreach ($_files as $key => $file) {
             $fileData = explode('/', substr($file, $rmlen));
             if (count($fileData) > 1) {
-                $files[$fileData[0]][] = $__files[$key];
+                $files[$fileData[0]][] = $file;
             } else {
-                $files['web'][] = $__files[$key];
+                $files['web'][] = $file;
             }
         }
         return $files;
     }
-
 
 
     /**
