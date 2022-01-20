@@ -6,6 +6,7 @@ use PHWolfCMS\Kernel\Router;
 use PHWolfCMS\Kernel\Render;
 use PHWolfCMS\Kernel\BaseApp;
 use PHWolfCMS\Kernel\Session;
+use PHWolfCMS\Kernel\Security;
 use PHWolfCMS\Kernel\ErrorCatcher;
 
 class App extends BaseApp {
@@ -27,6 +28,7 @@ class App extends BaseApp {
 
         $this->db = new Database();
         $this->session = new Session();
+        $this->security = new Security();
         $this->router = new Router();
         $this->render = new Render();
 
