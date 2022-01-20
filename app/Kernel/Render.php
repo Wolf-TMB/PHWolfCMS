@@ -52,7 +52,6 @@ class Render {
                     default => '',
                 };
                 $layout = str_replace($layoutTag, $html, $layout);
-
             } else if ($tag === 'content') {
                 ob_start();
                 $templatePath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_TEMPLATES_DIR') . '/' . $templateName . '.php';
