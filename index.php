@@ -1,4 +1,5 @@
 <?php
+$timeStart = hrtime(true);
 
 require_once realpath(__DIR__ . '/vendor/autoload.php');
 
@@ -9,3 +10,19 @@ $app = new App();
 $app->preInit()
     ->init()
     ->run();
+
+$timeEnd = hrtime(true);
+
+$executeTime = ($timeEnd - $timeStart) / 1e+6;
+
+$URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
+if ($URIData[0] != 'api') {
+    echo '
+        <div style="background-color: black; color: white; position: fixed; top: 0; right: 0; padding: 4px;">
+            '. $executeTime .' ms
+        </div>
+    ';
+}
+
+
+
