@@ -10,6 +10,3 @@ $app->router->get('/', function () {
         ['title' => 'title']
     );
 });
-
-$app->router->get('/test1', [\PHWolfCMS\Http\Controllers\TestController::class, 'getIndex']);
-$app->router->post('/test1', [\PHWolfCMS\Http\Controllers\TestController::class, 'postIndex']);
