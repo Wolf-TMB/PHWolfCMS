@@ -11,8 +11,6 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    {{block:header}}
-    {{block:header.button}}
     {{content}}
 </body>
 </html>

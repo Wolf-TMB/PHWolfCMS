@@ -2,9 +2,12 @@
 
 namespace PHWolfCMS\Kernel;
 
+use PHWolfCMS\Kernel\Enums\RequestMethod;
+
 class BaseApp {
     public string $rootDir;
     public string $requestURI;
+    public RequestMethod $requestMethod;
     public Config $config;
     public Session $session;
     public Security $security;

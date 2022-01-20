@@ -24,7 +24,7 @@ class Render {
         }
     }
 
-    public function renderPage($template, $layout, $args = [], $otherPath = null, $notfound = false) {
+    public function renderPage(string $template, string $layout, array $args = [], string|null $otherPath = null, bool $notfound = false) {
         global $app;
         extract($args);
         $layoutPath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_LAYOUTS_DIR') . '/' . $layout . '.layout.php';
@@ -35,18 +35,25 @@ class Render {
         print($layout);
     }
 
-    private function loadTemplates($templateName, $layout, $args, $iteration, $notfound, $otherPath) {
+    private function loadTemplates(string $templateName, string $layout, array $args, int $iteration, bool $notfound, string|null $otherPath) :string {
         global $app;
         $iteration++;
         if ($iteration > $app->config->get('RENDER_MAX_ITERATION')) throw new RenderMaxIterationLimitException();
 
-        preg_match_all("/\{\{[a-zA-Z_0-9:.#]+\}\}/", $layout, $layoutTags);
+        preg_match_all("/\{\{[a-zA-Z_0-9:.#@]+\}\}/", $layout, $layoutTags);
         $layoutTags = $layoutTags[0];
-
         foreach ($layoutTags as $layoutTag) {
-            preg_match('/[a-zA-Z_0-9:.#]+/', $layoutTag, $tag);
+            preg_match('/[a-zA-Z_0-9:.#@]+/', $layoutTag, $tag);
             $tag = $tag[0];
-            if ($tag === 'content') {
+
+            if (str_starts_with($tag, '@')) {
+                $html = match ($tag) {
+                    '@csrf_token' => '<input name="csrf_token" type="hidden" value="'.$app->security->getCsrfToken().'"/>',
+                    default => '',
+                };
+                $layout = str_replace($layoutTag, $html, $layout);
+
+            } else if ($tag === 'content') {
                 ob_start();
                 $templatePath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_TEMPLATES_DIR') . '/' . $templateName . '.php';
                 if (!file_exists($templatePath)) {
@@ -64,7 +71,6 @@ class Render {
                 $expTagContent = explode(':', $tag);
                 $type = $expTagContent[0];
                 $blockName = $expTagContent[1];
-
                 if ($type == 'block') {
                     ob_start();
                     $blockName = str_replace('.', '/', $blockName);
@@ -79,10 +85,10 @@ class Render {
                 }
             }
         }
-        preg_match_all("/\{\{[a-z_0-9:.#]+\}\}/", $layout, $layoutTags);
+        preg_match_all("/\{\{[a-zA-Z_0-9:.#@]+\}\}/", $layout, $layoutTags);
         $layoutTags = $layoutTags[0];
         if (count($layoutTags) > 0) {
-            return $this->loadTemplates($layout, $templateName, $iteration, $args, $notfound, $otherPath);
+            return $this->loadTemplates($templateName, $layout, $args, $iteration, $notfound, $otherPath);
         }
         return $layout;
     }

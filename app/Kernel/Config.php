@@ -9,7 +9,8 @@ class Config {
     private array $variables;
 
     public function __construct() {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/PHWolfCMS/');
+        global $app;
+        $dotenv = Dotenv::createImmutable($app->rootDir);
         $dotenv->load();
         foreach ($_ENV as $key => $value) {
             $this->variables[$key] = $value;

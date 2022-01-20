@@ -10,12 +10,15 @@ use PHWolfCMS\Kernel\Session;
 use PHWolfCMS\Kernel\Security;
 use PHWolfCMS\Kernel\Database;
 use PHWolfCMS\Kernel\ErrorCatcher;
+use PHWolfCMS\Kernel\Enums\RequestMethod;
 
 class App extends BaseApp {
 
     public function __construct() {
         $this->rootDir = $_SERVER['DOCUMENT_ROOT'] . '/';
         $this->requestURI = $_SERVER['REQUEST_URI'];
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') $this->requestMethod = RequestMethod::GET;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') $this->requestMethod = RequestMethod::POST;
     }
 
     public function preInit(): static {
