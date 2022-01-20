@@ -11,6 +11,8 @@ use PHWolfCMS\Kernel\Security;
 use PHWolfCMS\Kernel\Database;
 use PHWolfCMS\Kernel\ErrorCatcher;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
+use Phroute\Phroute\Exception\HttpRouteNotFoundException;
+use Phroute\Phroute\Exception\HttpMethodNotAllowedException;
 
 class App extends BaseApp {
 
@@ -41,7 +43,17 @@ class App extends BaseApp {
     }
 
     public function run(): static {
-        $this->router->run();
+        try {
+            $this->router->run();
+        } catch (HttpRouteNotFoundException|HttpMethodNotAllowedException) {
+            $this->render->renderPage(
+                '404',
+                'main',
+                array(
+                    'title' => 404
+                )
+            );
+        }
         return $this;
     }
 }
