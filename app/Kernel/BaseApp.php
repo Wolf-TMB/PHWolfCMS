@@ -2,9 +2,6 @@
 
 namespace PHWolfCMS\Kernel;
 
-use PHWolfCMS\Config;
-use PHWolfCMS\Database;
-
 class BaseApp {
     public string $rootDir;
     public string $requestURI;

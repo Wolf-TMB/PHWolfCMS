@@ -1,6 +1,6 @@
 <?php
 
-namespace PHWolfCMS;
+namespace PHWolfCMS\Kernel;
 
 use Dotenv\Dotenv;
 use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
@@ -9,7 +9,7 @@ class Config {
     private array $variables;
 
     public function __construct() {
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/PHWolfCMS/');
         $dotenv->load();
         foreach ($_ENV as $key => $value) {
             $this->variables[$key] = $value;

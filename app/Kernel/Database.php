@@ -1,6 +1,6 @@
 <?php
 
-namespace PHWolfCMS;
+namespace PHWolfCMS\Kernel;
 
 use PDO;
 

@@ -4,9 +4,11 @@ namespace PHWolfCMS;
 
 use PHWolfCMS\Kernel\Router;
 use PHWolfCMS\Kernel\Render;
+use PHWolfCMS\Kernel\Config;
 use PHWolfCMS\Kernel\BaseApp;
 use PHWolfCMS\Kernel\Session;
 use PHWolfCMS\Kernel\Security;
+use PHWolfCMS\Kernel\Database;
 use PHWolfCMS\Kernel\ErrorCatcher;
 
 class App extends BaseApp {
