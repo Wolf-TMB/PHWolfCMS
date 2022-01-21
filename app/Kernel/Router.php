@@ -84,15 +84,38 @@ class Router {
         return $files;
     }
 
-
-    /**
-     * @throws HttpMethodNotAllowedException
-     * @throws HttpRouteNotFoundException
-     */
     public function run() {
+        global $app;
         $this->loadRouterFiles();
         $dispatcher = new Dispatcher($this->router->getData());
-        $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+        $URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
+        try {
+            $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+        } catch (HttpRouteNotFoundException) {
+            if ($URIData[0] == $app->config->get('ROUTER_API_PREFIX')) {
+                http_send_status(404);
+                die(404);
+            }
+            $app->render->renderPage(
+                '404',
+                'main',
+                array(
+                    'title' => 404
+                )
+            );
+        } catch (HttpMethodNotAllowedException) {
+            if ($URIData[0] == $app->config->get('ROUTER_API_PREFIX')) {
+                http_send_status(403);
+                die(403);
+            }
+            $app->render->renderPage(
+                '404',
+                'main',
+                array(
+                    'title' => 404
+                )
+            );
+        }
         echo $response;
     }
 

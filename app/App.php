@@ -43,17 +43,7 @@ class App extends BaseApp {
     }
 
     public function run(): static {
-        try {
-            $this->router->run();
-        } catch (HttpRouteNotFoundException|HttpMethodNotAllowedException) {
-            $this->render->renderPage(
-                '404',
-                'main',
-                array(
-                    'title' => 404
-                )
-            );
-        }
+        $this->router->run();
         return $this;
     }
 }

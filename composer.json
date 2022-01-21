@@ -8,6 +8,7 @@
     "require": {
         "phroute/phroute": "^2.1",
         "vlucas/phpdotenv": "^5.4",
-        "ext-pdo": "*"
-    }
+        "ext-pdo": "*",
+		"ext-http": "*"
+	}
 }
