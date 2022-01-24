@@ -91,6 +91,7 @@ class Router {
         $URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
         try {
             $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+            echo $response;
         } catch (HttpRouteNotFoundException) {
             if ($URIData[0] == $app->config->get('ROUTER_API_PREFIX')) {
                 http_send_status(404);
@@ -116,7 +117,5 @@ class Router {
                 )
             );
         }
-        echo $response;
     }
-
 }
