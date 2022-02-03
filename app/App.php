@@ -2,6 +2,7 @@
 
 namespace PHWolfCMS;
 
+use PHWolfCMS\Kernel\Html;
 use PHWolfCMS\Kernel\Router;
 use PHWolfCMS\Kernel\Render;
 use PHWolfCMS\Kernel\Config;
@@ -38,6 +39,8 @@ class App extends BaseApp {
         $this->security = new Security();
         $this->router = new Router();
         $this->render = new Render();
+
+        $this->html = new Html();
 
         return $this;
     }
