@@ -10,3 +10,11 @@ $app->router->get('/', function () {
         ['title' => 'title']
     );
 });
+$app->router->get('/test', function () {
+    global $app;
+    $app->render->renderPage(
+        'index',
+        'main',
+        ['title' => 'title']
+    );
+});
