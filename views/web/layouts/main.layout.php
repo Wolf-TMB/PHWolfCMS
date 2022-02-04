@@ -11,6 +11,16 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    {{content}}
+    <div class="container-fluid p-0 d-flex flex-column" style="min-height: 100vh;">
+        {{block:navbar}}
+        <div class="col-12 d-flex flex-row flex-grow-1" style="height: 100%;">
+            <div class="flex-grow-1">
+                {{content}}
+            </div>
+            <div class="d-flex flex-column">
+                {{block:sidebar}}
+            </div>
+        </div>
+    </div>
 </body>
 </html>

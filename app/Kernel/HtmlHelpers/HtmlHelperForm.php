@@ -23,16 +23,39 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
     }
 
     public function inputText(string $id, string $name, bool $addLabel = false, $labelText = '', $addWrapper = true): static {
+        $this->addinput('text', $id, $name, $addLabel, $labelText, $addWrapper);
+        return $this;
+    }
+
+    public function inputPassword(string $id, string $name, bool $addLabel = false, $labelText = '', $addWrapper = true): static {
+        $this->addinput('password', $id, $name, $addLabel, $labelText, $addWrapper);
+        return $this;
+    }
+
+    public function select(string $id, string $name, array $options, bool $addLabel = false, $labelText = '', $addWrapper = true): static {
         global $app;
-        $input = $app->html->input()->type('text')->name($name)->setID($id)->addClass('form-control')->getHtml();
+        $select = $app->html->select()->options($options)->name($name)->setID($id)->addClass('form-select')->getHtml();
+        $this->addLabelWrapper($select, $id, $addLabel, $labelText, $addWrapper);
+        return $this;
+    }
+
+
+
+    private function addInput(string $type, string $id, string $name, bool $addLabel = false, $labelText = '', $addWrapper = true): void {
+        global $app;
+        $input = $app->html->input()->type($type)->name($name)->setID($id)->addClass('form-control')->getHtml();
+        $this->addLabelWrapper($input, $id, $addLabel, $labelText, $addWrapper);
+    }
+
+    private function addLabelWrapper($element, $id, $addLabel, $labelText, $addWrapper) {
+        global $app;
         $label = ($addLabel) ? $app->html->label()->for($id)->addClass('form-label')->content($labelText)->getHtml() : '';
         if ($addWrapper) {
-            $html = $app->html->div()->content($label . $input)->addClass('mb-3')->getHtml();
+            $html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
         } else {
-            $html = $label . $input;
+            $html = $label . $element;
         }
         $this->inputList[] = $html;
-        return $this;
     }
 
     #[Pure] public function getHtml(): string {

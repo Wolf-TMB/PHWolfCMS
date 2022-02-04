@@ -25,7 +25,7 @@ class HtmlHelperBase implements HtmlHelperInterface {
         return $this;
     }
 
-    public function addAttr(string $attr, string|int $value, bool $replaceValue = true): static {
+    public function addAttr(string $attr, string|int|bool $value = false, bool $replaceValue = true): static {
         if ($replaceValue) {
             $this->options->attributes[$attr] = $value;
         } else {
@@ -42,9 +42,13 @@ class HtmlHelperBase implements HtmlHelperInterface {
     protected function getAttrsString(): string {
         $attrs = '';
         foreach ($this->options->attributes as $key => $value) {
-            $attrs .= ' ' . $key . '=' . '"'.$value.'"';
+            if (gettype($value) == 'boolean' && $value == true) {
+                $attrs .= ' ' . $key;
+            } else {
+                $attrs .= ' ' . $key . '=' . '"'.$value.'"';
+            }
         }
-        return $attrs;
+        return ltrim($attrs);
     }
 
     public function getHtml(): string {
