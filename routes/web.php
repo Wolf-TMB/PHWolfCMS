@@ -6,8 +6,6 @@ use PHWolfCMS\Http\Controllers\WebController;
 use PHWolfCMS\Http\Controllers\AuthController;
 
 $app->router->get('/', [WebController::class, 'getIndex']);
-$app->router->get('/servers', [WebController::class, 'getServers']);
-$app->router->get('/start', [WebController::class, 'getStart']);
 
 $app->router->get('/login', [AuthController::class, 'getLogin']);
 $app->router->post('/login', [AuthController::class, 'postLogin']);
