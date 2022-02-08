@@ -14,4 +14,24 @@ class WebController extends BaseController {
             )
         );
     }
+
+    public function getServers() {
+        $this->render(
+            'servers',
+            'main',
+            array(
+                'title' => 'Серверы'
+            )
+        );
+    }
+
+    public function getStart() {
+        $this->render(
+            'start',
+            'main',
+            array(
+                'title' => 'Главная'
+            )
+        );
+    }
 }
