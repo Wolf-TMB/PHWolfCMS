@@ -13,7 +13,7 @@
                     <a class="nav-link" href="/servers">Серверы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Правила</a>
+                    <a class="nav-link" href="/rules">Правила</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Привелегии</a>
