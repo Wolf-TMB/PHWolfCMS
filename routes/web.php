@@ -19,3 +19,20 @@ $app->router->get('/test', function () {
         ['title' => 'title']
     );
 });
+
+$app->router->get('/servers', function () {
+    global $app;
+    $app->render->renderPage(
+        'servers',
+        'main',
+        ['title' => 'WilyCraft Servers']
+    );
+});
+$app->router->get('/start', function () {
+    global $app;
+    $app->render->renderPage(
+        'start',
+        'main',
+        ['title' => 'WilyCraft Servers']
+    );
+});

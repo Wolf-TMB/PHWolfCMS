@@ -1,44 +1,76 @@
-<div>
-    <br>
-    content
-    <br>
-
-</div>
-
-<div class="col-12">
-    <div class="offset-md-4 col-md-4">
-        <?php
-        global $app;
-        $app->html->form()
-            ->action('/')
-            ->method('POST')
-            ->inputText('login', 'login', true, 'Логин:', true)
-            ->inputPassword('password', 'password', true, 'Пароль:', true)
-            ->select('testSelect', 'testSelect', array(
-                '1' => 213,
-                '2' => '23',
-                '3' => ['231', 'options' => ['selected']]
-            ), true, 'Нужно шо то выбрать', true)
-            ->print();
-        ?>
-        <form action="/" method="POST">
-            <div class=" mb-3">
-                <label for="login" class=" form-label">Логин:</label>
-                <input type="text" id="login" class=" form-control">
+<div class="col-12 col-lg-8">
+    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel" style="width: 100%;">
+        <div class="carousel-indicators" id="ind">
+            <button id="to1" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="width: 15px; height: 15px;border-radius:50%;"></button>
+            <button id="to2" class="mx-2" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" style="width: 15px; height: 15px;border-radius:50%;"></button>
+            <button id="to3" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" style="width: 15px; height: 15px;border-radius:50%;"></button>
+        </div>
+        <div class="carousel-inner" id="cImages">
+            <div class="carousel-item active">
+                <img src="/resources/img/news/SkyBlock.png" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
-            <div class=" mb-3">
-                <label for="password" class=" form-label">Пароль:</label>
-                <input type="password" id="password" class=" form-control">
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/originals/2b/b3/8a/2bb38a361e2e62fbf3eda6888049bf2b.jpg" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
-            <div class=" mb-3">
-                <label for="testSelect" class=" form-label">Нужно шо то выбрать</label>
-                <select type="testSelect" id="testSelect" class=" form-select">
-                    <option value="1">213</option>
-                    <option value="2">23</option>
-                    <option value="3" selected="">231</option>
-                </select>
+            <div class="carousel-item">
+                <img src="https://rostovgazeta.ru/attachments/405c6feee9aa39551b6924321f1077cec71e3ec5/store/crop_and_fill/0/133/1280/719/1200/630/3b44fd3020c968696ef19533e17a4017ccdedcce5d7bbead8af0dce03070/3b44fd3020c968696ef19533e17a4017ccdedcce5d7bbead8af0dce03070.jpg" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
-        </form>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" id="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" id="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <p class="fs-1 text-black">Новости проекта</p>
+    <div class="news">
+        <div class="card bg-light text-dark mt-5">
+            <img src="/resources/img/news/FirstNew.png" alt="" class="news_img">
+            <div class="card-body">
+                <h5 class="card-title">Reborn</h5>
+                <p class="card-text">
+                    Мы открываемся и по этому поводу запускаем большие скидки для всех участников акции!
+                    <p>По случаю запуска проекта мы повыем награды за голосование, повышаем награды и уменьшаем стоимость на услуги!</p>
+                    <p>На странице серверов вы сможете увидеть описание и сборку каждого сервера, его персонал и особенности, а мониторинг покажется сколько людей уже играет на этом сервере.</p>
+                    <p>В личном кабинете вы можете ввести промокод который находится в нашей группе ВКонтакте и получить много бонусов для быстрого старта в игре.</p>
+                    <div class="card-footer text-muted mb-3 text-end">
+                        <img src="/resources/img/icons/time.png" alt="" style="width: 1rem; height: 1rem">10 секунд назад
+                    </div>
+                    <a href="#" class="btn btn-primary border-white" style="background: linear-gradient(to right,#302b63,#24243e); border-radius: 15px">Открыть запись в VK</a>
+            </div>
+        </div>
+        <div class="card bg-light text-dark mt-5">
+            <img src="/resources/img/news/FirstNew.png" alt="" class="news_img">
+            <div class="card-body">
+                <h5 class="card-title">Reborn</h5>
+                <p class="card-text">
+                    Мы открываемся и по этому поводу запускаем большие скидки для всех участников акции!
+                <p>По случаю запуска проекта мы повыем награды за голосование, повышаем награды и уменьшаем стоимость на услуги!</p>
+                <p>На странице серверов вы сможете увидеть описание и сборку каждого сервера, его персонал и особенности, а мониторинг покажется сколько людей уже играет на этом сервере.</p>
+                <p>В личном кабинете вы можете ввести промокод который находится в нашей группе ВКонтакте и получить много бонусов для быстрого старта в игре.</p>
+                <div class="card-footer text-muted mb-3 text-end">
+                    <img src="/resources/img/icons/time.png" alt="" style="width: 1rem; height: 1rem">10 секунд назад
+                </div>
+                <a href="#" class="btn btn-primary border-white" style="background: linear-gradient(to right,#302b63,#24243e); border-radius: 15px">Открыть запись в VK</a>
+            </div>
+        </div>
+        <div class="card bg-light text-dark mt-5">
+            <img src="/resources/img/news/FirstNew.png" alt="" class="news_img">
+            <div class="card-body">
+                <h5 class="card-title">Reborn</h5>
+                <p class="card-text">
+                    Мы открываемся и по этому поводу запускаем большие скидки для всех участников акции!
+                <p>По случаю запуска проекта мы повыем награды за голосование, повышаем награды и уменьшаем стоимость на услуги!</p>
+                <p>На странице серверов вы сможете увидеть описание и сборку каждого сервера, его персонал и особенности, а мониторинг покажется сколько людей уже играет на этом сервере.</p>
+                <p>В личном кабинете вы можете ввести промокод который находится в нашей группе ВКонтакте и получить много бонусов для быстрого старта в игре.</p>
+                <div class="card-footer text-muted mb-3 text-end">
+                    <img src="/resources/img/icons/time.png" alt="" style="width: 1rem; height: 1rem">10 секунд назад
+                </div>
+                <a href="#" class="btn btn-primary border-white" style="background: linear-gradient(to right,#302b63,#24243e); border-radius: 15px">Открыть запись в VK</a>
+            </div>
+        </div>
     </div>
 </div>
-
