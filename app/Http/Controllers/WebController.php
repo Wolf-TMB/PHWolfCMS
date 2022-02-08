@@ -34,4 +34,14 @@ class WebController extends BaseController {
             )
         );
     }
+
+    public function getRules() {
+            $this->render(
+                'rules',
+                'main',
+                array(
+                    'title' => 'Правила'
+                )
+            );
+        }
 }
