@@ -40,7 +40,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
         return $this;
     }
 
-	public function button(string $type, string $content, string $id = null, string $name = null): static {
+	public function button(string $type, string $content, string $id = '', string $name = ''): static {
 		global $app;
 		$button = $app->html->button()->type($type)->setID($id)->name($name)->content($content)->addClass('btn btn-primary')->getHtml();
 		$this->inputList[] = $button;
