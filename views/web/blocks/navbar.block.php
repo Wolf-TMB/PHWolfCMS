@@ -16,10 +16,10 @@
                     <a class="nav-link" href="/rules">Правила</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Привелегии</a>
+                    <a class="nav-link" href="/donate">Привелегии</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Проголосовать</a>
+                    <a class="nav-link" href="/vote">Проголосовать</a>
                 </li>
                 <li class="nav-item dropdown" id="nav_drop">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
