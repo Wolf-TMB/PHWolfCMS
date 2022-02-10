@@ -5,6 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:title" content="WilyCraft">
+    <meta property="og:description" content="Лучшие оптимизированные Minecraft серверы">
+    <meta property="og:image" content="/resources/img/test.png">
+
     <title><?= /** @var string $title */ $title ?></title>
     <link rel="stylesheet" href="/resources/css/style.css">
 
@@ -22,7 +27,7 @@
 <body>
     <div class="main flex-column d-flex" style="min-height: 100vh">
         {{block:navbar}}
-        <div class="body container flex-grow-1">
+        <div class="body container flex-grow-1 mt-5">
             <div class="row">
                 {{content}}
                 {{block:sidebar}}
