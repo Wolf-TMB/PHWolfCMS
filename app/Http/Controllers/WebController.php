@@ -54,12 +54,23 @@ class WebController extends BaseController {
             )
         );
     }
+
     public function getVote() {
         $this->render(
             'vote',
             'main',
             array(
                 'title' => 'Голосуй'
+            )
+        );
+    }
+
+    public function getRegistration() {
+        $this->render(
+            'registration',
+            'main',
+            array(
+                'title' => 'Зарегистрироваться'
             )
         );
     }
