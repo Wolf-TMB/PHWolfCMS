@@ -10,10 +10,10 @@
                 <img src="/resources/img/news/SkyBlock.png" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
             <div class="carousel-item">
-                <img src="https://i.pinimg.com/originals/2b/b3/8a/2bb38a361e2e62fbf3eda6888049bf2b.jpg" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
+                <img src="/resources/img/news/NewServerTehnoMagic.png" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
             <div class="carousel-item">
-                <img src="https://rostovgazeta.ru/attachments/405c6feee9aa39551b6924321f1077cec71e3ec5/store/crop_and_fill/0/133/1280/719/1200/630/3b44fd3020c968696ef19533e17a4017ccdedcce5d7bbead8af0dce03070/3b44fd3020c968696ef19533e17a4017ccdedcce5d7bbead8af0dce03070.jpg" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
+                <img src="/resources/img/news/NewServerMaxInd.png" class="d-block w-100 cimg" alt="..." style="object-fit: cover; height: 30vh">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" id="prev">
