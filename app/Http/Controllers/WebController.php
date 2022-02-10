@@ -36,12 +36,31 @@ class WebController extends BaseController {
     }
 
     public function getRules() {
-            $this->render(
-                'rules',
-                'main',
-                array(
-                    'title' => 'Правила'
-                )
-            );
-        }
+        $this->render(
+            'rules',
+            'main',
+            array(
+                'title' => 'Правила'
+            )
+        );
+    }
+
+    public function getDonate() {
+        $this->render(
+            'donate',
+            'main',
+            array(
+                'title' => 'Привелегии'
+            )
+        );
+    }
+    public function getVote() {
+        $this->render(
+            'vote',
+            'main',
+            array(
+                'title' => 'Голосуй'
+            )
+        );
+    }
 }

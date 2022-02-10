@@ -9,6 +9,8 @@ $app->router->get('/', [WebController::class, 'getIndex']);
 $app->router->get('/servers', [WebController::class, 'getServers']);
 $app->router->get('/start', [WebController::class, 'getStart']);
 $app->router->get('/rules', [WebController::class, 'getRules']);
+$app->router->get('/donate', [WebController::class, 'getDonate']);
+$app->router->get('/vote', [WebController::class, 'getVote']);
 
 $app->router->get('/login', [AuthController::class, 'getLogin']);
 $app->router->post('/login', [AuthController::class, 'postLogin']);
