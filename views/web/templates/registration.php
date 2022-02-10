@@ -16,6 +16,7 @@ use PHWolfCMS\App;
                     ->method('POST')
                     ->inputText('login', 'login', true, 'Ник', true)
                     ->inputPassword('pass', 'pass', true, 'Пароль', true)
+                    ->button('submit')
                     ->print();
             ?>
         </div>
