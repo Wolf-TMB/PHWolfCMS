@@ -60,10 +60,6 @@
         -webkit-border-radius: 15px;
         -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#302b63), to(#24243e)) 1 100%;
     }
-
-    @include media-breakpoint-between(xs, md) {
-
-    }
 </style>
 <script>
     // import 'bootstrap';
