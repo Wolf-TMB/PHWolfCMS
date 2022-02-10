@@ -20,15 +20,17 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="main flex-column">
+    <div class="main flex-column d-flex" style="min-height: 100vh">
         {{block:navbar}}
-        <div class="body container">
+        <div class="body container flex-grow-1">
             <div class="row">
                 {{content}}
                 {{block:sidebar}}
             </div>
         </div>
-        {{block:footer}}
+        <div>
+            {{block:footer}}
+        </div>
     </div>
 </body>
 <style>
