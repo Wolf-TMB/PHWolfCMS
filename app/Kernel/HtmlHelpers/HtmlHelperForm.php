@@ -27,6 +27,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
         return $this;
     }
 
+
     public function inputPassword(string $id, string $name, bool $addLabel = false, $labelText = '', $addWrapper = true): static {
         $this->addinput('password', $id, $name, $addLabel, $labelText, $addWrapper);
         return $this;
@@ -39,6 +40,12 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
         return $this;
     }
 
+	public function button(string $type, string $id = '', string $name = '') {
+		global $app;
+		$button = $app->html->button()->type($type)->setID($id)->name($name)->getHtml();
+		$this->inputList[] = $button;
+		return $this;
+	}
 
 
     private function addInput(string $type, string $id, string $name, bool $addLabel = false, $labelText = '', $addWrapper = true): void {
