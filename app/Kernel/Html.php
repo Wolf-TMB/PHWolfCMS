@@ -3,6 +3,7 @@
 namespace PHWolfCMS\Kernel;
 
 use JetBrains\PhpStorm\Pure;
+use PHWolfCMS\Kernel\HtmlHelpers\HtmlHelperButton;
 use PHWolfCMS\Kernel\HtmlHelpers\HtmlHelperDiv;
 use PHWolfCMS\Kernel\HtmlHelpers\HtmlHelperForm;
 use PHWolfCMS\Kernel\HtmlHelpers\HtmlHelperLabel;
@@ -33,5 +34,9 @@ class Html {
 
     #[Pure] public function select(): HtmlHelperSelect {
         return new HtmlHelperSelect();
+    }
+
+    #[Pure] public function button(): HtmlHelperButton {
+        return new HtmlHelperButton();
     }
 }

@@ -19,6 +19,7 @@
                 '2' => '23',
                 '3' => ['231', 'options' => ['selected']]
             ), true, 'Нужно шо то выбрать', true)
+            ->button('submit')
             ->print();
         ?>
         <form action="/" method="POST">
