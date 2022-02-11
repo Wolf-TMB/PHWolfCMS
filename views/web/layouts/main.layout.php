@@ -43,7 +43,6 @@
         /*background: url("https://images.vexels.com/media/users/3/143710/raw/a084848f4e6e545b9e7b16d102b6f866-colorful-abstract-background.jpg") no-repeat; */
     }
     .navbar {
-        height: 5vh;
         background: linear-gradient(to right, #252449,#24243e);
     }
     .body {

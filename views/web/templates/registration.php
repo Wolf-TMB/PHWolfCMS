@@ -14,9 +14,9 @@ use PHWolfCMS\App;
                 $app->html->form()
                     ->action('registration')
                     ->method('POST')
-                    ->inputText('login', 'login', true, 'Ник', true)
+                    ->inputText('login', 'login', true, 'Логин', true)
                     ->inputPassword('pass', 'pass', true, 'Пароль', true)
-                    ->button('submit')
+                    ->button('submit', 'Регистрация')
                     ->print();
             ?>
         </div>

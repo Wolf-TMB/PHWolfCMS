@@ -74,4 +74,14 @@ class WebController extends BaseController {
             )
         );
     }
+
+    public function getCabinet() {
+        $this->render(
+            'cabinet',
+            'main',
+            array(
+                'title' => 'Личный кабинет'
+            )
+        );
+    }
 }

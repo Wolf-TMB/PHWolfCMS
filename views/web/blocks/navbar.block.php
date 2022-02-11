@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var App $app
+ */
+
+use PHWolfCMS\App;
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand"  href="/">WilyCraft</a>
@@ -7,19 +16,19 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="background: linear-gradient(to right, #252449,#24243e); z-index: 10;">
             <ul class="navbar-nav" style="width: 100%;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                    <a class="nav-link <?= ($app->requestURI === '/') ? 'active' : null ?>" aria-current="page" href="/">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/servers">Серверы</a>
+                    <a class="nav-link <?= ($app->requestURI === '/servers') ? 'active' : null ?>" href="/servers">Серверы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/rules">Правила</a>
+                    <a class="nav-link <?= ($app->requestURI === '/rules') ? 'active' : null ?>" href="/rules">Правила</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/donate">Привелегии</a>
+                    <a class="nav-link <?= ($app->requestURI === '/donate') ? 'active' : null ?>" href="/donate">Привелегии</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/vote">Проголосовать</a>
+                    <a class="nav-link <?= ($app->requestURI === '/vote') ? 'active' : null ?>" href="/vote">Проголосовать</a>
                 </li>
                 <li class="nav-item dropdown" id="nav_drop">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
