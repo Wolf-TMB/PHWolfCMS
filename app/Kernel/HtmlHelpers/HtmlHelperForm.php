@@ -43,12 +43,12 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param string $name name текстового поля
 	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
 	 * @param string $labelText (опционально) текст label
-	 * @param string $classList (опционально) список классов, которые будут добавлены, несколько классов указываются через пробел
+	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 * @return $this
 	 */
-	public function inputText(string $id, string $name, bool $addLabel = false, string $labelText = '', string $classList = '', bool $addWrapper = true): static {
-        $this->addinput('text', $id, $name, $addLabel, $labelText, $classList, $addWrapper);
+	public function inputText(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+        $this->addinput('text', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
         return $this;
     }
 
@@ -58,12 +58,12 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param string $name name текстового поля
 	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
 	 * @param string $labelText (опционально) текст label
-	 * @param string $classList (опционально) список классов, которые будут добавлены, несколько классов указываются через пробел
+	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 * @return $this
 	 */
-    public function inputPassword(string $id, string $name, bool $addLabel = false, string $labelText = '', string $classList = '', bool $addWrapper = true): static {
-        $this->addinput('password', $id, $name, $addLabel, $labelText, $classList, $addWrapper);
+    public function inputPassword(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+        $this->addinput('password', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
         return $this;
     }
 
@@ -74,14 +74,22 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param array $options элементы выпадающего списка в виде массива, пример: array(1 => 1, 2 => [2, 'options' => ['selected']])
 	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
 	 * @param string $labelText (опционально) текст label
-	 * @param string $classList (опционально) список классов, которые будут добавлены, несколько классов указываются через пробел
+	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 * @return $this
 	 */
-	public function select(string $id, string $name, array $options, bool $addLabel = false, string $labelText = '', string $classList = '', bool $addWrapper = true): static {
+	public function select(string $id, string $name, array $options, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
         global $app;
         $select = $app->html->select()->options($options)->name($name)->setID($id)->addClass('form-select');
-		if (strlen($classList) > 0) $select->addClass($classList);
+		if (!empty($attrs)) {
+			foreach ($attrs as $key => $value) {
+				if ($key == 'class') {
+					$select->addClass($value);
+				} else {
+					$select->addAttr($key, $value);
+				}
+			}
+		}
 		$select = $select->getHtml();
 
         $this->addLabelWrapper($select, $id, $addLabel, $labelText, $addWrapper);
@@ -114,13 +122,21 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param string $name name поля ввода
 	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
 	 * @param string $labelText (опционально) текст label
-	 * @param string $classList (опционально) список классов, которые будут добавлены, несколько классов указываются через пробел
+	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
-	private function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', string $classList = '', bool $addWrapper = true): void {
+	private function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): void {
         global $app;
         $input = $app->html->input()->type($type)->name($name)->setID($id)->addClass('form-control');
-		if (strlen($classList) > 0) $input->addClass($classList);
+		if (!empty($attrs)) {
+			foreach ($attrs as $key => $value) {
+				if ($key == 'class') {
+					$input->addClass($value);
+				} else {
+					$input->addAttr($key, $value);
+				}
+			}
+		}
 		$input = $input->getHtml();
         $this->addLabelWrapper($input, $id, $addLabel, $labelText, $addWrapper);
     }
