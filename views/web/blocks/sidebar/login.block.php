@@ -12,11 +12,12 @@ use PHWolfCMS\App;
         $app->html->form()
             ->action('login')
             ->method('POST')
-            ->inputText('lgin', 'login', true, 'Логин', true)
-            ->inputPassword('pass', 'pass', true, 'Пароль', true)
-            ->button('submit', 'Войти', 'bt')
-            ->button('submit', 'Регистрацияф', 'regbt')
+            ->inputText('lgin', 'login', true, 'Логин', ['class' => 'w-50 fs-4', 'placeholder' => 'Подсказка'])
+            ->inputPassword('pass', 'pass', true, 'Пароль')
+            ->button('Войти')
+            ->button('Регистрация')
             ->print();
+
     ?>
 <!--    <form>-->
 <!--        <div class="mb-3">-->
