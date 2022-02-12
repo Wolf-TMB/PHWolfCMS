@@ -6,17 +6,30 @@ use JetBrains\PhpStorm\Pure;
 
 class HtmlHelperSelect extends HtmlHelperBase implements HtmlHelperInterface {
 
-    public function name(string $name): static {
+	/**
+	 * Данный метод устанавливает имя выпадающему списку
+	 * @param string $name имя элемента
+	 * @return $this
+	 */
+	public function name(string $name): static {
         $this->addAttr('type', $name);
         return $this;
     }
 
-    public function options(array $options): static {
+	/**
+	 * @param array $options элементы выпадающего списка в виде массива. array(1 => 1, 2 => [2, 'options' => ['selected']]) = <option value="1">1</option> <option value="2" selected>2</option>
+	 * @return $this
+	 */
+	public function options(array $options): static {
         $this->options->options = $options;
         return $this;
     }
 
-    public function getHtml(): string {
+	/**
+	 * Данный метод возвращает код элемента в виде HTML
+	 * @return string
+	 */
+	public function getHtml(): string {
         global $app;
         $attrs = $this->getAttrsString();
         $html = "<select $attrs>";

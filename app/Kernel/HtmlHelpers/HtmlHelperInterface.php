@@ -3,6 +3,14 @@
 namespace PHWolfCMS\Kernel\HtmlHelpers;
 
 interface HtmlHelperInterface {
-    public function getHtml() :string;
-    public function print() :void;
+	/**
+	 * Данный метод возвращает код элемента в виде HTML
+	 * @return string
+	 */
+	public function getHtml() :string;
+
+	/**
+	 * Данный метод вывод результат метода getHTML()
+	 */
+	public function print() :void;
 }
