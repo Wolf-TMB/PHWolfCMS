@@ -8,17 +8,16 @@ use PHWolfCMS\App;
 ?>
 
 <div class="registrationForm mb-5 mt-5 border-start py-4">
-    <?php
-        $app->html->form()
-            ->action('login')
-            ->method('POST')
-            ->inputText('lgin', 'login', true, 'Логин', ['class' => 'w-50 fs-4', 'placeholder' => 'Подсказка'])
-            ->inputPassword('pass', 'pass', true, 'Пароль')
-            ->button('Войти')
-            ->button('Регистрация')
-            ->print();
-
-    ?>
+	<?php
+	$app->html->form()
+		->action('login')
+		->method('POST')
+		->inputText('lgin', 'login', true, 'Логин', true)
+		->inputPassword('pass', 'pass', true, 'Пароль', true)
+		->button('submit', 'Войти', 'bt')
+		->button('submit', 'Регистрацияф', 'regbt')
+		->print();
+	?>
 <!--    <form>-->
 <!--        <div class="mb-3">-->
 <!--            <input placeholder="ЛОГИН" type="email" class="form-control" id="login" aria-describedby="emailHelp" style="height: 2rem; border-radius: 15px">-->
