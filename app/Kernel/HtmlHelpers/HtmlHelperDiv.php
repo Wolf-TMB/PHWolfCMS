@@ -5,11 +5,21 @@ namespace PHWolfCMS\Kernel\HtmlHelpers;
 use JetBrains\PhpStorm\Pure;
 
 class HtmlHelperDiv extends HtmlHelperBase implements HtmlHelperInterface {
-    public function content($content): static {
+
+	/**
+	 * Устанавливает контент элемента
+	 * @param string $content
+	 * @return $this
+	 */
+    public function content(string $content): static {
         $this->options->content = $content;
         return $this;
     }
 
+	/**
+	 * Данный метод возвращает код элемента в виде HTML
+	 * @return string
+	 */
     #[Pure] public function getHtml(): string {
         $attrs = $this->getAttrsString();
         $html = "<div $attrs>";
