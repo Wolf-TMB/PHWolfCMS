@@ -11,7 +11,7 @@ use PHWolfCMS\Exceptions\RenderDirectoriesNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class Render {
-	private object $config;
+	private Config $config;
 
 	/**
 	 * @throws ConfigKeyNotFoundException
