@@ -8,7 +8,8 @@ class Session {
     public function __construct() {
         session_start();
         if (!$this->get('ip')) $this->set('ip', $_SERVER['REMOTE_ADDR']);
-        if (!$this->verifySession() && $this->get('ip') !== false) {
+        if (!$this->get('user-agent')) $this->set('user-agent', $_SERVER['HTTP_USER_AGENT']);
+        if (!$this->verifySession() && $this->get('ip') !== false && $this->get('user-agent') !== false) {
             session_unset();
             header("Refresh:0");
         }
@@ -20,7 +21,7 @@ class Session {
      * @return bool
      */
     #[Pure] private function verifySession(): bool {
-        return ($this->get('ip') == $_SERVER['REMOTE_ADDR']);
+        return ($this->get('ip') == $_SERVER['REMOTE_ADDR'] && $this->get('user-agent') == $_SERVER['HTTP_USER_AGENT']);
     }
 
     /**
@@ -33,6 +34,15 @@ class Session {
     public function get(string $key): mixed {
         return ($_SESSION[$key]) ?? false;
     }
+
+	/**
+	 * Данный метод генерирует новый идентификатор сессии для текущего сеанса
+	 *
+	 * @return void
+	 */
+	public function regenerate(): void {
+		session_regenerate_id(true);
+	}
 
     /**
      * Данный метод устанавливает значение сессии по ключу.
