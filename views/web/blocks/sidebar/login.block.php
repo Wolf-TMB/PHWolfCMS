@@ -18,7 +18,7 @@ use PHWolfCMS\App;
             ->button('submit', 'Регистрацияф', 'regbt')
             ->print();
     ?>
-<!--    <form>-->
+<!--    <form>ффф-->
 <!--        <div class="mb-3">-->
 <!--            <input placeholder="ЛОГИН" type="email" class="form-control" id="login" aria-describedby="emailHelp" style="height: 2rem; border-radius: 15px">-->
 <!--        </div>-->
