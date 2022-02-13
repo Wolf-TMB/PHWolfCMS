@@ -3,6 +3,7 @@
 namespace PHWolfCMS\Kernel;
 
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
+use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
 use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
@@ -10,24 +11,39 @@ use PHWolfCMS\Exceptions\RenderDirectoriesNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class Render {
-    public function __construct() {
+	private object $config;
+
+	/**
+	 * @throws ConfigKeyNotFoundException
+	 * @throws RenderDirectoriesNotFoundException
+	 */
+	public function __construct() {
         global $app;
+		$this->config = new Config('module', 'render');
         if (
-            !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR'))
-            || !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR') . '/' . $app->config->get('RENDER_EMAIL_TEMPLATES_DIR'))
-            || !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR') . '/' . $app->config->get('RENDER_DEFAULT_DIR'))
-            || !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR') . '/' . $app->config->get('RENDER_DEFAULT_DIR') . '/' . $app->config->get('RENDER_BLOCKS_DIR'))
-            || !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR') . '/' . $app->config->get('RENDER_DEFAULT_DIR') . '/' . $app->config->get('RENDER_LAYOUTS_DIR'))
-            || !is_dir($app->rootDir . '/' . $app->config->get('RENDER_DIR') . '/' . $app->config->get('RENDER_DEFAULT_DIR') . '/' . $app->config->get('RENDER_TEMPLATES_DIR'))
+            !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR'))
+            || !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR') . '/' . $this->config->get('RENDER_EMAIL_TEMPLATES_DIR'))
+            || !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR') . '/' . $this->config->get('RENDER_DEFAULT_DIR'))
+            || !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR') . '/' . $this->config->get('RENDER_DEFAULT_DIR') . '/' . $this->config->get('RENDER_BLOCKS_DIR'))
+            || !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR') . '/' . $this->config->get('RENDER_DEFAULT_DIR') . '/' . $this->config->get('RENDER_LAYOUTS_DIR'))
+            || !is_dir($app->rootDir . '/' . $this->config->get('RENDER_DIR') . '/' . $this->config->get('RENDER_DEFAULT_DIR') . '/' . $this->config->get('RENDER_TEMPLATES_DIR'))
         ) {
             throw new RenderDirectoriesNotFoundException();
         }
     }
 
-    public function renderPage(string $template, string $layout, array $args = [], string|null $otherPath = null, bool $notfound = false) {
+	/**
+	 * @throws RenderFileLayoutNotFoundException
+	 * @throws RenderMaxIterationLimitException
+	 * @throws RenderFileTemplateNotFoundException
+	 * @throws ConfigKeyNotFoundException
+	 * @throws RenderFileBlockNotFoundException
+	 * @throws HttpRouteNotFoundException
+	 */
+	public function renderPage(string $template, string $layout, array $args = [], string|null $otherPath = null, bool $notfound = false) {
         global $app;
         extract($args);
-        $layoutPath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_LAYOUTS_DIR') . '/' . $layout . '.layout.php';
+        $layoutPath = $app->rootDir . $this->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $this->config->get('RENDER_DEFAULT_DIR')) . '/' . $this->config->get('RENDER_LAYOUTS_DIR') . '/' . $layout . '.layout.php';
         if (!file_exists($layoutPath)) throw new RenderFileLayoutNotFoundException();
         require $layoutPath;
         $layout = ob_get_clean();
@@ -35,10 +51,17 @@ class Render {
         print($layout);
     }
 
-    private function loadTemplates(string $templateName, string $layout, array $args, int $iteration, bool $notfound, string|null $otherPath) :string {
+	/**
+	 * @throws RenderMaxIterationLimitException
+	 * @throws HttpRouteNotFoundException
+	 * @throws RenderFileTemplateNotFoundException
+	 * @throws ConfigKeyNotFoundException
+	 * @throws RenderFileBlockNotFoundException
+	 */
+	private function loadTemplates(string $templateName, string $layout, array $args, int $iteration, bool $notfound, string|null $otherPath) :string {
         global $app;
         $iteration++;
-        if ($iteration > $app->config->get('RENDER_MAX_ITERATION')) throw new RenderMaxIterationLimitException();
+        if ($iteration > $this->config->get('RENDER_MAX_ITERATION')) throw new RenderMaxIterationLimitException();
 
         preg_match_all("/\{\{[a-zA-Z_0-9:.#@]+\}\}/", $layout, $layoutTags);
         $layoutTags = $layoutTags[0];
@@ -54,7 +77,7 @@ class Render {
                 $layout = str_replace($layoutTag, $html, $layout);
             } else if ($tag === 'content') {
                 ob_start();
-                $templatePath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_TEMPLATES_DIR') . '/' . $templateName . '.php';
+                $templatePath = $app->rootDir . $this->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $this->config->get('RENDER_DEFAULT_DIR')) . '/' . $this->config->get('RENDER_TEMPLATES_DIR') . '/' . $templateName . '.php';
                 if (!file_exists($templatePath)) {
                     if ($notfound) {
                         throw new HttpRouteNotFoundException();
@@ -73,7 +96,7 @@ class Render {
                 if ($type == 'block') {
                     ob_start();
                     $blockName = str_replace('.', '/', $blockName);
-                    $blockPath = $app->rootDir . $app->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $app->config->get('RENDER_DEFAULT_DIR')) . '/' . $app->config->get('RENDER_BLOCKS_DIR') . '/' . $blockName . '.block.php';
+                    $blockPath = $app->rootDir . $this->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $this->config->get('RENDER_DEFAULT_DIR')) . '/' . $this->config->get('RENDER_BLOCKS_DIR') . '/' . $blockName . '.block.php';
                     if (!file_exists($blockPath)) throw new RenderFileBlockNotFoundException('File ' . $blockName . '.php not found in ' . $blockPath, true);
                     require $blockPath;
                     $block = ob_get_clean();
