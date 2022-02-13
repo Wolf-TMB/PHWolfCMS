@@ -3,13 +3,18 @@
 namespace PHWolfCMS\Kernel;
 
 use PDO;
+use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 
 class Database {
     private PDO $connect;
+	private Config $config;
 
-    public function __construct() {
-        global $app;
-        $this->connect = new \PDO($app->config->get('DB_DRIVER').':host='. $app->config->get('DB_HOST') . ';port=' . $app->config->get('DB_PORT') . ';dbname=' . $app->config->get('DB_NAME') . ';charset=utf8;', $app->config->get('DB_USER'), $app->config->get('DB_PASS'), array(
+	/**
+	 * @throws ConfigKeyNotFoundException
+	 */
+	public function __construct() {
+		$this->config = new Config('module', 'database');
+        $this->connect = new PDO($this->config->get('DB_DRIVER').':host='. $this->config->get('DB_HOST') . ';port=' . $this->config->get('DB_PORT') . ';dbname=' . $this->config->get('DB_NAME') . ';charset=utf8;', $this->config->get('DB_USER'), $this->config->get('DB_PASS'), array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
         ));
@@ -59,9 +64,12 @@ class Database {
         return $stmt->execute($params);
     }
 
-    private function log($sql, $params) {
+	/**
+	 * @throws ConfigKeyNotFoundException
+	 */
+	private function log($sql, $params) {
         global $app;
-        if ($app->config->get('DB_SQL_LOG')) {
+        if ($this->config->get('DB_SQL_LOG')) {
             $stmt = $this->connect->prepare('INSERT INTO log_sql (query, params, page, user_id, created_at, updated_at) VALUES (:query, :params, :page, :user_id, :created_at, :updated_at)');
             $stmt->execute(array(
                 'query' => $sql,
