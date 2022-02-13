@@ -14,7 +14,6 @@ $app->router->get('/vote', [WebController::class, 'getVote']);
 $app->router->get('/registration', [WebController::class, 'getRegistration']);
 $app->router->get('/cabinet', [WebController::class, 'getCabinet']);
 
-$app->router->get('/login', [AuthController::class, 'getLogin']);
 $app->router->post('/login', [AuthController::class, 'postLogin']);
 $app->router->get('/register', [AuthController::class, 'getRegister']);
 $app->router->post('/register', [AuthControler::class, 'postRegister']);
