@@ -8,16 +8,18 @@ use PHWolfCMS\App;
 ?>
 
 <div class="registrationForm mb-5 mt-5 border-start py-4">
-	<?php
-	$app->html->form()
-		->action('login')
-		->method('POST')
-		->inputText('lgin', 'login', true, 'Логин', [])
-		->inputPassword('pass', 'pass', true, 'Пароль', [])
-		->button('submit', 'Войти', 'bt')
-		->button('submit', 'Регистрацияф', 'regbt')
-		->print();
-	?>
+    <div class="text-center">
+        <?php
+        $app->html->form()
+            ->action('login')
+            ->method('POST')
+            ->inputText('lgin', 'login', true, 'Логин')
+            ->inputPassword('pass', 'pass', true, 'Пароль')
+            ->button('Войти', 'btn', 'bt')
+            ->print();
+        ?>
+        <a href="/registration" class="btn mt-3" style="background: white; border: 1px solid; color: black; width: 100%; border-radius: 20px;">Регистрация</a>
+    </div>
     <!--    <form>ффф-->
     <!--        <div class="mb-3">-->
     <!--            <input placeholder="ЛОГИН" type="email" class="form-control" id="login" aria-describedby="emailHelp" style="height: 2rem; border-radius: 15px">-->
@@ -53,6 +55,7 @@ use PHWolfCMS\App;
         width: 100%;
         background: linear-gradient(to right,#302b63,#24243e);
         border-radius: 20px;
+        color: white;
     }
     #regbt {
         width: 100%;
