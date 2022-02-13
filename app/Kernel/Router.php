@@ -6,12 +6,19 @@ use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\Exception\HttpMethodNotAllowedException;
+use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
+use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
 
 class Router {
 
     private RouteCollector $router;
+	private Config $config;
 
     public function __construct() {
+		$this->config = new Config('module', 'router');
         $this->router = new RouteCollector();
     }
 
@@ -38,9 +45,12 @@ class Router {
         $this->router->group($filters, $handler);
     }
 
-    private function loadRouterFiles() {
+	/**
+	 * @throws ConfigKeyNotFoundException
+	 */
+	private function loadRouterFiles() {
         global $app;
-        $files = $this->searchFiles($app->rootDir . $app->config->get('ROUTES_DIR'), $app->config->get('ROUTES_DIR'));
+        $files = $this->searchFiles($app->rootDir . $this->config->get('ROUTES_DIR'), $this->config->get('ROUTES_DIR'));
         $files = $this->prepareFileArrayToLoad($files);
         $URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
         if (key_exists($URIData[0], $files)) {
@@ -72,7 +82,7 @@ class Router {
         global $app;
         $_files = $files;
         $files = [];
-        $rmlen = strlen($app->rootDir) + strlen($app->config->get('ROUTES_DIR')) + 1;
+        $rmlen = strlen($app->rootDir) + strlen($this->config->get('ROUTES_DIR')) + 1;
         foreach ($_files as $key => $file) {
             $fileData = explode('/', substr($file, $rmlen));
             if (count($fileData) > 1) {
@@ -84,7 +94,15 @@ class Router {
         return $files;
     }
 
-    public function run() {
+	/**
+	 * @throws RenderMaxIterationLimitException
+	 * @throws RenderFileLayoutNotFoundException
+	 * @throws HttpRouteNotFoundException
+	 * @throws RenderFileTemplateNotFoundException
+	 * @throws ConfigKeyNotFoundException
+	 * @throws RenderFileBlockNotFoundException
+	 */
+	public function run() {
         global $app;
         $this->loadRouterFiles();
         $dispatcher = new Dispatcher($this->router->getData());
@@ -93,7 +111,7 @@ class Router {
             $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
             echo $response;
         } catch (HttpRouteNotFoundException) {
-            if ($URIData[0] == $app->config->get('ROUTER_API_PREFIX')) {
+            if ($URIData[0] == $this->config->get('ROUTER_API_PREFIX')) {
                 http_send_status(404);
                 die(404);
             }
@@ -105,7 +123,7 @@ class Router {
                 )
             );
         } catch (HttpMethodNotAllowedException) {
-            if ($URIData[0] == $app->config->get('ROUTER_API_PREFIX')) {
+            if ($URIData[0] == $this->config->get('ROUTER_API_PREFIX')) {
                 http_send_status(403);
                 die(403);
             }
