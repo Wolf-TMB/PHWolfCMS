@@ -5,7 +5,7 @@ namespace PHWolfCMS\Kernel\HtmlHelpers;
 use JetBrains\PhpStorm\Pure;
 
 class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
-    private array $inputList = [];
+	private array $inputList = [];
 
 	/**
 	 * Данный метод устанавливает значение атрибута action
@@ -13,29 +13,40 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @return $this
 	 */
 	public function action(string $action): static {
-        $this->addAttr('action', $action);
-        return $this;
-    }
+		$this->addAttr('action', $action);
+		return $this;
+	}
+
+
+	/**
+	 * Данный метод добавляет скрытое поле с csrf токеном
+	 * @return $this
+	 */
+	public function csrf_token(): static {
+		global $app;
+		$this->addInput('hidden', 'csrf_token', 'csrf_token', false, '', ['value' => $app->security->getCsrfToken()]);
+		return $this;
+	}
 
 	/**
 	 * Данный метод устанавливает значение атрибута method
 	 * @param string $method значение атрибута method
 	 * @return $this
 	 */
-    public function method(string $method): static {
-        $this->addAttr('method', $method);
-        return $this;
-    }
+	public function method(string $method): static {
+		$this->addAttr('method', $method);
+		return $this;
+	}
 
 	/**
 	 * Данный метод устанавливает значение атрибута enctype
 	 * @param string $enctype значение атрибута enctype
 	 * @return $this
 	 */
-    public function enctype(string $enctype): static {
-        $this->addAttr('enctype', $enctype);
-        return $this;
-    }
+	public function enctype(string $enctype): static {
+		$this->addAttr('enctype', $enctype);
+		return $this;
+	}
 
 	/**
 	 * Данный метод добавляет текстовое поле ввода в форму
@@ -48,9 +59,9 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @return $this
 	 */
 	public function inputText(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
-        $this->addinput('text', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
-        return $this;
-    }
+		$this->addinput('text', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
+		return $this;
+	}
 
 	/**
 	 * Данный метод добавляет текстовое поле ввода пароля в форму
@@ -62,10 +73,10 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 * @return $this
 	 */
-    public function inputPassword(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
-        $this->addinput('password', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
-        return $this;
-    }
+	public function inputPassword(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+		$this->addinput('password', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
+		return $this;
+	}
 
 	/**
 	 * Добавляет выпадающий список в форму
@@ -79,8 +90,8 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @return $this
 	 */
 	public function select(string $id, string $name, array $options, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
-        global $app;
-        $select = $app->html->select()->options($options)->name($name)->setID($id)->addClass('form-select');
+		global $app;
+		$select = $app->html->select()->options($options)->name($name)->setID($id)->addClass('form-select');
 		if (!empty($attrs)) {
 			foreach ($attrs as $key => $value) {
 				if ($key == 'class') {
@@ -92,9 +103,9 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 		}
 		$select = $select->getHtml();
 
-        $this->addLabelWrapper($select, $id, $addLabel, $labelText, $addWrapper);
-        return $this;
-    }
+		$this->addLabelWrapper($select, $id, $addLabel, $labelText, $addWrapper);
+		return $this;
+	}
 
 	/**
 	 * Добавляет кнопку в форму
@@ -126,8 +137,8 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
 	private function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): void {
-        global $app;
-        $input = $app->html->input()->type($type)->name($name)->setID($id)->addClass('form-control');
+		global $app;
+		$input = $app->html->input()->type($type)->name($name)->setID($id)->addClass('form-control');
 		if (!empty($attrs)) {
 			foreach ($attrs as $key => $value) {
 				if ($key == 'class') {
@@ -138,8 +149,8 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 			}
 		}
 		$input = $input->getHtml();
-        $this->addLabelWrapper($input, $id, $addLabel, $labelText, $addWrapper);
-    }
+		$this->addLabelWrapper($input, $id, $addLabel, $labelText, $addWrapper);
+	}
 
 	/**
 	 * Добавляет label и div к элементу, если необходимо
@@ -150,25 +161,25 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
 	private function addLabelWrapper(string $element, string $id, bool $addLabel, string $labelText, bool $addWrapper) {
-        global $app;
-        $label = ($addLabel) ? $app->html->label()->for($id)->addClass('form-label')->content($labelText)->getHtml() : '';
-        if ($addWrapper) {
-            $html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
-        } else {
-            $html = $label . $element;
-        }
-        $this->inputList[] = $html;
-    }
+		global $app;
+		$label = ($addLabel) ? $app->html->label()->for($id)->addClass('form-label')->content($labelText)->getHtml() : '';
+		if ($addWrapper) {
+			$html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
+		} else {
+			$html = $label . $element;
+		}
+		$this->inputList[] = $html;
+	}
 
 	/**
 	 * Данный метод возвращает код элемента в виде HTML
 	 * @return string
 	 */
-    #[Pure] public function getHtml(): string {
-        $attrs = $this->getAttrsString();
-        $html = "<form $attrs>";
-        $html .= implode("\r\n", $this->inputList);
-        $html .= "</form>";
-        return $html;
-    }
+	#[Pure] public function getHtml(): string {
+		$attrs = $this->getAttrsString();
+		$html = "<form $attrs>";
+		$html .= implode("\r\n", $this->inputList);
+		$html .= "</form>";
+		return $html;
+	}
 }
