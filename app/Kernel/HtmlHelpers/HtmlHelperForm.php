@@ -17,6 +17,17 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
         return $this;
     }
 
+
+	/**
+	 * Данный метод добавляет скрытое поле с csrf токеном
+	 * @return $this
+	 */
+	public function csrf_token(): static {
+		global $app;
+		$this->addInput('hidden', 'csrf_token', 'csrf_token', false, '', ['value' => $app->security->getCsrfToken()]);
+		return $this;
+	}
+
 	/**
 	 * Данный метод устанавливает значение атрибута method
 	 * @param string $method значение атрибута method
