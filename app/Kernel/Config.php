@@ -8,12 +8,20 @@ use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 class Config {
     private array $variables;
 
-    public function __construct() {
+	/**
+	 * @throws ConfigKeyNotFoundException
+	 */
+	public function __construct($type = 'app', $moduleName = '') {
         global $app;
-        $dotenv = Dotenv::createImmutable($app->rootDir);
-        $dotenv->load();
-        foreach ($_ENV as $key => $value) {
-            $this->variables[$key] = $value;
+        if ($type == 'app') {
+	        $dotenv = Dotenv::createImmutable($app->rootDir);
+	        $dotenv->load();
+	        foreach ($_ENV as $key => $value) {
+		        $this->variables[$key] = $value;
+	        }
+        } else if ($type == 'module') {
+			$filename = $app->rootDir . '/' . $app->config->get('CONFIG_FILE_DIR') . '/' . $moduleName . '.config.php';
+			$this->variables = require $filename;
         }
     }
 
