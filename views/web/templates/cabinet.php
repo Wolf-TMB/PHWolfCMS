@@ -8,11 +8,11 @@ use PHWolfCMS\App;
 ?>
 
 <div class="col-12 col-lg-8 mt-5">
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-column flex-lg-row align-items-center">
         <span  class="my-auto">
             <img src="/resources/img/favicon/android-chrome-512x512.png" alt="" style="width: 250px; border-radius: 50%">
         </span>
-        <span class="my-auto fs-1 ms-5">
+        <span class="my-auto fs-1 ms-lg-5">
             WilyFox
         </span>
     </div>
@@ -49,8 +49,8 @@ use PHWolfCMS\App;
         </tbody>
     </table>
     <div class="fs-5 mt-5">
-        <div class="d-flex flex-row justify-content-sm-between mb-2">Монтеы: 150<span><a href="" class="btn" style="background: white; border: 1px solid; color: black">Пополнить</a></span></div>
-        <div class="d-flex flex-row justify-content-sm-between">Голоса: 120<span><a href="/vote" class="btn" style="background: white; border: 1px solid; color: black">Голосовать</a></span></div>
+        <div class="d-flex flex-row justify-content-between mb-2">Монтеы: 150<span><a href="" class="btn" style="background: white; border: 1px solid; color: black">Пополнить</a></span></div>
+        <div class="d-flex flex-row justify-content-between">Голоса: 120<span><a href="/vote" class="btn" style="background: white; border: 1px solid; color: black">Голосовать</a></span></div>
     </div>
     <hr>
     <div class="fs-5">
@@ -58,8 +58,8 @@ use PHWolfCMS\App;
     </div>
     <hr>
     <div class="fs-5">
-        <div class="d-flex flex-row justify-content-sm-between mb-4">Статус двухфакторной аутентификации: <span class="badge bg-success my-auto p-2">Активна</span></div>
-        <div class="d-flex flex-row justify-content-sm-between">Аккаунт ВК: <span class="badge bg-success my-auto p-2">Привязан</span></div>
+        <div class="d-flex flex-row justify-content-between mb-4">Статус двухфакторной аутентификации: <span class="badge bg-success my-auto p-2">Активна</span></div>
+        <div class="d-flex flex-row justify-content-between">Аккаунт ВК: <span class="badge bg-success my-auto p-2">Привязан</span></div>
     </div>
     <hr>
     <div class="fs-5">
@@ -107,9 +107,9 @@ use PHWolfCMS\App;
         </div>
     </div>
     <hr>
-    <div>
+    <div class="fs-5">
         Последние логи аутентификации:
-        <table class="table fs-5">
+        <table class="table">
             <thead>
             <tr>
                 <th>Действие</th>
