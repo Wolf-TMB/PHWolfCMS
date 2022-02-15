@@ -15,8 +15,10 @@ use PHWolfCMS\App;
                     ->action('registration')
                     ->method('POST')
                     ->inputText('login', 'login', true, 'Логин', [])
+                    ->inputText('email', 'email', true, 'E-Mail', [])
                     ->inputPassword('pass', 'pass', true, 'Пароль', [])
-                    ->button('Регистрация', 'btn bg-primary text-white')
+                    ->inputPassword('pass2', 'pass2', true, 'Повторите пароль', [])
+                    ->button('Регистрация', 'btn bg-primary text-white mx-auto')
                     ->print();
             ?>
         </div>
