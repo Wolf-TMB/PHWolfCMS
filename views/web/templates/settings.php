@@ -13,7 +13,7 @@ use PHWolfCMS\App;
             <img src="/resources/img/favicon/android-chrome-512x512.png" alt="" style="width: 250px; border-radius: 50%">
         </span>
         <span class="my-auto fs-1 ms-lg-5">
-            WilyFox
+            WilyFox <span class="ms-5"><a href="/cabinet"><img src="/resources/img/icons/back.png" alt="" style="width: 32px"></a></span>
         </span>
     </div>
     <hr>
