@@ -107,6 +107,38 @@ use PHWolfCMS\App;
         </div>
     </div>
     <hr>
+    <table class="table fs-5">
+        <thead>
+        <tr>
+            <th>Сервер</th>
+            <th>Срок действия</th>
+            <th>Наказание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>SkyBlock 1.12.2</td>
+            <td> </td>
+            <td><span class="badge bg-danger">Warn</span></td>
+        </tr>
+        <tr>
+            <td>TechnoMagic 1.7.10</td>
+            <td>до 01.03.2022</td>
+            <td><span class="badge bg-danger">Mute</span></td>
+        </tr>
+        <tr>
+            <td>MaxIndustrial 1.12.2</td>
+            <td>Permanent</td>
+            <td><span class="badge bg-danger">Ban</span></td>
+        </tr>
+        <tr>
+            <td>SteamPunk 1.12.2</td>
+            <td>до 01.04.2022</td>
+            <td><span class="badge bg-danger">Jail</span></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
     <div class="fs-5">
         Последние логи аутентификации:
         <table class="table">
