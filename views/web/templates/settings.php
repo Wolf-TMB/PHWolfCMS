@@ -17,6 +17,11 @@ use PHWolfCMS\App;
         </span>
     </div>
     <hr>
+        <div class="fs-5">
+            <div class="d-flex flex-row justify-content-between mb-2">Статус Google 2fa<span class="badge bg-success">Подключена</span></div>
+            <div class="d-flex flex-row justify-content-between">Аккаунт VK<span class="badge bg-success">Подключен</span></div>
+        </div>
+    <hr>
     <div class="fs-5">
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>

@@ -22,7 +22,7 @@ use PHWolfCMS\App;
         <div class="d-flex flex-row justify-content-between">Голоса: 120<span><a href="/vote" class="btn" style="background: white; border: 1px solid; color: black">Голосовать</a></span></div>
     </div>
     <hr>
-    <table class="table fs-5">
+    <table class="table fs-5 border-start">
         <thead>
         <tr>
             <th>Сервер</th>
@@ -76,7 +76,7 @@ use PHWolfCMS\App;
         </div>
     </div>
     <hr>
-    <table class="table fs-5">
+    <table class="table fs-5 border-start">
         <thead>
         <tr>
             <th>Сервер</th>
