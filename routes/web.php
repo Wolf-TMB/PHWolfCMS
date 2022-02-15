@@ -13,6 +13,7 @@ $app->router->get('/donate', [WebController::class, 'getDonate']);
 $app->router->get('/vote', [WebController::class, 'getVote']);
 $app->router->get('/registration', [WebController::class, 'getRegistration']);
 $app->router->get('/cabinet', [WebController::class, 'getCabinet']);
+$app->router->get('/settings', [WebController::class, 'getSettings']);
 
 $app->router->post('/login', [AuthController::class, 'postLogin']);
 $app->router->get('/register', [AuthController::class, 'getRegister']);

@@ -84,4 +84,14 @@ class WebController extends BaseController {
             )
         );
     }
+
+    public function getSettings() {
+        $this->render(
+            'settings',
+            'main',
+            array(
+                'title' => 'Настройки аккаунта'
+            )
+        );
+    }
 }
