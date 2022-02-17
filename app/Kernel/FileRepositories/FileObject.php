@@ -8,9 +8,11 @@ class FileObject {
     private Config $config;
 
     private int $id;
+    private int $owner;
     private string $repositoryName;
     private object $repository;
     private string $name;
+    private string $file;
     private string $path;
     private string $ext;
     private string $size;
@@ -23,8 +25,10 @@ class FileObject {
         $this->config = new Config('module', 'file_repository');
 
         $this->id = $data->id;
+        $this->owner = $data->owner;
         $this->repositoryName = $data->repository;
         $this->name = $data->name;
+        $this->file = $data->file;
         $this->path = $data->path;
         $this->ext = $data->ext;
         $this->size = $data->size;
@@ -41,6 +45,13 @@ class FileObject {
      */
     public function getId(): int {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOwnerID(): int {
+        return $this->owner;
     }
 
     /**
@@ -62,6 +73,13 @@ class FileObject {
      */
     public function getName(): string {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilename(): string {
+        return $this->file;
     }
 
     /**
