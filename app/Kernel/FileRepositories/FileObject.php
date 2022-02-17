@@ -7,7 +7,7 @@ use PHWolfCMS\Kernel\Config;
 class FileObject {
     private Config $config;
 
-    private int $id;
+    private ?int $id;
     private int $owner;
     private string $repositoryName;
     private object $repository;
@@ -18,13 +18,13 @@ class FileObject {
     private string $size;
     private string $hash;
     private string $deleted;
-    public string $created_at;
-    public string $updated_at;
+    public ?string $created_at;
+    public ?string $updated_at;
 
     public function __construct($data) {
         $this->config = new Config('module', 'file_repository');
 
-        $this->id = $data->id;
+        $this->id = @$data->id;
         $this->owner = $data->owner;
         $this->repositoryName = $data->repository;
         $this->name = $data->name;
@@ -34,10 +34,33 @@ class FileObject {
         $this->size = $data->size;
         $this->hash = $data->hash;
         $this->deleted = $data->deleted;
-        $this->created_at = $data->created_at;
-        $this->updated_at = $data->updated_at;
+        $this->created_at = @$data->created_at;
+        $this->updated_at = @$data->updated_at;
 
-        $this->repository = new ($this->config->get('repositories')->{$this->repositoryName})($this->repositoryName);
+        $this->repository = new ($this->config->get('repositories')->{$this->repositoryName}->class)($this->repositoryName);
+    }
+
+    public function save() {
+        global $app;
+        $params = array(
+            'owner' => $this->owner,
+            'repository' => $this->repositoryName,
+            'name' => $this->name,
+            'file' => $this->file,
+            'path' => $this->path,
+            'ext' => $this->ext,
+            'size' => $this->size,
+            'hash' => $this->hash,
+            'deleted' => $this->deleted
+        );
+        if ($this->id) {
+            $app->db->update(
+                'UPDATE files SET owner = :owner, repository = :repository, name = :name, file = :file, path = :path, ext = :ext, size = :size, hash = :hash, deleted = :deleted WHERE id = :id',
+                array_merge($params, ['id' => $this->id])
+            );
+        } else {
+            $app->db->insert('files', $params);
+        }
     }
 
     /**

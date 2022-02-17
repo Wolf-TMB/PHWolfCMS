@@ -79,6 +79,21 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	}
 
 	/**
+	 * Данный метод добавляет текстовое поле загрузки файла в форму
+	 * @param string $id id текстового поля
+	 * @param string $name name текстового поля
+	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
+	 * @param string $labelText (опционально) текст label
+	 * @param array $attrs (опционально) дополнительные атрибуты
+	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
+	 * @return $this
+	 */
+	public function inputFile(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+		$this->addinput('file', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
+		return $this;
+	}
+
+	/**
 	 * Добавляет выпадающий список в форму
 	 * @param string $id id выпадающего списка
 	 * @param string $name name выпадающего списка

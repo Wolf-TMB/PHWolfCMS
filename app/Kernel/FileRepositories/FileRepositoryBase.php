@@ -43,7 +43,43 @@ abstract class FileRepositoryBase  implements FileRepositoryInterface {
         return $app->db->update('UPDATE files SET deleted = 1 WHERE id = :id', array('id' => $id));
     }
 
-    public function upload() {
-        
+    public function upload($file) {
+        echo '<pre>';
+            print_r($file);
+        echo '</pre>';
+        $file['name'] = strip_tags($file['name']);
+        if (
+            $this->verifyMimeType($file)
+            && $this->verifySize($file)
+        ) {
+            $explodedName = explode('.', $file['name']);
+            $ext = end($explodedName);
+            $filename = md5($file['name'] . '~' . microtime());
+            $path = $this->dir . $filename . '.' . $ext;
+            if (move_uploaded_file($file['tmp_name'], $path)) {
+                $fileObject = new FileObject((object) array(
+                    'owner' => 0,
+                    'repository' => $this->repositoryName,
+                    'name' => md5($file['name'] . '~' . microtime()),
+                    'file' => $file['name'],
+                    'path' => $path,
+                    'ext' => $ext,
+                    'size' => $file['size'],
+                    'hash' => md5_file($path),
+                    'deleted' => 0
+                ));
+                $fileObject->save();
+            } else {
+                die('Error');
+            }
+
+        }
+    }
+
+    private function verifyMimeType($file): bool {
+        return in_array(mime_content_type($file['tmp_name']), $this->config->get('repositories')->{$this->repositoryName}->mime_types);
+    }
+    private function verifySize($file): bool {
+        return (filesize($file['tmp_name']) == $file['size'] && $file['size'] < $this->config->get('repositories')->{$this->repositoryName}->max_file_size);
     }
 }
