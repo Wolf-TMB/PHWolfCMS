@@ -64,6 +64,22 @@
         -webkit-border-radius: 15px;
         -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#302b63), to(#24243e)) 1 100%;
     }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f8f9fa;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #212529;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 </style>
 <script>
     // import 'bootstrap';
