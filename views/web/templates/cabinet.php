@@ -10,16 +10,16 @@ use PHWolfCMS\App;
 <div class="col-12 col-lg-8 mt-5">
     <div class="d-flex flex-column flex-lg-row align-items-center">
         <span  class="my-auto">
-            <img src="/resources/img/favicon/android-chrome-512x512.png" alt="" style="width: 250px; border-radius: 50%">
+            <img width="250" class="rounded-circle" src="/resources/img/favicon/android-chrome-512x512.png" alt="">
         </span>
         <span class="my-auto fs-1 ms-lg-5">
-            WilyFox <span class="ms-5"><a href="/settings"><img src="/resources/img/icons/settings.png" alt="" style="width: 32px"></a></span>
+            WilyFox <span class="ms-5"><a href="/settings"><img width="32" src="/resources/img/icons/settings.png" alt=""></a></span>
         </span>
     </div>
     <hr>
     <div class="fs-5">
-        <div class="d-flex flex-row justify-content-between mb-2">Монтеы: 150<span><a href="" class="btn" style="background: white; border: 1px solid; color: black">Пополнить</a></span></div>
-        <div class="d-flex flex-row justify-content-between">Голоса: 120<span><a href="/vote" class="btn" style="background: white; border: 1px solid; color: black">Голосовать</a></span></div>
+        <div class="d-flex flex-row justify-content-between mb-2">Монтеы: 150<span><a href="" class="btn bg-white border border-dark text-black">Пополнить</a></span></div>
+        <div class="d-flex flex-row justify-content-between">Голоса: 120<span><a href="/vote" class="btn bg-white border border-dark text-black">Голосовать</a></span></div>
     </div>
     <hr>
     <table class="table fs-5 border-start">
@@ -54,7 +54,7 @@ use PHWolfCMS\App;
         </tbody>
     </table>
     <hr>
-    <div class="ww-border rounded mt-3 p-2 text-center uploadskin-block">
+    <div class="rounded mt-3 p-2 text-center">
         <div class="mb-3">
             <img src="https://letnicraft.ru/api/getSkin?type=front&nickname=AwdAwd" alt="">
             <img src="https://letnicraft.ru/api/getSkin?type=back&nickname=AwdAwd" alt="">
@@ -64,14 +64,14 @@ use PHWolfCMS\App;
                 <div class="notify rounded">
                 </div>
                 <div class="input-group mb-3">
-                    <label style="width: 82px" class="input-group-text fw-bold fs-5" for="fileSkin">Скин</label>
+                    <label class="input-group-text fw-bold fs-5" for="fileSkin">Скин</label>
                     <input name="fileSkin" type="file" class="form-control fs-5" id="fileSkin">
                 </div>
                 <div class="input-group mb-3">
-                    <label style="width: 82px" class="input-group-text fw-bold fs-5" for="fileCloak">Плащ</label>
+                    <label class="input-group-text fw-bold fs-5" for="fileCloak">Плащ</label>
                     <input name="fileCloak" type="file" class="form-control fs-5" id="fileCloak">
                 </div>
-                <button class="btn fs-5" type="submit" style="background: white; border: 1px solid; color: black">Загрузить</button>
+                <button class="btn fs-5 bg-white border border-dark text-black" type="submit">Загрузить</button>
             </form>
         </div>
     </div>

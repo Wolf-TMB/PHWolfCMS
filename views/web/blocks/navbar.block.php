@@ -13,8 +13,8 @@ use PHWolfCMS\App;
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="background: linear-gradient(to right, #252449,#24243e); z-index: 10;">
-            <ul class="navbar-nav" style="width: 100%;">
+        <div class="collapse navbar-collapse wc-background-gradient z-10" id="navbarNavDropdown">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item">
                     <a class="nav-link <?= ($app->requestURI === '/') ? 'active' : null ?>" aria-current="page" href="/">Главная</a>
                 </li>

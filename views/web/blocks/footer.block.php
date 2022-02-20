@@ -1,5 +1,5 @@
 <div class="mt-5 text-center text-white">
-    <div class="d-flex flex-column p-2" style="background: linear-gradient(to right,#252449,#24243e); padding: 0">
+    <div class="d-flex flex-column wc-background-gradient">
         <span>
             Копирование информации без разрешения администрации запрещено.
         </span>

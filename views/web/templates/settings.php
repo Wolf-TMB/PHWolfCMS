@@ -10,10 +10,10 @@ use PHWolfCMS\App;
 <div class="col-12 col-lg-8 mt-5">
     <div class="d-flex flex-column flex-lg-row align-items-center">
         <span  class="my-auto">
-            <img src="/resources/img/favicon/android-chrome-512x512.png" alt="" style="width: 250px; border-radius: 50%">
+            <img width="250" src="/resources/img/favicon/android-chrome-512x512.png" class="rounded-circle" alt="">
         </span>
         <span class="my-auto fs-1 ms-lg-5">
-            WilyFox <span class="ms-5"><a href="/cabinet"><img src="/resources/img/icons/back.png" alt="" style="width: 32px"></a></span>
+            WilyFox <span class="ms-5"><a href="/cabinet"><img width="32" src="/resources/img/icons/back.png" alt=""></a></span>
         </span>
     </div>
     <hr>

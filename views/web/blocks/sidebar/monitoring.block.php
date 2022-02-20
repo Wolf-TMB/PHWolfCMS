@@ -4,44 +4,44 @@
         <div class="mb-4">
             <div>
                 <div class="text-start">
-                    <a href="" style="text-decoration: none" class="text-dark">SkyBlock 1.12.2</a>
-                    <span style="position: relative; float: right">72<img src="/resources/img/icons/peoples.png" alt="" style="width: 1.5rem; height: 1.5rem; padding-bottom: 2px"></span>
+                    <a href="" class="text-dark text-decoration-none">SkyBlock 1.12.2</a>
+                    <span class="position-relative float-end">72<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
-                <div style="height: 10px; width: 100%; background: #f3f3f3; border-radius: 10px; overflow: hidden;" class="text-start">
-                    <div style="background: linear-gradient(to right,#302b63,#24243e); width: 72%; border-radius: 10px; height: 100%; transition: 500ms;">1</div>
-                </div>
-            </div>
-        </div>
-        <div class="mb-4">
-            <div>
-                <div class="text-start">
-                    <a href="" style="text-decoration: none" class="text-dark">TechnoMagic 1.7.10</a>
-                    <span style="position: relative; float: right">14<img src="/resources/img/icons/peoples.png" alt="" style="width: 1.5rem; height: 1.5rem; padding-bottom: 2px"></span>
-                </div>
-                <div style="height: 10px; width: 100%; background: #f3f3f3; border-radius: 10px; overflow: hidden; display: block" class="text-start">
-                    <div style="background: linear-gradient(to right,#302b63,#24243e); width: 14%; border-radius: 10px; height: 100%; transition: 500ms;"></div>
+                <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
+                    <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 72%;">1</div>
                 </div>
             </div>
         </div>
         <div class="mb-4">
             <div>
                 <div class="text-start">
-                    <a href="" style="text-decoration: none" class="text-dark">MaxIndustrial 1.12.2</a>
-                    <span style="position: relative; float: right">32<img src="/resources/img/icons/peoples.png" alt="" style="width: 1.5rem; height: 1.5rem; padding-bottom: 2px"></span>
+                    <a href="" class="text-dark text-decoration-none">TechnoMagic 1.7.10</a>
+                    <span class="position-relative float-end">14<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
-                <div style="height: 10px; width: 100%; background: #f3f3f3; border-radius: 10px; overflow: hidden; display: block" class="text-start">
-                    <div style="background: linear-gradient(to right,#302b63,#24243e); width: 32%; border-radius: 10px; height: 100%; transition: 500ms;"></div>
+                <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
+                    <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 14%"></div>
                 </div>
             </div>
         </div>
         <div class="mb-4">
             <div>
                 <div class="text-start">
-                    <a href="" style="text-decoration: none" class="text-dark">SteamPunk 1.12.2</a>
-                    <span style="position: relative; float: right">0<img src="/resources/img/icons/peoples.png" alt="" style="width: 1.5rem; height: 1.5rem; padding-bottom: 2px"></span>
+                    <a href="" class="text-dark text-decoration-none">MaxIndustrial 1.12.2</a>
+                    <span class="position-relative float-end">32<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
-                <div style="height: 10px; width: 100%; background: #f3f3f3; border-radius: 10px; overflow: hidden; display: block" class="text-start">
-                    <div data-bs-toggle="tooltip" data-bs-placement="right" title="ТО" style="background: linear-gradient(to right,#ff9966,#ff5e62); width: 100%; border-radius: 10px; height: 100%"></div>
+                <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
+                    <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 32%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <div>
+                <div class="text-start">
+                    <a href="" class="text-dark text-decoration-none">SteamPunk 1.12.2</a>
+                    <span class="position-relative float-end">0<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
+                </div>
+                <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
+                    <div data-bs-toggle="tooltip" data-bs-placement="right" title="ТО" class="wc-offline-gradient rounded-pill h-100 wc-transition-500ms w-100"></div>
                 </div>
             </div>
         </div>
