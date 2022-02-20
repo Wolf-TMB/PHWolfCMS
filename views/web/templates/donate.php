@@ -1,5 +1,5 @@
 <div class="col-12 col-lg-8 mt-5">
-    <div class="overflow-scroll">
+    <div class="overflow-auto">
         <table class="table table-striped fs-5">
             <thead>
                 <tr>
