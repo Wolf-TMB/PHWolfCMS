@@ -25,7 +25,7 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="main flex-column d-flex" style="min-height: 100vh">
+    <div class="main flex-column d-flex">
         {{block:navbar}}
         <div class="body container flex-grow-1 mt-5">
             <div class="row">
@@ -39,8 +39,79 @@
     </div>
 </body>
 <style>
+
+    .wc-transition-500ms {
+        transition: 500ms;
+        transition-timing-function: ease-in-out;
+    }
+
+    .wc-pb-2px {
+        padding-bottom: 2px
+    }
+
+    .wc-image-white {
+        filter: brightness(0) invert(1);
+    }
+
+    .wc-h-40px {
+        height: 40px;
+    }
+    .wc-h-10px {
+        height: 10px;
+    }
+
+    .ms-6 {
+        margin-left: 6rem;
+    }
+
+    .z-10 {
+        z-index: 10;
+    }
+
+    .wc-cur-pointer {
+        cursor: pointer;
+    }
+
+    .wc-pd-8-24 {
+        padding: 8px 24px;
+    }
+
+    .wc-obj-fit-cover {
+        object-fit: cover;
+    }
+
+    .wc-wh-15px {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .wc-wh-1rem {
+        width: 1rem;
+        height: 1rem;
+    }
+    .wc-wh-1_5rem {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .wc-h-30vh {
+        height: 30vh;
+    }
+
+    .wc-background-gradient {
+        background: linear-gradient(to right, #252449,#24243e);
+    }
+
+    .wc-start-gradient {
+        background: linear-gradient(to right,#8A2387,#F27121);
+    }
+
+    .wc-offline-gradient {
+        background: linear-gradient(to right,#ff9966,#ff5e62);
+    }
+
     .main {
-        /*background: url("https://images.vexels.com/media/users/3/143710/raw/a084848f4e6e545b9e7b16d102b6f866-colorful-abstract-background.jpg") no-repeat; */
+        min-height: 100vh
     }
     .navbar {
         background: linear-gradient(to right, #252449,#24243e);
@@ -54,15 +125,6 @@
     }
     .cimg {
         border-radius: 15px;
-    }
-    .news_img {
-        object-fit: cover;
-        width: 100%;
-        height: 30vh;
-    }
-    .grad_border {
-        -webkit-border-radius: 15px;
-        -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#302b63), to(#24243e)) 1 100%;
     }
 
     ::-webkit-scrollbar {
