@@ -10,7 +10,6 @@ use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
 use PHWolfCMS\Exceptions\RenderDirectoriesNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
-use function PHWolfCMS\Kernel\str_starts_with;
 
 class Render {
 	private Config $config;
