@@ -21,7 +21,7 @@ class Database {
         ));
     }
 
-    public function getRecord($sql, $params = null, $orderColumn = 'id', $orderType = 'ASC'): array|bool {
+    public function getRecord($sql, $params = null, $orderColumn = 'id', $orderType = 'ASC'): object|bool {
         $sql .= " ORDER BY $orderColumn $orderType LIMIT 1";
         $stmt = $this->connect->prepare($sql);
         $this->log($stmt->queryString, $params);
@@ -38,7 +38,7 @@ class Database {
         return $stmt->fetchAll();
     }
 
-    public function insert($table, $params): bool {
+    public function insert($table, $params): bool|int {
         $params = array_merge($params, array(
             'created_at' => time(),
             'updated_at' => time()
@@ -47,7 +47,14 @@ class Database {
         $sql = "INSERT INTO $table (".implode(',', $columns).") VALUES(:".implode(', :', $columns).")";
         $stmt = $this->connect->prepare($sql);
         $this->log($stmt->queryString, $params);
-        return $stmt->execute($params);
+        $stmt->execute($params);
+        return $this->connect->lastInsertId();
+    }
+
+    public function delete($table, $id): bool {
+        $stmt = $this->connect->prepare('DELETE FROM ' . $table . ' WHERE id = :id');
+        $this->log($stmt->queryString, array('id' => $id));
+        return $stmt->execute(array('id' => $id));
     }
 
     public function update($sql, $params): bool {
