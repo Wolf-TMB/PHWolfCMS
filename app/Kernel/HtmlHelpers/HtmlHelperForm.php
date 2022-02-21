@@ -63,6 +63,12 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 		return $this;
 	}
 
+    public function addElement(string $element, bool $addWrapper): static {
+        if ($addWrapper)
+        $this->inputList[] = $element;
+        return $this;
+    }
+
 	/**
 	 * Данный метод добавляет текстовое поле ввода пароля в форму
 	 * @param string $id id текстового поля
@@ -79,10 +85,10 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	}
 
 	/**
-	 * Данный метод добавляет текстовое поле загрузки файла в форму
-	 * @param string $id id текстового поля
-	 * @param string $name name текстового поля
-	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
+	 * Данный метод добавляет поле загрузки файла в форму
+	 * @param string $id id поля загрузки файла
+	 * @param string $name name поля загрузки файла
+	 * @param bool $addLabel (опционально) добавлять ли label для данного поле загрузки файла
 	 * @param string $labelText (опционально) текст label
 	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
@@ -92,6 +98,23 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 		$this->addinput('file', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
 		return $this;
 	}
+
+	/**
+	 * Данный метод добавляет текстовое поле загрузки файла в форму
+	 * @param string $id id чекбокса
+	 * @param string $name name чекбокса
+	 * @param bool $addLabel (опционально) добавлять ли label для данного чекбокса
+	 * @param string $labelText (опционально) текст label
+	 * @param array $attrs (опционально) дополнительные атрибуты
+	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
+	 * @return $this
+	 */
+	public function checkbox(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+		$this->addinput('checkbox', $id, $name, $addLabel, $labelText, $attrs, $addWrapper);
+		return $this;
+	}
+
+
 
 	/**
 	 * Добавляет выпадающий список в форму
@@ -118,7 +141,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 		}
 		$select = $select->getHtml();
 
-		$this->addLabelWrapper($select, $id, $addLabel, $labelText, $addWrapper);
+		$this->addLabelWrapper($select, 'select', $id, $addLabel, $labelText, $addWrapper);
 		return $this;
 	}
 
@@ -153,7 +176,9 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 */
 	private function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): void {
 		global $app;
-		$input = $app->html->input()->type($type)->name($name)->setID($id)->addClass('form-control');
+		$input = $app->html->input()->type($type)->name($name)->setID($id);
+        if ($type == 'file' || $type == 'text' || $type == 'password') $input->addClass('form-control');
+        if ($type == 'checkbox') $input->addClass('form-check-input');
 		if (!empty($attrs)) {
 			foreach ($attrs as $key => $value) {
 				if ($key == 'class') {
@@ -164,20 +189,27 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 			}
 		}
 		$input = $input->getHtml();
-		$this->addLabelWrapper($input, $id, $addLabel, $labelText, $addWrapper);
+		$this->addLabelWrapper($input, $type, $id, $addLabel, $labelText, $addWrapper);
 	}
 
 	/**
 	 * Добавляет label и div к элементу, если необходимо
 	 * @param string $element элемент
 	 * @param string $id id элемента
+	 * @param string $type тип элемента
 	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
 	 * @param string $labelText (опционально) текст label
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
-	private function addLabelWrapper(string $element, string $id, bool $addLabel, string $labelText, bool $addWrapper) {
+	private function addLabelWrapper(string $element, string $type, string $id, bool $addLabel, string $labelText, bool $addWrapper) {
 		global $app;
-		$label = ($addLabel) ? $app->html->label()->for($id)->addClass('form-label')->content($labelText)->getHtml() : '';
+        $label = '';
+        if ($addLabel) {
+            $labelObj = $app->html->label()->for($id)->content($labelText);
+            if ($type == 'file' || $type == 'text' || $type == 'password' || $type == 'select') $labelObj->addClass('form-label');
+            if ($type == 'checkbox') $labelObj->addClass('form-check-label');
+            $label = $labelObj->getHtml();
+        }
 		if ($addWrapper) {
 			$html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
 		} else {
