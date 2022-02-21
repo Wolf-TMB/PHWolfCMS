@@ -3,7 +3,7 @@ $timeStart = hrtime(true);
 
 require_once realpath(__DIR__ . '/vendor/autoload.php');
 
-use PHWolfCMS\App;
+use PHWolfCMS\Kernel\Modules\App\App;
 
 $app = new App();
 

@@ -2,7 +2,7 @@
 
 return array(
 	'DB_DRIVER' => 'mysql', # Драйвер базы данных
-	'DB_HOST' => 'localhost', # Адрес базы данных
+	'DB_HOST' => 'wolftmb2.beget.tech', # Адрес базы данных
 	'DB_USER' => 'wolftmb2_phwolf', # Пользователь базы данных
 	'DB_PASS' => 'gwx6THd%n1qgHVN&', # Пароль базы данных | Включен фильтр ip, можно не пытаться :3
 	'DB_NAME' => 'wolftmb2_phwolf', # Имя базы данных
