@@ -111,7 +111,7 @@ abstract class BaseModel {
      */
     public function __set(string $name, $value): void {
         $writeAccessFor = static::fieldWriteAccess();
-        if (!in_array($name, $writeAccessFor)) throw new ModelCantWriteProperty();
+        if (!in_array($name, $writeAccessFor) && key_exists($name, $this->data)) throw new ModelCantWriteProperty();
         $this->data[$name] = $value;
     }
 
