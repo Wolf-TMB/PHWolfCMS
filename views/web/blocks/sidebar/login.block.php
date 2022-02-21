@@ -16,7 +16,7 @@ use PHWolfCMS\App;
             ->inputText('lgin', 'login', true, 'Логин')
             ->inputPassword('pass', 'pass', true, 'Пароль')
             ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
-            ->button('Зарегистрироватьс', 'btn w-100 text-black rounded-pill bg-white mt-2 border border-dark', 'bt')
+            ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
             ->print();
         ?>
 <!--        <div class="d-flex flex-row justify-content-evenly">-->

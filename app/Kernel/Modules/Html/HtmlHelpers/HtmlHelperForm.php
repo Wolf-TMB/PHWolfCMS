@@ -64,8 +64,13 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	}
 
     public function addElement(string $element, bool $addWrapper): static {
-        if ($addWrapper)
-        $this->inputList[] = $element;
+		global $app;
+        if ($addWrapper) {
+	        $html = $app->html->div()->content($element . $element)->addClass('mb-3')->getHtml();
+		} else {
+			$html = $element;
+        }
+        $this->inputList[] = $html;
         return $this;
     }
 
