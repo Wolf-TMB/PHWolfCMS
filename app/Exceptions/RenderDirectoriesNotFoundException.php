@@ -2,6 +2,6 @@
 
 namespace PHWolfCMS\Exceptions;
 
-class RenderDirectoriesNotFoundException extends \PHWolfCMS\Kernel\BaseException {
+class RenderDirectoriesNotFoundException extends \PHWolfCMS\Kernel\Modules\Exception\BaseException {
 
 }

@@ -2,7 +2,7 @@
 
 namespace PHWolfCMS\Http\Controllers;
 
-use PHWolfCMS\Kernel\BaseController;
+use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 
 class WebController extends BaseController {
     public function getIndex() {

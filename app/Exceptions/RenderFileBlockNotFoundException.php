@@ -2,6 +2,6 @@
 
 namespace PHWolfCMS\Exceptions;
 
-class RenderFileBlockNotFoundException extends \PHWolfCMS\Kernel\BaseException {
+class RenderFileBlockNotFoundException extends \PHWolfCMS\Kernel\Modules\Exception\BaseException {
 
 }

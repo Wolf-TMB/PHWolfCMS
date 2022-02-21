@@ -3,8 +3,8 @@
 namespace PHWolfCMS\Http\Controllers;
 
 use JetBrains\PhpStorm\NoReturn;
-use PHWolfCMS\Kernel\BaseController;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
+use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 
 class AuthController extends BaseController {
     #[NoReturn] public function getLogin() {

@@ -3,7 +3,7 @@
 return array(
     'repositories' => (object) array(
         'test' => (object) array(
-            'class' => \PHWolfCMS\Kernel\FileRepositories\TestFileRepository::class,
+            'class' => \PHWolfCMS\Kernel\Modules\FileRepository\TestFileRepository::class,
             'mime_types' => array(
                 'text/html',
                 'text/plain'
