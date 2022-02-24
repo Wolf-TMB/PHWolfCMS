@@ -130,7 +130,7 @@ abstract class BaseModel {
      */
     public function __get(string $name) {
         $readAccessFor = array_merge(static::fieldWriteAccess(), static::fieldReadAccess());
-        if (!in_array($name, $readAccessFor)) throw new ModelCantReadProperty();
+        if (!in_array($name, $readAccessFor) && !in_array('*', $readAccessFor)) throw new ModelCantReadProperty();
         if (key_exists($name, $this->data)) return $this->data[$name];
         return null;
     }
