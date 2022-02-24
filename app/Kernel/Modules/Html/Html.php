@@ -8,6 +8,7 @@ use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperForm;
 use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperLabel;
 use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperInput;
 use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperButton;
+use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperLink;
 use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperOption;
 use PHWolfCMS\Kernel\Modules\Html\HtmlHelpers\HtmlHelperSelect;
 
@@ -38,5 +39,9 @@ class Html {
 
     #[Pure] public function button(): HtmlHelperButton {
         return new HtmlHelperButton();
+    }
+
+    #[Pure] public function link(): HtmlHelperLink {
+        return new HtmlHelperLink();
     }
 }
