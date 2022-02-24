@@ -20,7 +20,7 @@ class Security {
 			'http_user_agent' => (@$_SERVER['HTTP_USER_AGENT']) ?? 'http_user_agent' //Браузер
 		);
 
-		$securityRawString = implode('--?--', $data);
+		$securityRawString = implode($app->config->get('CSRF_DATA_SEPARATOR'), $data);
 
 		$app->session->set('csrf_token', hash('sha256', $securityRawString));
 	}
