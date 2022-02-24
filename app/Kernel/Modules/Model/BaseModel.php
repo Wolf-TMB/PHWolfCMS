@@ -58,12 +58,22 @@ abstract class BaseModel {
     }
 
     /**
-     *
+     * Имя таблицы, с которой связана модель
+     * @return string
      */
-    abstract static function tableName();
+    abstract static function tableName(): string;
 
-    abstract static function fieldWriteAccess();
-    abstract static function fieldReadAccess();
+    /**
+     * Перечень полей, которые доступны для записи
+     * @return array
+     */
+    abstract static function fieldWriteAccess(): array;
+
+    /**
+     * Перечень полей, доступных для чтения
+     * @return array
+     */
+    abstract static function fieldReadAccess(): array;
 
     private function createModel($data): static {
         $this->data = [];
@@ -81,7 +91,7 @@ abstract class BaseModel {
         }
     }
 
-    public function save() {
+    public function save(): static {
         global $app;
         if ($this->id) {
             $sql = 'UPDATE ' . static::tableName() . ' SET';
@@ -95,7 +105,7 @@ abstract class BaseModel {
         return $this->refresh();
     }
 
-    public function refresh() {
+    public function refresh(): static {
         global $app;
         if ($this->id) {
             $row = $app->db->getRecord('SELECT * FROM '.( static::tableName() ).' WHERE id = :id', array('id' => $this->id));
