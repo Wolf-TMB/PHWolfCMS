@@ -29,15 +29,46 @@ class BaseValidator {
         return $return;
     }
 
+    /**
+     * Проверка длины строки (>=)
+     * @param $string
+     * @param $length
+     *
+     * @return bool
+     */
     protected function min_length($string, $length): bool {
         return (strlen($string) >= $length);
     }
+
+    /**
+     * Проверка длины строки (<)
+     * @param $string
+     * @param $length
+     *
+     * @return bool
+     */
     protected function max_length($string, $length): bool {
         return (strlen($string) < $length);
     }
+
+    /**
+     * Проверка длины строки (=)
+     * @param $string
+     * @param $length
+     *
+     * @return bool
+     */
     protected function length($string, $length): bool {
         return (strlen($string) == $length);
     }
+
+    /**
+     * Проверка строки по регулярному выражению
+     * @param $string
+     * @param $regexp
+     *
+     * @return bool
+     */
     protected function regexp($string, $regexp): bool {
         return preg_match($regexp, $string);
     }
