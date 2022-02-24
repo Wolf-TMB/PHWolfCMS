@@ -66,7 +66,8 @@ class Session {
      * @return bool
      */
     public function setFlash(string $key, string $value): bool {
-        $flashes = ($this->get('flashes')) ?? [];
+        $flashes = $this->get('flashes');
+        if (!is_array($flashes)) $flashes = [];
         $flashes[$key] = $value;
         return $this->set('flashes', $flashes);
     }
