@@ -42,6 +42,7 @@ class App extends BaseApp {
     }
 
     public function run(): static {
+        $this->refreshUserData();
         $this->router->run();
         return $this;
     }

@@ -2,6 +2,7 @@
 
 namespace PHWolfCMS\Kernel\Modules\App;
 
+use PHWolfCMS\Models\Users;
 use PHWolfCMS\Kernel\Modules\Html\Html;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
 use PHWolfCMS\Kernel\Modules\Config\Config;
@@ -22,4 +23,14 @@ class BaseApp {
     public Router $router;
     public Render $render;
     public Html $html;
+
+    public Users|false $user;
+
+    public function refreshUserData() {
+        if ($this->session->get('userid') !== false) {
+            $this->user = new Users($this->session->get('userid'));
+        } else {
+            $this->user = false;
+        }
+    }
 }
