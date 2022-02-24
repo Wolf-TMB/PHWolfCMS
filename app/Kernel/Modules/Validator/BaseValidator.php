@@ -35,6 +35,9 @@ class BaseValidator {
     protected function max_length($string, $length): bool {
         return (strlen($string) < $length);
     }
+    protected function length($string, $length): bool {
+        return (strlen($string) == $length);
+    }
     protected function regexp($string, $regexp): bool {
         return preg_match($regexp, $string);
     }
