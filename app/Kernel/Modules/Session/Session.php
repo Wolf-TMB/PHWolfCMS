@@ -35,6 +35,18 @@ class Session {
         return ($_SESSION[$key]) ?? false;
     }
 
+    /**
+     * Данный метод уничтожает значение сессии по ключу.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function unset(string $key): bool {
+        unset($_SESSION[$key]);
+        return true;
+    }
+
 	/**
 	 * Данный метод генерирует новый идентификатор сессии для текущего сеанса
 	 *
