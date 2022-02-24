@@ -57,6 +57,10 @@ abstract class BaseModel {
         return $this;
     }
 
+    public function createFromSQLData($row): static {
+        return (new static())->createModel($row);
+    }
+
     /**
      * Имя таблицы, с которой связана модель
      * @return string
