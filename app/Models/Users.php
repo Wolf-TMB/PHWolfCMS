@@ -15,6 +15,6 @@ class Users extends BaseModel {
 	}
 
 	static function fieldReadAccess(): array {
-		return ['id', 'login', 'money', 'created_at'];
+		return ['*'];
 	}
 }
