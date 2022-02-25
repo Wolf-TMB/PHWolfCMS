@@ -2,7 +2,7 @@
 
 namespace PHWolfCMS\Kernel\Modules\Facade;
 
-use PHWolfCMS\Models\Users;
+use PHWolfCMS\Models\User;
 
 class Auth {
     /**
@@ -10,7 +10,7 @@ class Auth {
      */
     public static function attempt($login, $password): bool {
         global $app;
-        $user = Users::find(array(
+        $user = User::find(array(
             ['login', '=', $login]
         ));
         if (!$user) {

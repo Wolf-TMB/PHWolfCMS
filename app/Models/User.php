@@ -4,7 +4,7 @@ namespace PHWolfCMS\Models;
 
 use PHWolfCMS\Kernel\Modules\Model\BaseModel;
 
-class Users extends BaseModel {
+class User extends BaseModel {
 
 	static function tableName(): string {
 		return 'users';
