@@ -2,6 +2,7 @@
 
 namespace PHWolfCMS\Kernel\Modules\Model;
 
+use PHWolfCMS\Models\User;
 use PHWolfCMS\Exceptions\ModelCantReadProperty;
 use PHWolfCMS\Exceptions\ModelCantWriteProperty;
 
@@ -9,7 +10,15 @@ abstract class BaseModel {
     private array $data = [];
     private static array $objects = [];
 
-    public static function find(int|array $param, int $limit = 0, array $order = ['id' => 'ASC']) {
+    /**
+     * Поиск записей по параметрам
+     * @param int|array $param
+     * @param int $limit
+     * @param array $order
+     *
+     * @return array|object
+     */
+    public static function find(int|array $param, int $limit = 0, array $order = ['id' => 'ASC']): object|array {
         global $app;
         if (gettype($param) == 'integer') {
             return self::_findAll(array(
@@ -20,15 +29,36 @@ abstract class BaseModel {
         }
     }
 
+    /**
+     * Все записи с соответствующими параметрами и возможность ограничения количества
+     * @param array $params
+     * @param int $limit
+     *
+     * @return array|mixed
+     */
     public static function findAll(array $params, int $limit = 0) {
         global $app;
         return self::_findAll($params, $limit);
     }
 
+    /**
+     * Выборка всех записей с возможностью ограничения количества
+     * @param int $limit
+     *
+     * @return array|mixed
+     */
     public static function all(int $limit = 0) {
         return self::_findAll([], $limit);
     }
 
+    /**
+     * Возвращает модель или массив моделей на основе переданных параметров
+     * @param array $param
+     * @param int $limit
+     * @param array $order
+     *
+     * @return array|mixed
+     */
     private static function _findAll(array $param = [], int $limit = 0, array $order = ['id' => 'ASC']) {
         global $app;
         $params = [];
@@ -44,10 +74,6 @@ abstract class BaseModel {
         } else {
             $rows = $app->db->getRecords($sql, null, $order, $limit);
         }
-        return self::createFromRows($rows);
-    }
-
-    protected static function createFromRows($rows) {
         if (count($rows) == 1) {
             static::$objects[] = (new static())->createModel($rows[0]);
         } else {
@@ -60,6 +86,10 @@ abstract class BaseModel {
         return static::$objects;
     }
 
+    /**
+     * Если передан id, то будет создана модель, иначе будет создана пустая модель
+     * @param int $id
+     */
     public function __construct(int $id = 0) {
         global $app;
         if ($id > 0) {
@@ -69,6 +99,12 @@ abstract class BaseModel {
         return $this;
     }
 
+    /**
+     * Создаёт модель на основе строки из базы данных
+     * @param $row
+     *
+     * @return $this
+     */
     public function createFromSQLData($row): static {
         return (new static())->createModel($row);
     }
@@ -77,20 +113,26 @@ abstract class BaseModel {
      * Имя таблицы, с которой связана модель
      * @return string
      */
-    abstract static function tableName(): string;
+    protected abstract static function tableName(): string;
 
     /**
      * Перечень полей, которые доступны для записи
      * @return array
      */
-    abstract static function fieldWriteAccess(): array;
+    protected abstract static function fieldWriteAccess(): array;
 
     /**
      * Перечень полей, доступных для чтения
      * @return array
      */
-    abstract static function fieldReadAccess(): array;
+    protected abstract static function fieldReadAccess(): array;
 
+    /**
+     * Создаёт модель на основе переданных данных
+     * @param $data
+     *
+     * @return $this
+     */
     private function createModel($data): static {
         $this->data = [];
         foreach ($data as $key => $value) {
@@ -99,6 +141,11 @@ abstract class BaseModel {
         return $this;
     }
 
+
+    /**
+     * Метод удаляет данные, связанные с текущей моделью
+     * @return void
+     */
     public function delete() {
         global $app;
         if ($this->id) {
@@ -107,6 +154,10 @@ abstract class BaseModel {
         }
     }
 
+    /**
+     * Метод обновляет данные в базе данных на основе данных модели
+     * @return $this
+     */
     public function save(): static {
         global $app;
         if ($this->id) {
@@ -121,6 +172,10 @@ abstract class BaseModel {
         return $this->refresh();
     }
 
+    /**
+     * Метод обновляет данные модели из базы данных, если задан id или создаёт новую запись
+     * @return $this
+     */
     public function refresh(): static {
         global $app;
         if ($this->id) {
