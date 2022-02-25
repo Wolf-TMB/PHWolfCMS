@@ -9,33 +9,45 @@ abstract class BaseModel {
     private array $data = [];
     private static array $objects = [];
 
-    public static function find(int|array $param) {
+    public static function find(int|array $param, int $limit = 0, array $order = ['id' => 'ASC']) {
         global $app;
         if (gettype($param) == 'integer') {
             return self::_findAll(array(
                 ['id', '=', $param]
-            ));
+            ), $limit, $order);
         } else {
-            return self::_findAll($param);
+            return self::_findAll($param, $limit, $order);
         }
     }
 
-    public static function findAll(array $params) {
+    public static function findAll(array $params, int $limit = 0) {
         global $app;
-        return self::_findAll($params);
+        return self::_findAll($params, $limit);
     }
 
-    private static function _findAll(array|int $param) {
+    public static function all(int $limit = 0) {
+        return self::_findAll([], $limit);
+    }
+
+    private static function _findAll(array $param = [], int $limit = 0, array $order = ['id' => 'ASC']) {
         global $app;
         $params = [];
-        $sql = 'SELECT * FROM  ' . static::tableName() . ' WHERE';
-        foreach ($param as $key => $value) {
-            $i = count($params);
-            if (key_exists(3, $value)) $sql .= ' ' . $value[3];
-            $params[$value[0] . '_' . $i] = $value[2];
-            $sql .= ' ' . $value[0] . ' ' . $value[1] . ' :' . $value[0] . '_' . $i;
+        $sql = 'SELECT * FROM ' . static::tableName() . ((empty($param)) ? '' : ' WHERE');
+        if (!empty($param)) {
+            foreach ($param as $key => $value) {
+                $i = count($params);
+                if (key_exists(3, $value)) $sql .= ' ' . $value[3];
+                $params[$value[0] . '_' . $i] = $value[2];
+                $sql .= ' ' . $value[0] . ' ' . $value[1] . ' :' . $value[0] . '_' . $i;
+            }
+            $rows = $app->db->getRecords($sql, $params, $order, $limit);
+        } else {
+            $rows = $app->db->getRecords($sql, null, $order, $limit);
         }
-        $rows = $app->db->getRecords($sql, $params);
+        return self::createFromRows($rows);
+    }
+
+    protected static function createFromRows($rows) {
         if (count($rows) == 1) {
             static::$objects[] = (new static())->createModel($rows[0]);
         } else {
