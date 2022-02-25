@@ -21,16 +21,23 @@ class Database {
         ));
     }
 
-    public function getRecord($sql, $params = null, $orderColumn = 'id', $orderType = 'ASC'): object|bool {
-        $sql .= " ORDER BY $orderColumn $orderType LIMIT 1";
+    public function getRecord($sql, $params = null, array $order = ['id' => 'ASC']): object|bool {
+        $sql .= " ORDER BY";
+        foreach ($order as $column => $type) {
+            $sql .= " $column $type";
+        }
+        $sql .= " LIMIT 1";
         $stmt = $this->connect->prepare($sql);
         $this->log($stmt->queryString, $params);
         $stmt->execute($params);
         return $stmt->fetch();
     }
 
-    public function getRecords($sql, $params = null, $orderColumn = 'id', $orderType = 'ASC', $limit = 0): array {
-        $sql .= " ORDER BY $orderColumn $orderType";
+    public function getRecords($sql, $params = null, array $order = ['id' => 'ASC'], $limit = 0): array {
+        $sql .= " ORDER BY";
+        foreach ($order as $column => $type) {
+            $sql .= " $column $type";
+        }
         $sql .= ($limit == 0) ? "" : " LIMIT $limit";
         $stmt = $this->connect->prepare($sql);
         $this->log($stmt->queryString, $params);
