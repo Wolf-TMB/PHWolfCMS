@@ -31,7 +31,7 @@ abstract class BaseModel {
         $sql = 'SELECT * FROM  ' . static::tableName() . ' WHERE';
         foreach ($param as $key => $value) {
             $i = count($params);
-            if ($i > 0) $sql .= ' AND';
+            if (key_exists(3, $value)) $sql .= ' ' . $value[3];
             $params[$value[0] . '_' . $i] = $value[2];
             $sql .= ' ' . $value[0] . ' ' . $value[1] . ' :' . $value[0] . '_' . $i;
         }
