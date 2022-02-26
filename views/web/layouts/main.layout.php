@@ -26,9 +26,9 @@
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-    <div class="main flex-column d-flex">
+    <div class="wc-mh-100vh flex-column d-flex">
         {{block:navbar}}
-        <div class="body container flex-grow-1 mt-5">
+        <div class="w-100 h-100 container flex-grow-1 mt-5">
             <div class="row">
                 {{content}}
                 {{block:sidebar}}
@@ -39,7 +39,11 @@
         </div>
     </div>
 </body>
-<style>
+<style>/
+
+    .wc-mh-100vh {
+        min-height: 100vh;
+    }
 
     .wc-transition-500ms {
         transition: 500ms;
@@ -111,16 +115,10 @@
         background: linear-gradient(to right,#ff9966,#ff5e62);
     }
 
-    .main {
-        min-height: 100vh
-    }
     .navbar {
         background: linear-gradient(to right, #252449,#24243e);
     }
-    .body {
-        width: 100%;
-        height: 100%;
-    }
+
     .footer {
         height: 5vh;
     }
