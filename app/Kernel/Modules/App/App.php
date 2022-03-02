@@ -10,6 +10,7 @@ use PHWolfCMS\Kernel\Modules\Render\Render;
 use PHWolfCMS\Kernel\Modules\Session\Session;
 use PHWolfCMS\Kernel\Modules\Database\Database;
 use PHWolfCMS\Kernel\Modules\Security\Security;
+use PHWolfCMS\Kernel\Modules\Validator\Validator;
 
 class App extends BaseApp {
 
@@ -37,6 +38,7 @@ class App extends BaseApp {
         $this->render = new Render();
 
         $this->html = new Html();
+        $this->validator = new Validator();
 
         return $this;
     }
