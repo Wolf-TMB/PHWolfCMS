@@ -5,14 +5,25 @@ namespace PHWolfCMS\Http\Controllers;
 use PHWolfCMS\Models\User;
 use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
+use PHWolfCMS\Kernel\Modules\Facade\Auth;
 use PHWolfCMS\Kernel\Modules\Validator\Validator;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 
 class AuthController extends BaseController {
     public function postLogin() {
-        echo '<pre>';
-            print_r($this->getRequestData(RequestMethod::POST));
-        echo '</pre>';
+        global $app;
+        $data = $this->getRequestData(RequestMethod::POST);
+        if (!Auth::attempt($data['login'], $data['password'])) {
+            $app->session->setFlash('loginError', json_encode(array(
+                'messages' => array(
+                    'Неверный логин или пароль.'
+                ),
+                'data' => array(
+                    'login' => $data['login'],
+                )
+            )));
+        }
+        $this->redirect(($app->refer) ?? '/');
     }
 
     #[NoReturn] public function getRegistration() {
