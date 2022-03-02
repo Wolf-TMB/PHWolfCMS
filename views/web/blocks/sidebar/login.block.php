@@ -4,21 +4,23 @@
  */
 
 use PHWolfCMS\Kernel\Modules\App\App;
-$test = \PHWolfCMS\Kernel\Modules\Facade\Auth::attempt('Wolf_TMB', 'WolfTMB123');
-var_dump($test);
+use PHWolfCMS\Kernel\Modules\Facade\Auth;
+
 ?>
 
 <div class="registrationForm mb-5 mt-5 border-start py-4">
     <div class="text-center w-100">
-        <?php if (!\PHWolfCMS\Kernel\Modules\Facade\Auth::check()): ?>
-            <?php $app->html->form()
-                ->action('login')
-                ->method('POST')
-                ->inputText('lgin', 'login', true, 'Логин')
-                ->inputPassword('pass', 'pass', true, 'Пароль')
-                ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
-                ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
-                ->print(); ?>
+        <?php if (!Auth::check()): ?>
+            <?php
+                $app->html->form()
+                    ->action('login')
+                    ->method('POST')
+                    ->inputText('login', 'login', true, 'Логин')
+                    ->inputPassword('pass', 'pass', true, 'Пароль')
+                    ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
+                    ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
+                    ->print();
+            ?>
         <?php else: ?>
             <div class="d-flex flex-row justify-content-evenly">
             <span class="my-auto">
