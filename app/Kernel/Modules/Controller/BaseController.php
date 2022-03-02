@@ -5,9 +5,17 @@ namespace PHWolfCMS\Kernel\Modules\Controller;
 use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
 use PHWolfCMS\Exceptions\CSRFProtectionException;
+use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
+use Phroute\Phroute\Exception\HttpRouteNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
+use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
 use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class BaseController {
+    /**
+     * @throws CSRFProtectionException
+     */
     protected function getRequestData(RequestMethod $type, bool $verifyCSRFToken = true, bool $stripTags = true): array {
         $post = $get = [];
         foreach ($_POST as $key => $value) {
@@ -35,6 +43,10 @@ class BaseController {
             return $data;
         }
     }
+
+    /**
+     * @throws CSRFProtectionException
+     */
     private function verifyCSRFToken(&$data):array {
         global $app;
         if (isset($data['csrf_token'])) {
@@ -52,8 +64,12 @@ class BaseController {
      * @param array $params Переменные, которые будут переданы в шаблон в виде 'var_name' => 'value'. Необязательно, по умолчанию: [].
      * @param string|null $dir Папка для поиска элементов, необходимых для рендера. Необязательно, по умолчанию: null.
      * @param bool $notfound Если истинно, то при отсутствии шаблона будет выдано исключение HttpRouteNotFoundException. Необязательно, по умолчанию: false.
-     *
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
      * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws HttpRouteNotFoundException
      */
     #[NoReturn] protected function render(string $template, string $layout, array $params = [], string $dir = null, bool $notfound = false) {
         global $app;

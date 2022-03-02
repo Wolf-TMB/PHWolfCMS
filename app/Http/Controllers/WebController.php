@@ -2,7 +2,9 @@
 
 namespace PHWolfCMS\Http\Controllers;
 
+use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
+use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
 
 class WebController extends BaseController {
     public function getIndex() {
@@ -65,7 +67,10 @@ class WebController extends BaseController {
         );
     }
 
-    public function getCabinet() {
+    /**
+     * @throws RenderFileLayoutNotFoundException
+     */
+    #[NoReturn] public function getCabinet() {
         $this->render(
             'cabinet',
             'main',
