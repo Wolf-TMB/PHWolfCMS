@@ -66,9 +66,9 @@ abstract class BaseModel {
         if (!empty($param)) {
             foreach ($param as $key => $value) {
                 $i = count($params);
-                if (key_exists(3, $value)) $sql .= ' ' . $value[3];
                 $params[$value[0] . '_' . $i] = $value[2];
                 $sql .= ' ' . $value[0] . ' ' . $value[1] . ' :' . $value[0] . '_' . $i;
+                if (key_exists(3, $value)) $sql .= ' ' . $value[3];
             }
             $rows = $app->db->getRecords($sql, $params, $order, $limit);
         } else {
