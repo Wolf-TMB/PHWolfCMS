@@ -1,10 +1,11 @@
 <?php
 /**
  * @var App $app
+ * @var User $user
  */
 
-use PHWolfCMS\App;
-
+use PHWolfCMS\Kernel\Modules\App\App;
+use PHWolfCMS\Models\User;
 ?>
 
 <div class="col-12 col-lg-8 mt-5">
@@ -13,13 +14,13 @@ use PHWolfCMS\App;
             <img width="250" class="rounded-circle" src="/resources/img/favicon/android-chrome-512x512.png" alt="">
         </span>
         <span class="my-auto fs-1 ms-lg-5">
-            WilyFox <span class="ms-5"><a href="/settings"><img width="32" src="/resources/img/icons/settings.png" alt=""></a></span>
+            <?= $user->login ?> <span class="ms-5"><a href="/settings"><img width="32" src="/resources/img/icons/settings.png" alt=""></a></span>
         </span>
     </div>
     <hr>
     <div class="fs-5">
-        <div class="d-flex flex-row justify-content-between mb-2">Монтеы: 150<span><a href="" class="btn bg-white border border-dark text-black">Пополнить</a></span></div>
-        <div class="d-flex flex-row justify-content-between">Голоса: 120<span><a href="/vote" class="btn bg-white border border-dark text-black">Голосовать</a></span></div>
+        <div class="d-flex flex-row justify-content-between mb-2">Монтеы: <?= $user->money ?><span><a href="" class="btn bg-white border border-dark text-black">Пополнить</a></span></div>
+        <div class="d-flex flex-row justify-content-between">Голоса: <?= $user->votes ?><span><a href="/vote" class="btn bg-white border border-dark text-black">Голосовать</a></span></div>
     </div>
     <hr>
     <table class="table fs-5 border-start">

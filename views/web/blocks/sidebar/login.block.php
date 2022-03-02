@@ -4,32 +4,21 @@
  */
 
 use PHWolfCMS\Kernel\Modules\App\App;
-use PHWolfCMS\Kernel\Modules\Facade\Auth;
-
-$data = json_decode($app->session->getFlash('loginError'));
+$test = \PHWolfCMS\Kernel\Modules\Facade\Auth::attempt('Wolf_TMB', 'WolfTMB123');
+var_dump($test);
 ?>
 
 <div class="registrationForm mb-5 mt-5 border-start py-4">
     <div class="text-center w-100">
-        <?php if (!empty($data->messages)): ?>
-            <div class="alert alert-danger">
-                <?php foreach ($data->messages as $message): ?>
-                    - <?= $message ?> <br>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-        <?php if (!Auth::check()): ?>
-            <?php
-                $app->html->form()
-                    ->action('login')
-                    ->method('POST')
-                    ->csrf_token()
-                    ->inputText('login', 'login', true, 'Логин', ['value' => ($data->data->login) ?? ''])
-                    ->inputPassword('password', 'password', true, 'Пароль')
-                    ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
-                    ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
-                    ->print();
-            ?>
+        <?php if (!\PHWolfCMS\Kernel\Modules\Facade\Auth::check()): ?>
+            <?php $app->html->form()
+                ->action('login')
+                ->method('POST')
+                ->inputText('lgin', 'login', true, 'Логин')
+                ->inputPassword('pass', 'pass', true, 'Пароль')
+                ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
+                ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
+                ->print(); ?>
         <?php else: ?>
             <div class="d-flex flex-row justify-content-evenly">
             <span class="my-auto">
