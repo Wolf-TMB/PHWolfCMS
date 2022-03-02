@@ -65,16 +65,6 @@ class WebController extends BaseController {
         );
     }
 
-    public function getRegistration() {
-        $this->render(
-            'registration',
-            'main',
-            array(
-                'title' => 'Зарегистрироваться'
-            )
-        );
-    }
-
     public function getCabinet() {
         $this->render(
             'cabinet',
