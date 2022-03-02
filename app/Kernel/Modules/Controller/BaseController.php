@@ -59,4 +59,9 @@ class BaseController {
         global $app;
         $app->render->renderPage($template, $layout, $params, $dir, $notfound);
     }
+
+    protected function redirect($url): bool {
+        header('Location: ' . $url);
+        return true;
+    }
 }
