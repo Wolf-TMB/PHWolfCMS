@@ -9,9 +9,16 @@ class Config {
     private array $variables;
 
 	/**
+     * Если первым аргументом передано "app", то загружается конфигурация приложения,
+     * если передано "module", то вторым аргументом указывается имя модуля, для
+     * которого следует загрузить конфигурацию
+     *
+     * @param string $type
+     * @param string $moduleName
+     *
 	 * @throws ConfigKeyNotFoundException
 	 */
-	public function __construct($type = 'app', $moduleName = '') {
+	public function __construct(string $type = 'app', string $moduleName = '') {
         global $app;
         if ($type == 'app') {
 	        $dotenv = Dotenv::createImmutable($app->rootDir);
@@ -26,9 +33,14 @@ class Config {
     }
 
     /**
+     * Попытка получить значение конфигурации по ключу
+     *
+     * @param string $key
+     *
+     * @return mixed
      * @throws ConfigKeyNotFoundException
      */
-    public function get(string $key) {
+    public function get(string $key): mixed {
         if (key_exists($key, $this->variables)) {
             return $this->variables[$key];
         } else {

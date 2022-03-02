@@ -29,6 +29,10 @@ class BaseApp {
 
     public User|false $user;
 
+    /**
+     * Обновляются данные аутентифицированного пользователя
+     * @return void
+     */
     public function refreshUserData() {
         if ($this->session->get('userid') !== false) {
             $this->user = new User($this->session->get('userid'));

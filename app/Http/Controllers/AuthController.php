@@ -6,20 +6,11 @@ use PHWolfCMS\Models\User;
 use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
 use PHWolfCMS\Kernel\Modules\Facade\Auth;
-use PHWolfCMS\Exceptions\CSRFProtectionException;
-use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
-use PHWolfCMS\Exceptions\ValidatorNotFoundException;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
-use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-use PHWolfCMS\Exceptions\ValidatorMethodNotFoundException;
-use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
-use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
-use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
-use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class AuthController extends BaseController {
     /**
-     * @throws CSRFProtectionException
+     * @throws
      */
     #[NoReturn] public function postLogin() {
         global $app;
@@ -38,12 +29,7 @@ class AuthController extends BaseController {
     }
 
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getRegistration() {
         $this->render(
@@ -56,10 +42,7 @@ class AuthController extends BaseController {
     }
 
     /**
-     * @throws ValidatorNotFoundException
-     * @throws ConfigKeyNotFoundException
-     * @throws ValidatorMethodNotFoundException
-     * @throws CSRFProtectionException
+     * @throws
      */
     #[NoReturn] public function postRegistration() {
         global $app;

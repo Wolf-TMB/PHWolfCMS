@@ -14,6 +14,13 @@ use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class BaseController {
     /**
+     * Метод создаёт массив данных GET|POST, а также выполняет проверку CSRF-токена
+     *
+     * @param RequestMethod $type
+     * @param bool $verifyCSRFToken
+     * @param bool $stripTags
+     *
+     * @return array
      * @throws CSRFProtectionException
      */
     protected function getRequestData(RequestMethod $type, bool $verifyCSRFToken = true, bool $stripTags = true): array {
@@ -45,9 +52,13 @@ class BaseController {
     }
 
     /**
+     * Проверка CSRF-токена
+     * @param $data
+     *
+     * @return array
      * @throws CSRFProtectionException
      */
-    private function verifyCSRFToken(&$data):array {
+    private function verifyCSRFToken(&$data): array {
         global $app;
         if (isset($data['csrf_token'])) {
             if ($app->security->verifyCsrfToken($data['csrf_token'])) {
@@ -76,6 +87,13 @@ class BaseController {
         $app->render->renderPage($template, $layout, $params, $dir, $notfound);
     }
 
+    /**
+     * Переадресация по URL
+     *
+     * @param $url
+     *
+     * @return void
+     */
     #[NoReturn] protected function redirect($url) {
         header('Location: ' . $url);
         exit();

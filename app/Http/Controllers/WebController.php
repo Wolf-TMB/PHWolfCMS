@@ -3,22 +3,11 @@
 namespace PHWolfCMS\Http\Controllers;
 
 use JetBrains\PhpStorm\NoReturn;
-use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
-use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
-use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
-use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
-use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class WebController extends BaseController {
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getIndex() {
         $this->render(
@@ -31,12 +20,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getServers() {
         $this->render(
@@ -49,12 +33,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getStart() {
         $this->render(
@@ -67,12 +46,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getRules() {
         $this->render(
@@ -85,12 +59,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getDonate() {
         $this->render(
@@ -103,12 +72,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderFileLayoutNotFoundException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderMaxIterationLimitException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getVote() {
         $this->render(
@@ -121,12 +85,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderMaxIterationLimitException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderFileLayoutNotFoundException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getCabinet() {
         $this->render(
@@ -139,12 +98,7 @@ class WebController extends BaseController {
     }
 
     /**
-     * @throws RenderMaxIterationLimitException
-     * @throws RenderFileTemplateNotFoundException
-     * @throws RenderFileLayoutNotFoundException
-     * @throws ConfigKeyNotFoundException
-     * @throws RenderFileBlockNotFoundException
-     * @throws HttpRouteNotFoundException
+     * @throws
      */
     #[NoReturn] public function getSettings() {
         $this->render(
