@@ -3,88 +3,154 @@
 namespace PHWolfCMS\Http\Controllers;
 
 use JetBrains\PhpStorm\NoReturn;
+use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
+use Phroute\Phroute\Exception\HttpRouteNotFoundException;
+use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
+use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
+use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
 
 class WebController extends BaseController {
-    public function getIndex() {
+    /**
+     * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getIndex() {
         $this->render(
-            'index',
-            'main',
-            array(
+            template: 'index',
+            layout: 'main',
+            params: array(
                 'title' => 'Главная'
-            )
-        );
-    }
-
-    public function getServers() {
-        $this->render(
-            'servers',
-            'main',
-            array(
-                'title' => 'Серверы'
-            )
-        );
-    }
-
-    public function getStart() {
-        $this->render(
-            'start',
-            'main',
-            array(
-                'title' => 'Главная'
-            )
-        );
-    }
-
-    public function getRules() {
-        $this->render(
-            'rules',
-            'main',
-            array(
-                'title' => 'Правила'
-            )
-        );
-    }
-
-    public function getDonate() {
-        $this->render(
-            'donate',
-            'main',
-            array(
-                'title' => 'Привелегии'
-            )
-        );
-    }
-
-    public function getVote() {
-        $this->render(
-            'vote',
-            'main',
-            array(
-                'title' => 'Голосуй'
             )
         );
     }
 
     /**
      * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getServers() {
+        $this->render(
+            template: 'servers',
+            layout: 'main',
+            params: array(
+                'title' => 'Серверы'
+            )
+        );
+    }
+
+    /**
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderFileLayoutNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getStart() {
+        $this->render(
+            template: 'start',
+            layout: 'main',
+            params: array(
+                'title' => 'Главная'
+            )
+        );
+    }
+
+    /**
+     * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getRules() {
+        $this->render(
+            template: 'rules',
+            layout: 'main',
+            params: array(
+                'title' => 'Правила'
+            )
+        );
+    }
+
+    /**
+     * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getDonate() {
+        $this->render(
+            template: 'donate',
+            layout: 'main',
+            params: array(
+                'title' => 'Привилегии'
+            )
+        );
+    }
+
+    /**
+     * @throws RenderFileLayoutNotFoundException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderMaxIterationLimitException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getVote() {
+        $this->render(
+            template: 'vote',
+            layout: 'main',
+            params: array(
+                'title' => 'Голосуй'
+            )
+        );
+    }
+
+    /**
+     * @throws RenderMaxIterationLimitException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderFileLayoutNotFoundException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
      */
     #[NoReturn] public function getCabinet() {
         $this->render(
-            'cabinet',
-            'main',
-            array(
+            template: 'cabinet',
+            layout: 'main',
+            params: array(
                 'title' => 'Личный кабинет'
             )
         );
     }
 
-    public function getSettings() {
+    /**
+     * @throws RenderMaxIterationLimitException
+     * @throws RenderFileTemplateNotFoundException
+     * @throws RenderFileLayoutNotFoundException
+     * @throws ConfigKeyNotFoundException
+     * @throws RenderFileBlockNotFoundException
+     * @throws HttpRouteNotFoundException
+     */
+    #[NoReturn] public function getSettings() {
         $this->render(
-            'settings',
-            'main',
-            array(
+            template: 'settings',
+            layout: 'main',
+            params: array(
                 'title' => 'Настройки аккаунта'
             )
         );

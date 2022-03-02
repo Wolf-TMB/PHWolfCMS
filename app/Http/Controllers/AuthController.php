@@ -47,9 +47,9 @@ class AuthController extends BaseController {
      */
     #[NoReturn] public function getRegistration() {
         $this->render(
-            'registration',
-            'main',
-            array(
+            template: 'registration',
+            layout: 'main',
+            params: array(
                 'title' => 'Регистрация'
             )
         );
