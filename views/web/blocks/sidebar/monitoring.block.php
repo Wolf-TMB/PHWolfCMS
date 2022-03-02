@@ -5,7 +5,7 @@
             <div>
                 <div class="text-start">
                     <a href="" class="text-dark text-decoration-none">SkyBlock 1.12.2</a>
-                    <span class="position-relative float-end">72<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
+                    <span class="d-flex flex-row position-relative float-end my-auto align-items-center">72<img src="/resources/img/icons/peoples.png" alt="" class="ms-2 wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
                 <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
                     <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 72%;">1</div>
@@ -16,7 +16,7 @@
             <div>
                 <div class="text-start">
                     <a href="" class="text-dark text-decoration-none">TechnoMagic 1.7.10</a>
-                    <span class="position-relative float-end">14<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
+                    <span class="d-flex flex-row position-relative float-end my-auto align-items-center">14<img src="/resources/img/icons/peoples.png" alt="" class="ms-2 wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
                 <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
                     <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 14%"></div>
@@ -27,7 +27,7 @@
             <div>
                 <div class="text-start">
                     <a href="" class="text-dark text-decoration-none">MaxIndustrial 1.12.2</a>
-                    <span class="position-relative float-end">32<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
+                    <span class="d-flex flex-row position-relative float-end my-auto align-items-center">32<img src="/resources/img/icons/peoples.png" alt="" class="ms-2 wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
                 <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
                     <div class="wc-background-gradient rounded-pill h-100 wc-transition-500ms" style="width: 32%"></div>
@@ -38,7 +38,7 @@
             <div>
                 <div class="text-start">
                     <a href="" class="text-dark text-decoration-none">SteamPunk 1.12.2</a>
-                    <span class="position-relative float-end">0<img src="/resources/img/icons/peoples.png" alt="" class="wc-wh-1_5rem wc-pb-2px"></span>
+                    <span class="d-flex flex-row position-relative float-end my-auto align-items-center">0<img src="/resources/img/icons/peoples.png" alt="" class="ms-2 wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
                 <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
                     <div data-bs-toggle="tooltip" data-bs-placement="right" title="ТО" class="wc-offline-gradient rounded-pill h-100 wc-transition-500ms w-100"></div>
