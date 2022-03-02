@@ -30,6 +30,16 @@ class BaseValidator {
     }
 
     /**
+     * Проверка строки паттерну email
+     * @param $string
+     *
+     * @return bool
+     */
+    protected function email($string, $param): bool {
+        return filter_var($string, FILTER_VALIDATE_EMAIL) == $param;
+    }
+
+    /**
      * Проверка длины строки (>=)
      * @param $string
      * @param $length
