@@ -11,13 +11,11 @@ $app->router->get('/start', [WebController::class, 'getStart']);
 $app->router->get('/rules', [WebController::class, 'getRules']);
 $app->router->get('/donate', [WebController::class, 'getDonate']);
 $app->router->get('/vote', [WebController::class, 'getVote']);
-$app->router->get('/registration', [WebController::class, 'getRegistration']);
 $app->router->get('/cabinet', [WebController::class, 'getCabinet']);
 $app->router->get('/settings', [WebController::class, 'getSettings']);
+$app->router->get('/registration', [AuthController::class, 'getRegistration']);
+$app->router->post('/registration', [AuthController::class, 'postRegistration']);
 
-$app->router->post('/login', [AuthController::class, 'postLogin']);
-$app->router->get('/register', [AuthController::class, 'getRegister']);
-$app->router->post('/register', [AuthControler::class, 'postRegister']);
 $app->router->get('/test', function () {
     global $app;
     $app->render->renderPage(
