@@ -21,13 +21,13 @@ class Validator {
     /**
      * @param $validator
      *
-     * @return stdClass
+     * @return BaseValidator
      * @throws ConfigKeyNotFoundException
      * @throws ValidatorNotFoundException
      */
-    public function getValidator($validator): stdClass {
+    public function get($validator): BaseValidator {
         $validators = $this->config->get('validators');
         if (!property_exists($validators, $validator)) throw new ValidatorNotFoundException();
-        return new $validators->{$validator}->class($validators->{$validator});
+        return new BaseValidator($validators->{$validator});
     }
 }
