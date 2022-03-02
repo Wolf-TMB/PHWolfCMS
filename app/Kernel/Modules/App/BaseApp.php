@@ -16,6 +16,7 @@ use PHWolfCMS\Kernel\Modules\Validator\Validator;
 class BaseApp {
     public string $rootDir;
     public string $requestURI;
+    public string $refer;
     public RequestMethod $requestMethod;
     public Config $config;
     public Session $session;

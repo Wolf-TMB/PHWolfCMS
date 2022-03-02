@@ -17,6 +17,7 @@ class App extends BaseApp {
     public function __construct() {
         $this->rootDir = $_SERVER['DOCUMENT_ROOT'] . '/';
         $this->requestURI = $_SERVER['REQUEST_URI'];
+        $this->refer = $_SERVER['HTTP_REFERER'];
         if ($_SERVER['REQUEST_METHOD'] == 'GET') $this->requestMethod = RequestMethod::GET;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') $this->requestMethod = RequestMethod::POST;
     }
