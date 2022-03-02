@@ -10,7 +10,7 @@ use PHWolfCMS\Kernel\Modules\Validator\Validator;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 
 class AuthController extends BaseController {
-    public function postLogin() {
+    #[NoReturn] public function postLogin() {
         global $app;
         $data = $this->getRequestData(RequestMethod::POST);
         if (!Auth::attempt($data['login'], $data['password'])) {
@@ -36,7 +36,7 @@ class AuthController extends BaseController {
         );
     }
 
-    public function postRegistration() {
+    #[NoReturn] public function postRegistration() {
         global $app;
         $data = $this->getRequestData(RequestMethod::POST);
         $userConfirm = false;
@@ -53,7 +53,7 @@ class AuthController extends BaseController {
                 $user->email = $data['email'];
                 $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
                 $user->save();
-                return $this->redirect('/');
+                $this->redirect('/');
             }
         }
         $errors = [];
@@ -70,6 +70,6 @@ class AuthController extends BaseController {
                 'email' => $data['email'],
             )
         )));
-        return $this->redirect('/registration');
+        $this->redirect('/registration');
     }
 }

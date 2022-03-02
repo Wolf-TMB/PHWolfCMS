@@ -60,8 +60,8 @@ class BaseController {
         $app->render->renderPage($template, $layout, $params, $dir, $notfound);
     }
 
-    protected function redirect($url): bool {
+    #[NoReturn] protected function redirect($url) {
         header('Location: ' . $url);
-        return true;
+        exit();
     }
 }
