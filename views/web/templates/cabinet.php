@@ -109,7 +109,7 @@ use PHWolfCMS\Models\User;
         </tbody>
     </table>
     <div class="fs-5">
-        <span>Дата регистрации: 11.02.2022</span>
+        <span>Дата регистрации: <?= $user->created_at ?></span>
     </div>
 </div>
 
