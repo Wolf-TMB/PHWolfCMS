@@ -68,6 +68,7 @@ class Database {
         $params = array_merge($params, array(
             'updated_at' => time()
         ));
+        $sql = str_replace('SET', 'SET updated_at = :updated_at,', str_replace('updated_at = :updated_at', '', $sql));
         $stmt = $this->connect->prepare($sql);
         $this->log($stmt->queryString, $params);
         return $stmt->execute($params);
