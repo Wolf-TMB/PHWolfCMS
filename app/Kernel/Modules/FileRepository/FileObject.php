@@ -40,7 +40,7 @@ class FileObject {
         $this->repository = new ($this->config->get('repositories')->{$this->repositoryName}->class)($this->repositoryName);
     }
 
-    public function save() {
+    public function save(): bool {
         global $app;
         $params = array(
             'owner' => $this->owner,
@@ -54,13 +54,19 @@ class FileObject {
             'deleted' => $this->deleted
         );
         if ($this->id) {
-            $app->db->update(
+            return $app->db->update(
                 'UPDATE files SET owner = :owner, repository = :repository, name = :name, file = :file, path = :path, ext = :ext, size = :size, hash = :hash, deleted = :deleted WHERE id = :id',
                 array_merge($params, ['id' => $this->id])
             );
         } else {
             $app->db->insert('files', $params);
+            return true;
         }
+    }
+
+    public function delete(): bool {
+        $this->deleted = 1;
+        return $this->save();
     }
 
     /**
