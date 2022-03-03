@@ -34,9 +34,9 @@ abstract class BaseModel {
      * @param array $params
      * @param int $limit
      *
-     * @return array|mixed
+     * @return array|object
      */
-    public static function findAll(array $params, int $limit = 0) {
+    public static function findAll(array $params, int $limit = 0): array|object {
         global $app;
         return self::_findAll($params, $limit);
     }
@@ -45,21 +45,22 @@ abstract class BaseModel {
      * Выборка всех записей с возможностью ограничения количества
      * @param int $limit
      *
-     * @return array|mixed
+     * @return array|object
      */
-    public static function all(int $limit = 0) {
+    public static function all(int $limit = 0): array|object {
         return self::_findAll([], $limit);
     }
 
     /**
      * Возвращает модель или массив моделей на основе переданных параметров
+     *
      * @param array $param
      * @param int $limit
      * @param array $order
      *
-     * @return array|mixed
+     * @return array|object
      */
-    private static function _findAll(array $param = [], int $limit = 0, array $order = ['id' => 'ASC']) {
+    private static function _findAll(array $param = [], int $limit = 0, array $order = ['id' => 'ASC']): array|object {
         global $app;
         $params = [];
         $sql = 'SELECT * FROM ' . static::tableName() . ((empty($param)) ? '' : ' WHERE');
