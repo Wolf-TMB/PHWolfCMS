@@ -34,9 +34,9 @@
                 {{block:sidebar}}
             </div>
         </div>
-        <div>
-            {{block:footer}}
-        </div>
+    </div>
+    <div class="w-100">
+        {{block:footer}}
     </div>
 </body>
 <style>/
