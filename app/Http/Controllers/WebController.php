@@ -2,94 +2,109 @@
 
 namespace PHWolfCMS\Http\Controllers;
 
+use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 
 class WebController extends BaseController {
-    public function getIndex() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getIndex() {
         $this->render(
-            'index',
-            'main',
-            array(
+            template: 'index',
+            layout: 'main',
+            params: array(
                 'title' => 'Главная'
             )
         );
     }
 
-    public function getServers() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getServers() {
         $this->render(
-            'servers',
-            'main',
-            array(
+            template: 'servers',
+            layout: 'main',
+            params: array(
                 'title' => 'Серверы'
             )
         );
     }
 
-    public function getStart() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getStart() {
         $this->render(
-            'start',
-            'main',
-            array(
+            template: 'start',
+            layout: 'main',
+            params: array(
                 'title' => 'Главная'
             )
         );
     }
 
-    public function getRules() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getRules() {
         $this->render(
-            'rules',
-            'main',
-            array(
+            template: 'rules',
+            layout: 'main',
+            params: array(
                 'title' => 'Правила'
             )
         );
     }
 
-    public function getDonate() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getDonate() {
         $this->render(
-            'donate',
-            'main',
-            array(
-                'title' => 'Привелегии'
+            template: 'donate',
+            layout: 'main',
+            params: array(
+                'title' => 'Привилегии'
             )
         );
     }
 
-    public function getVote() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getVote() {
         $this->render(
-            'vote',
-            'main',
-            array(
+            template: 'vote',
+            layout: 'main',
+            params: array(
                 'title' => 'Голосуй'
             )
         );
     }
 
-    public function getRegistration() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getCabinet() {
         $this->render(
-            'registration',
-            'main',
-            array(
-                'title' => 'Зарегистрироваться'
-            )
-        );
-    }
-
-    public function getCabinet() {
-        $this->render(
-            'cabinet',
-            'main',
-            array(
+            template: 'cabinet',
+            layout: 'main',
+            params: array(
                 'title' => 'Личный кабинет'
             )
         );
     }
 
-    public function getSettings() {
+    /**
+     * @throws
+     */
+    #[NoReturn] public function getSettings() {
         $this->render(
-            'settings',
-            'main',
-            array(
+            template: 'settings',
+            layout: 'main',
+            params: array(
                 'title' => 'Настройки аккаунта'
             )
         );
