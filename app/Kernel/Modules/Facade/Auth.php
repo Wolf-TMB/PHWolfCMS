@@ -13,14 +13,11 @@ class Auth {
         $user = User::find(array(
             ['login', '=', $login]
         ));
-        if (!$user) {
-            $app->session->setFlash('authError', 'Пользователь не найден');
+
+        if (!$user || !password_verify($password, $user->password)) {
             return false;
         }
-        if (!password_verify($password, $user->password)) {
-            $app->session->setFlash('authError', 'Пароль не подошёл :(');
-            return false;
-        }
+
         $app->session->set('userid', $user->id);
         $app->refreshUserData();
         return true;
