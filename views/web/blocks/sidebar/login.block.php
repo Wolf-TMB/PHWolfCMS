@@ -37,7 +37,7 @@ $data = json_decode($app->session->getFlash('loginError'));
             </span>
                 <div class="my-auto d-flex flex-column">
                     <span class="fs-2">WilyFox</span>
-                    <span class="d-flex flex-row justify-content-between">150<span>120</span></span>
+                    <span class="d-flex flex-row justify-content-between"><?= $app->user->money ?><span><?= $app->user->votes ?></span></span>
                 </div>
             </div>
             <div class="text-center mt-4">
