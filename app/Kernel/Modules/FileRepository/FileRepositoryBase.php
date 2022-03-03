@@ -2,10 +2,11 @@
 
 namespace PHWolfCMS\Kernel\Modules\FileRepository;
 
+use PHWolfCMS\Kernel\Modules\Facade\Auth;
 use PHWolfCMS\Kernel\Modules\Config\Config;
 
 abstract class FileRepositoryBase  implements FileRepositoryInterface {
-    private string $repositoryName;
+    protected string $repositoryName;
     private string $dir;
     protected Config $config;
 
@@ -44,9 +45,9 @@ abstract class FileRepositoryBase  implements FileRepositoryInterface {
     }
 
     public function upload($file) {
-        echo '<pre>';
-            print_r($file);
-        echo '</pre>';
+        if ($this->config->get('require_auth') == true) {
+            if (!Auth::check()) return false;
+        }
         $file['name'] = strip_tags($file['name']);
         if (
             $this->verifyMimeType($file)
@@ -60,7 +61,7 @@ abstract class FileRepositoryBase  implements FileRepositoryInterface {
                 $fileObject = new FileObject((object) array(
                     'owner' => 0,
                     'repository' => $this->repositoryName,
-                    'name' => md5($file['name'] . '~' . microtime()),
+                    'name' => md5($this->repositoryName . '~' . $file['name'] . '~' . microtime()),
                     'file' => $file['name'],
                     'path' => $path,
                     'ext' => $ext,
@@ -68,9 +69,9 @@ abstract class FileRepositoryBase  implements FileRepositoryInterface {
                     'hash' => md5_file($path),
                     'deleted' => 0
                 ));
-                $fileObject->save();
+                return $fileObject->save();
             } else {
-                die('Error');
+                return false;
             }
 
         }
