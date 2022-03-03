@@ -88,11 +88,13 @@ class WebController extends BaseController {
      * @throws
      */
     #[NoReturn] public function getCabinet() {
+        global $app;
         $this->render(
             template: 'cabinet',
             layout: 'main',
             params: array(
-                'title' => 'Личный кабинет'
+                'title' => 'Личный кабинет',
+                'user' => $app->user
             )
         );
     }
