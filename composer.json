@@ -11,6 +11,7 @@
         "ext-pdo": "*",
 		"ext-http": "*",
 		"ext-fileinfo": "*",
-		"ext-gd": "*"
+		"ext-gd": "*",
+        "phpmailer/phpmailer": "^6.6"
 	}
 }

@@ -24,6 +24,7 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
             'Phroute\\Phroute\\' => 16,
             'PhpOption\\' => 10,
             'PHWolfCMS\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'G' => 
         array (
@@ -59,6 +60,10 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
         'PHWolfCMS\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
