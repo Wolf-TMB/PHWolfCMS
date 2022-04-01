@@ -31,7 +31,9 @@ class BaseValidator {
 
     /**
      * Проверка строки паттерну email
+     *
      * @param $string
+     * @param $param
      *
      * @return bool
      */

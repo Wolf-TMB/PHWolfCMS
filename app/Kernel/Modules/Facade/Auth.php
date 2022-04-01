@@ -23,6 +23,23 @@ class Auth {
         return true;
     }
 
+    /**
+     * Попытка аутентификации
+     */
+    public static function fakeAttempt($login, $password): bool {
+        global $app;
+        $user = User::find(array(
+            ['login', '=', $login]
+        ));
+
+        if (!$user || !password_verify($password, $user->password)) {
+            return false;
+        }
+        return true;
+    }
+
+
+
     public static function logout(): bool {
         global $app;
         $app->session->unset('userid');

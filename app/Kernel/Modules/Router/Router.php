@@ -65,7 +65,7 @@ class Router {
         }
     }
 
-    private function searchFiles($path, $dir, &$files = []) {
+    private function searchFiles($path, $dir, &$files = []): array {
         $_files = scandir($path);
         foreach ($_files as $file) {
             if ($file == '.' || $file == '..') continue;
@@ -113,8 +113,8 @@ class Router {
             echo $response;
         } catch (HttpRouteNotFoundException) {
             if ($URIData[0] == $this->config->get('ROUTER_API_PREFIX')) {
-                http_send_status(404);
-                die(404);
+                header("HTTP/1.0 404 Not Found");
+                die();
             }
             $app->render->renderPage(
                 '404',
