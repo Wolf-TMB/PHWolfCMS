@@ -12,6 +12,8 @@ $app->router->group(['prefix' => 'api'], function () use ($app) {
     $app->router->group(['prefix' => 'user'], function () use ($app) {
         $app->router->get('{login}/auth/{password}', [UserController::class, 'getAuth']);
         $app->router->get('{login}/skin/get', [UserController::class, 'getSkinGet']);
+        $app->router->get('{login}/skin/preview/get', [UserController::class, 'getSkinPreviewGet']);
+        $app->router->get('{login}/skin/head/get', [UserController::class, 'getSkinHeadGet']);
         $app->router->get('{login}/cloak/get', [UserController::class, 'getCloakGet']);
     });
 });

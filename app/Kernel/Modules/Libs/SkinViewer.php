@@ -92,6 +92,7 @@ class SkinViewer {
         } else {
             $mp_cloak = $info['scale'];
         }
+        $way_cloak = ($way_cloak === false) ? '1' : $way_cloak;
         $cloak = @imagecreatefrompng($way_cloak);
         if (!$cloak) $way_cloak = null;
         if ($way_cloak) {

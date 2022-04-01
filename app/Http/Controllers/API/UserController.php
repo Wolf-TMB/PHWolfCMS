@@ -4,6 +4,7 @@ namespace PHWolfCMS\Http\Controllers\API;
 
 use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Modules\Facade\Auth;
+use PHWolfCMS\Kernel\Modules\Libs\SkinViewer;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileObject;
 
 class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
@@ -20,7 +21,7 @@ class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController
         /** @var FileObject|bool $file */
         $file = $app->fileRepository->get('skin')->getByLogin($login);
         if ($file === false) {
-            die('Сделать вывод стандартного скина');
+            die('Подгружать стандартный файл');
         }
         header('Content-Type: image/png');
         readfile($file->getPath());
@@ -28,12 +29,26 @@ class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController
 
     public function getCloakGet($login) {
         global $app;
-        /** @var FileObject $file */
+        /** @var FileObject|bool $file */
         $file = $app->fileRepository->get('cloak')->getByLogin($login);
         if ($file === false) {
-            die('Сделать вывод стандартного плаща');
+            die('Подгружать стандартный файл');
         }
         header('Content-Type: image/png');
         readfile($file->getPath());
+    }
+
+    public function getSkinPreviewGet($login) {
+        global $app;
+        /** @var FileObject|bool $file */
+        $file = $app->fileRepository->get('skin')->getByLogin($login);
+        if ($file === false) {
+            die('Подгружать стандартный файл');
+        }
+        header('Content-Type: image/png');
+        imagepng(SkinViewer::createPreview($file->getPath()));
+    }
+    public function getSkinHeadGet() {
+
     }
 }
