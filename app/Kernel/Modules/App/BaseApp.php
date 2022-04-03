@@ -26,7 +26,6 @@ class BaseApp {
     public Database $db;
     public Router $router;
     public Render $render;
-    public Html $html;
     public Validator $validator;
     public FileRepository $fileRepository;
     public GoogleAuthenticator $googleAuthenticator;

@@ -50,7 +50,6 @@ class App extends BaseApp {
         $this->router = new Router();
         $this->render = new Render();
 
-        $this->html = new Html();
         $this->validator = new Validator();
         $this->fileRepository = new FileRepository();
 	    $this->googleAuthenticator = new GoogleAuthenticator(6, 25);

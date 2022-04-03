@@ -18,18 +18,26 @@ $data = json_decode($app->session->getFlash('registrationError'));
                         <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-            <?php
-                $app->html->form()
-                    ->action('registration')
-                    ->method('POST')
-                    ->csrf_token()
-                    ->inputText('login', 'login', true, 'Логин', ['value' => ($data->data->login) ?? ''])
-                    ->inputText('email', 'email', true, 'E-Mail', ['type' => 'email', 'value' => ($data->data->email) ?? ''])
-                    ->inputPassword('password', 'password', true, 'Пароль')
-                    ->inputPassword('password_confirm', 'password_confirm', true, 'Повторите пароль')
-                    ->button('Регистрация', 'btn bg-primary text-white mx-auto')
-                    ->print();
-            ?>
+            <form action="/registration" method="POST">
+                {{@csrf_token}}
+                <div class=" mb-3">
+                    <label for="login" class=" form-label">Логин</label>
+                    <input type="text" name="login" id="login" class=" form-control" value="<?= ($data->data->login) ?? '' ?>" required>
+                </div>
+                <div class=" mb-3">
+                    <label for="email" class=" form-label">E-Mail</label>
+                    <input type="email" name="email" id="email" class=" form-control" value="<?= ($data->data->email) ?? '' ?>" required>
+                </div>
+                <div class=" mb-3">
+                    <label for="password" class=" form-label">Логин</label>
+                    <input type="password" name="password" id="password" class=" form-control" required>
+                </div>
+                <div class=" mb-3">
+                    <label for="password_confirm" class=" form-label">Повторите пароль</label>
+                    <input type="password" name="password_confirm" id="password_confirm" class=" form-control" required>
+                </div>
+                <button type="submit">Зарегистрировать аккаунт</button>
+            </form>
         </div>
     </div>
 </div>
