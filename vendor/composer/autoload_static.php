@@ -18,6 +18,7 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Sonata\\GoogleAuthenticator\\' => 27,
         ),
         'P' => 
         array (
@@ -29,6 +30,7 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
+            'Google\\Authenticator\\' => 21,
         ),
         'D' => 
         array (
@@ -49,6 +51,10 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'Sonata\\GoogleAuthenticator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/google-authenticator/src',
+        ),
         'Phroute\\Phroute\\' => 
         array (
             0 => __DIR__ . '/..' . '/phroute/phroute/src/Phroute',
@@ -68,6 +74,10 @@ class ComposerStaticInit5baa05b75980b97f44213cdfd42877db
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'Google\\Authenticator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/google-authenticator/src',
         ),
         'Dotenv\\' => 
         array (

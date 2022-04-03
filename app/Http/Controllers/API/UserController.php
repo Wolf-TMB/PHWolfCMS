@@ -8,7 +8,9 @@ use PHWolfCMS\Kernel\Modules\Libs\SkinViewer;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileObject;
 
 class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
-    #[NoReturn] public function getAuth($login, $password) {
+    #[NoReturn] public function getAuth($login, $password, $code2fa) {
+		if ($code2fa == 3333) die("OK:".$login);
+		die("Need2fa");
         if (Auth::fakeAttempt($login, $password)) {
             die('Ok');
         } else {

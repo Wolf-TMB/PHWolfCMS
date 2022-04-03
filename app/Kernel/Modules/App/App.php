@@ -12,6 +12,7 @@ use PHWolfCMS\Kernel\Modules\Database\Database;
 use PHWolfCMS\Kernel\Modules\Security\Security;
 use PHWolfCMS\Kernel\Modules\Validator\Validator;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileRepository;
+use Sonata\GoogleAuthenticator\GoogleAuthenticator;
 
 class App extends BaseApp {
     /**
@@ -52,6 +53,7 @@ class App extends BaseApp {
         $this->html = new Html();
         $this->validator = new Validator();
         $this->fileRepository = new FileRepository();
+	    $this->googleAuthenticator = new GoogleAuthenticator(8, 25);
 
         return $this;
     }
