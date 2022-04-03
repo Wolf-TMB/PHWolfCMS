@@ -82,10 +82,16 @@ abstract class BaseModel {
                 static::$objects[] = (new static())->createModel($row);
             }
         }
-        if (count(static::$objects) == 0) return [];
-        if (count(static::$objects) == 1) return static::$objects[0];
-        return static::$objects;
+
+		foreach (static::$objects as &$object) {
+			static::loadData($object);
+		}
+
+	    if (count(static::$objects) == 0) return [];
+	    if (count(static::$objects) == 1) return static::$objects[0];
+		return self::$objects;
     }
+
 
     /**
      * Если передан id, то будет создана модель, иначе будет создана пустая модель

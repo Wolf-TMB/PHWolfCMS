@@ -19,17 +19,59 @@ $data = json_decode($app->session->getFlash('loginError'));
             </div>
         <?php endif; ?>
         <?php if (!Auth::check()): ?>
-            <?php
-                $app->html->form()
-                    ->action('login')
-                    ->method('POST')
-                    ->csrf_token()
-                    ->inputText('login', 'login', true, 'Логин', ['value' => ($data->data->login) ?? ''])
-                    ->inputPassword('password', 'password', true, 'Пароль')
-                    ->button('Войти', 'btn w-100 text-white rounded-pill wc-background-gradient', 'bt')
-                    ->addElement($app->html->link()->content('Зарегистрироваться')->href('/registration')->addClass('btn w-100 text-black rounded-pill bg-white mt-2 border border-dark')->getHtml(), false)
-                    ->print();
-            ?>
+            <form action="/login" method="POST" id="loginForm">
+                {{@csrf_token}}
+                <div id="loginFormMessages" class="mb-3 d-none alert">
+
+                </div>
+                <div class=" mb-3">
+                    <label for="login" class=" form-label">Логин</label>
+                    <input type="text" name="login" id="login" class=" form-control" value="<?= ($data->data->login) ?? '' ?>" required>
+                </div>
+                <div class=" mb-3">
+                    <label for="password" class=" form-label">Пароль</label>
+                    <input type="text" name="password" id="password" class=" form-control" required>
+                </div>
+                <div id="loginForm2faBlock" class=" mb-3 d-none">
+                    <label for="code2fa" class=" form-label">Код двухфакторной аутентификации</label>
+                    <input type="hidden" name="code2fa" id="code2fa" class="form-control" required>
+                </div>
+                <button>Войти</button>
+            </form>
+            <script>
+                $('#loginForm').on('submit', function (event) {
+                    event.preventDefault();
+                    console.log('123')
+                    $.ajax({
+                        url: '/login',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: $(this).serialize(),
+                        success: function(data, textStatus, xhr) {
+                            console.log(data)
+                            let loginFormMessages = $('#loginFormMessages');
+                            loginFormMessages.empty();
+                            switch (data.response) {
+                                case 'InvalidLoginOrPassword':
+                                    loginFormMessages.append(`<span>Неверный логин или пароль.</span>`);
+                                    loginFormMessages.removeClass('d-none');
+                                    break;
+                                case 'InvalidCode2fa':
+                                    loginFormMessages.append(`<span>Введите код двухфакторной аутентификации.</span>`);
+                                    loginFormMessages.removeClass('d-none');
+                                    $('#loginForm2faBlock').removeClass('d-none');
+                                    $('#loginForm2faBlock input').attr('type', 'text');
+                                    break;
+                                case 'Success':
+                                    window.location.reload();
+                                    break;
+                            }
+                        },
+                        error: function(e) {
+                        }
+                    });
+                });
+            </script>
         <?php else: ?>
             <div class="d-flex flex-row justify-content-evenly">
             <span class="my-auto">

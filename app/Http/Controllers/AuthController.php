@@ -15,17 +15,10 @@ class AuthController extends BaseController {
     #[NoReturn] public function postLogin() {
         global $app;
         $data = $this->getRequestData(RequestMethod::POST);
-        if (!Auth::attempt($data['login'], $data['password'])) {
-            $app->session->setFlash('loginError', json_encode(array(
-                'messages' => array(
-                    'Неверный логин или пароль.'
-                ),
-                'data' => array(
-                    'login' => $data['login'],
-                )
-            )));
-        }
-        $this->redirect(($app->refer) ?? '/');
+		$authResult = Auth::attempt($data['login'], $data['password'], ($data['code2fa']) ?? null);
+
+        die(json_encode(['response' => $authResult]));
+
     }
 
     /**
@@ -40,6 +33,11 @@ class AuthController extends BaseController {
             )
         );
     }
+
+	#[NoReturn] public function getLogout() {
+		Auth::logout();
+		$this->redirect('/');
+	}
 
     /**
      * @throws

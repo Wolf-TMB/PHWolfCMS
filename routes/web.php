@@ -17,12 +17,11 @@ $app->router->get('/settings', [WebController::class, 'getSettings']);
 $app->router->get('/registration', [AuthController::class, 'getRegistration']);
 $app->router->post('/registration', [AuthController::class, 'postRegistration']);
 $app->router->post('/login', [AuthController::class, 'postLogin']);
+$app->router->get('/logout', [AuthController::class, 'getLogout']);
 
 $app->router->get('/test', function () {
-    global $app;
-    $app->render->renderPage(
-        'index',
-        'main',
-        ['title' => 'title']
-    );
+	global $app;
+	echo '<pre>';
+	    print_r($app->user);
+	echo '</pre>';
 });

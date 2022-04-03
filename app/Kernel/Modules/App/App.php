@@ -53,7 +53,7 @@ class App extends BaseApp {
         $this->html = new Html();
         $this->validator = new Validator();
         $this->fileRepository = new FileRepository();
-	    $this->googleAuthenticator = new GoogleAuthenticator(8, 25);
+	    $this->googleAuthenticator = new GoogleAuthenticator(6, 25);
 
         return $this;
     }

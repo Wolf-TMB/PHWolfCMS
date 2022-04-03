@@ -8,19 +8,23 @@ class Auth {
     /**
      * Попытка аутентификации
      */
-    public static function attempt($login, $password): bool {
+    public static function attempt($login, $password, $code2fa = null): string {
         global $app;
         $user = User::find(array(
             ['login', '=', $login]
         ));
 
         if (!$user || !password_verify($password, $user->password)) {
-            return false;
+            return 'InvalidLoginOrPassword';
         }
+
+	    if (property_exists($user->settings, 'u_2fa_enabled') && $user->settings->u_2fa_enabled->value == true && !$app->googleAuthenticator->checkCode($user->settings->u_2fa_secret->value, $code2fa)) {
+		    return 'InvalidCode2fa';
+	    }
 
         $app->session->set('userid', $user->id);
         $app->refreshUserData();
-        return true;
+        return 'Success';
     }
 
     /**

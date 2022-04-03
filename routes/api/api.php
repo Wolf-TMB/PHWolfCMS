@@ -37,7 +37,7 @@ $app->router->group(['prefix' => 'api'], function () use ($app) {
 
 		$user = \PHWolfCMS\Models\User::find([['login', '=', 'Wolf_TMB']]);
 		echo '<pre>';
-		    print_r($user->getSettings());
+		    print_r($user);
 		echo '</pre>';
 	});
 	$app->router->post('/test', function () {

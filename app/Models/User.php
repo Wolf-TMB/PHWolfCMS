@@ -10,7 +10,7 @@ use PHWolfCMS\Kernel\Modules\Model\BaseModel;
  * @property string $email Электронная почта пользователя
  * @property string $password Хеш пароля пользователя
  * @property int $money Баланс пользователя
- * @property array $settings Баланс пользователя
+ * @property object $settings Настройки пользователя
  * @property string $created_at Дата создания аккаунта пользователя в UNIX
  * @property string $updated_at Дата последнего изменения аккаунта пользователя в UNIX
  *
@@ -24,9 +24,9 @@ use PHWolfCMS\Kernel\Modules\Model\BaseModel;
  */
 class User extends BaseModel {
 
-	public function getSettings() {
+	public static function getSettings($object) {
 		global $app;
-		$settings_raw = $app->db->getRecords('SELECT us.id, s.setting_key, s.setting_name, us.setting_id, us.value FROM user_settings as us LEFT JOIN settings as s ON s.id = us.setting_id WHERE us.user_id = :user_id', ['user_id' => $this->id]);
+		$settings_raw = $app->db->getRecords('SELECT us.id, s.setting_key, s.setting_name, us.setting_id, us.value FROM user_settings as us LEFT JOIN settings as s ON s.id = us.setting_id WHERE us.user_id = :user_id', ['user_id' => $object->id]);
 		$settings = (object) [];
 		foreach ($settings_raw as $s) {
 			$settings->{$s->setting_key} = (object) array(
@@ -36,9 +36,11 @@ class User extends BaseModel {
 				'value' => $s->value
 			);
 		}
-		echo '<pre>';
-		    print_r($settings);
-		echo '</pre>';
+		return $settings;
+	}
+
+	protected static function loadData($object) {
+		$object->settings = static::getSettings($object);
 	}
 
 	protected static function tableName(): string {

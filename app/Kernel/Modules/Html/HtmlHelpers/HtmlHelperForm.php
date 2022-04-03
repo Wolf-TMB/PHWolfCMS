@@ -90,6 +90,21 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	}
 
 	/**
+	 * Данный метод добавляет текстовое поле ввода пароля в форму
+	 * @param string $id id текстового поля
+	 * @param string $name name текстового поля
+	 * @param bool $addLabel (опционально) добавлять ли label для данного текстового поля
+	 * @param string $labelText (опционально) текст label
+	 * @param array $attrs (опционально) дополнительные атрибуты
+	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
+	 * @return $this
+	 */
+	public function inputHidden(string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): static {
+		$this->addinput('hidden', $id, $name, $addLabel, $labelText, $attrs, $addWrapper, true);
+		return $this;
+	}
+
+	/**
 	 * Данный метод добавляет поле загрузки файла в форму
 	 * @param string $id id поля загрузки файла
 	 * @param string $name name поля загрузки файла
@@ -179,7 +194,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param array $attrs (опционально) дополнительные атрибуты
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
-	private function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true): void {
+	public function addInput(string $type, string $id, string $name, bool $addLabel = false, string $labelText = '', array $attrs = [], bool $addWrapper = true, bool $hidden = false): void {
 		global $app;
 		$input = $app->html->input()->type($type)->name($name)->setID($id);
         if ($type == 'file' || $type == 'text' || $type == 'password') $input->addClass('form-control');
@@ -194,7 +209,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 			}
 		}
 		$input = $input->getHtml();
-		$this->addLabelWrapper($input, $type, $id, $addLabel, $labelText, $addWrapper);
+		$this->addLabelWrapper($input, $type, $id, $addLabel, $labelText, $addWrapper, $hidden);
 	}
 
 	/**
@@ -206,7 +221,7 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
 	 * @param string $labelText (опционально) текст label
 	 * @param bool $addWrapper (опционально) добавлять ли div, рекомендуется
 	 */
-	private function addLabelWrapper(string $element, string $type, string $id, bool $addLabel, string $labelText, bool $addWrapper) {
+	private function addLabelWrapper(string $element, string $type, string $id, bool $addLabel, string $labelText, bool $addWrapper, bool $hidden = false) {
 		global $app;
         $label = '';
         if ($addLabel) {
@@ -216,7 +231,11 @@ class HtmlHelperForm extends HtmlHelperBase implements HtmlHelperInterface {
             $label = $labelObj->getHtml();
         }
 		if ($addWrapper) {
-			$html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
+			if ($hidden) {
+				$html = $app->html->div()->content($label . $element)->addClass('mb-3 d-none')->getHtml();
+			} else {
+				$html = $app->html->div()->content($label . $element)->addClass('mb-3')->getHtml();
+			}
 		} else {
 			$html = $label . $element;
 		}

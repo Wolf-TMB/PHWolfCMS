@@ -6,6 +6,7 @@ use JetBrains\PhpStorm\NoReturn;
 use PHWolfCMS\Kernel\Modules\Facade\Auth;
 use PHWolfCMS\Kernel\Modules\Libs\SkinViewer;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileObject;
+use PHWolfCMS\Models\User;
 
 class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
     #[NoReturn] public function getAuth($login, $password, $code2fa) {
@@ -17,6 +18,14 @@ class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController
             die('Failed');
         }
     }
+
+	public function getCheck2fa($login): string {
+		$user = User::find([['login', '=', $login]]);
+		if ($user) {
+			return (property_exists($user->settings, 'u_2fa_enabled')) ? 'enabled' : 'disabled';
+		}
+		return 'disabled';
+	}
 
     public function getSkinGet($login) {
         global $app;
