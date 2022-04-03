@@ -5,6 +5,7 @@ namespace PHWolfCMS\Kernel\Modules\App;
 use PHWolfCMS\Kernel\Modules\Html\Html;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
 use PHWolfCMS\Kernel\Modules\Config\Config;
+use PHWolfCMS\Kernel\Modules\Logger\Logger;
 use PHWolfCMS\Kernel\Modules\Router\Router;
 use PHWolfCMS\Kernel\Modules\Render\Render;
 use PHWolfCMS\Kernel\Modules\Session\Session;
@@ -53,6 +54,7 @@ class App extends BaseApp {
         $this->validator = new Validator();
         $this->fileRepository = new FileRepository();
 	    $this->googleAuthenticator = new GoogleAuthenticator(6, 25);
+	    $this->logger = new Logger();
 
         return $this;
     }

@@ -9,14 +9,19 @@ use PHWolfCMS\Kernel\Modules\FileRepository\FileObject;
 use PHWolfCMS\Models\User;
 
 class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
-    #[NoReturn] public function getAuth($login, $password, $code2fa) {
-		if ($code2fa == 3333) die("OK:".$login);
-		die("Need2fa");
-        if (Auth::fakeAttempt($login, $password)) {
-            die('Ok');
-        } else {
-            die('Failed');
-        }
+    #[NoReturn] public function getAuth($login, $password, $code2fa = null) {
+		global $app;
+		$autResult = Auth::fakeAttempt($login, $password, $code2fa);
+	    header('Content-Type: text/html; charset=utf-8');
+
+	    die(
+		    match ($autResult) {
+			    'InvalidCode2fa' => 'Need2fa',
+			    'Success' => 'OK:' . $login,
+			    'InvalidLoginOrPassword' => 'Неверный логин или пароль.',
+			    default => ''
+		    }
+	    );
     }
 
 	public function getCheck2fa($login): string {

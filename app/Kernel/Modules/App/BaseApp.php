@@ -3,6 +3,7 @@
 namespace PHWolfCMS\Kernel\Modules\App;
 
 use Google\Authenticator\GoogleAuthenticator;
+use PHWolfCMS\Kernel\Modules\Logger\Logger;
 use PHWolfCMS\Models\User;
 use PHWolfCMS\Kernel\Modules\Html\Html;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
@@ -29,6 +30,7 @@ class BaseApp {
     public Validator $validator;
     public FileRepository $fileRepository;
     public GoogleAuthenticator $googleAuthenticator;
+    public Logger $logger;
 
     public User|false $user;
 
