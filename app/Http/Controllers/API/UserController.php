@@ -11,7 +11,7 @@ use PHWolfCMS\Models\User;
 class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
     #[NoReturn] public function getAuth($login, $password, $code2fa = null) {
 		global $app;
-		$autResult = Auth::fakeAttempt($login, $password, $code2fa);
+		$autResult = Auth::fakeAttempt($login, $password, 'launcher', $code2fa);
 	    header('Content-Type: text/html; charset=utf-8');
 
 	    die(

@@ -24,13 +24,15 @@ class Auth {
 
         $app->session->set('userid', $user->id);
         $app->refreshUserData();
+
+		$app->logger->log($user->id, 'auth', json_encode(array('context' => 'site', 'login' => $user->login, 'code2fa' => $code2fa)), $_SERVER['REMOTE_ADDR']);
         return 'Success';
     }
 
     /**
      * Попытка аутентификации
      */
-    public static function fakeAttempt($login, $password, $code2fa = null): string {
+    public static function fakeAttempt($login, $password, $type = 'test', $code2fa = null): string {
         global $app;
         $user = User::find(array(
             ['login', '=', $login]
@@ -45,7 +47,9 @@ class Auth {
 				return 'InvalidCode2fa';
 			}
 	    }
-
+		if ($type != 'test') {
+			$app->logger->log($user->id, 'auth', json_encode(array('context' => $type, 'login' => $user->login, 'code2fa' => $code2fa)), $_SERVER['REMOTE_ADDR']);
+		}
 	    return 'Success';
     }
 
