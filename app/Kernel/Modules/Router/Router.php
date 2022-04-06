@@ -46,6 +46,10 @@ class Router {
         $this->router->group($filters, $handler);
     }
 
+    public function route($name, array $args = null): string {
+        return '/' . $this->router->route($name, $args);
+    }
+
 	/**
 	 * @throws ConfigKeyNotFoundException
 	 */

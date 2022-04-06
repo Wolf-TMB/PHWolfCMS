@@ -3,7 +3,9 @@
 use ReflectionClass;
 use ReflectionMethod;
 
+use PHPMailer\PHPMailer\Exception;
 use Phroute\Phroute\Exception\BadRouteException;
+use PHWolfCMS\Exceptions\NamedRouteNotFoundException;
 
 /**
  * Class RouteCollector
@@ -79,6 +81,10 @@ class RouteCollector implements RouteDataProviderInterface {
         $replacements = is_null($args) ? [] : array_values($args);
 
         $variable = 0;
+
+        if (!key_exists($name, $this->reverse)) {
+            throw new NamedRouteNotFoundException("Named route \"" . $name . "\" not found!");
+        }
 
         foreach($this->reverse[$name] as $part)
         {
