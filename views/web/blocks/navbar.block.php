@@ -18,8 +18,16 @@ use PHWolfCMS\Kernel\Modules\App\App;
                 <li class="nav-item">
                     <a class="nav-link <?= ($app->requestURI === $app->router->route('index')) ? 'active' : null ?>" aria-current="page" href="<?= $app->router->route('index') ?>">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === $app->router->route('servers')) ? 'active' : null ?>" href="<?= $app->router->route('servers') ?>">Серверы</a>
+                <li class="nav-item dropdown" id="nav_drop">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Серверы
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="nav_drop_menu">
+                        <li><a class="dropdown-item" href="/skyblock">SkyBlock 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">TechnoMagic 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">MaxIndustrial 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">SteamPunk 1.16.5</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($app->requestURI === $app->router->route('rules')) ? 'active' : null ?>" href="<?= $app->router->route('rules') ?>">Правила</a>
