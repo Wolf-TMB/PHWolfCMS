@@ -11,8 +11,11 @@ $app->router->get('/start', [WebController::class, 'getStart']);
 $app->router->get('/rules', [WebController::class, 'getRules']);
 $app->router->get('/donate', [WebController::class, 'getDonate']);
 $app->router->get('/vote', [WebController::class, 'getVote']);
-$app->router->get('/cabinet', [WebController::class, 'getCabinet']);
-$app->router->get('/settings', [WebController::class, 'getSettings']);
+
+$app->router->group(['prefix' => 'cabinet'], function () use ($app) {
+    $app->router->get('/', [WebController::class, 'getCabinet']);
+    $app->router->get('/settings', [WebController::class, 'getSettings']);
+});
 
 $app->router->get('/registration', [AuthController::class, 'getRegistration']);
 $app->router->post('/registration', [AuthController::class, 'postRegistration']);
