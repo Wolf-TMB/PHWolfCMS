@@ -3,8 +3,22 @@
 namespace PHWolfCMS\Kernel\Modules\Logger;
 
 
+use PHWolfCMS\Exceptions\UndefinedLoggerActionException;
+use stdClass;
+
 class Logger {
-	public function get(array $param, int $count = 10, $order = ['id' => 'ASC']) {
+	public object $actions;
+
+	public function __construct() {
+		global $app;
+		$this->actions = new StdClass();
+		$data = $app->db->getRecords('SELECT id, action_key, name FROM log_actions');
+		foreach ($data as $row) {
+			$this->actions->{$row->action_key} = (object) ['id' => $row->id, 'key' => $row->action_key, 'name' => $row->name];
+		}
+	}
+
+	public function get(array $param, int $count = 10, $order = ['id' => 'ASC']): array {
 		global $app;
 		$param = array_merge($param);
 		$params = [];
@@ -23,8 +37,12 @@ class Logger {
 		return $rows;
 	}
 
+	/**
+	 * @throws UndefinedLoggerActionException
+	 */
 	public function log(int|null $user_id, string $action, string $data, string $ip) {
 		global $app;
+		if (!property_exists($this->actions, $action)) throw new UndefinedLoggerActionException();
 		$app->db->insert('logs', array(
 			'user_id' => $user_id,
 			'action' => $action,
