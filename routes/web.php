@@ -20,6 +20,7 @@ $app->router->get(['/start', 'start'], [WebController::class, 'getStart']);
 $app->router->get(['/rules', 'rules'], [WebController::class, 'getRules']);
 $app->router->get(['/donate', 'donate'], [WebController::class, 'getDonate']);
 $app->router->get(['/vote', 'vote'], [WebController::class, 'getVote']);
+    $app->router->get(['/skyblock', 'skyblock'], [WebController::class, 'getSkyblock']);
 
 $app->router->group(['prefix' => 'cabinet'], function () use ($app) {
     $app->router->get(['/', 'cabinet'], [WebController::class, 'getCabinet']);

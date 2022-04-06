@@ -87,6 +87,19 @@ class WebController extends BaseController {
     /**
      * @throws
      */
+    #[NoReturn] public function getSkyblock() {
+        $this->render(
+            template: 'skyblock',
+            layout: 'main',
+            params: array(
+                'title' => 'SkyBlock 1.7.10'
+            )
+        );
+    }
+
+    /**
+     * @throws
+     */
     #[NoReturn] public function getCabinet() {
         global $app;
         $this->render(
