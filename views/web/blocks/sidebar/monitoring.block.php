@@ -4,7 +4,7 @@
         <div class="mb-4">
             <div>
                 <div class="text-start">
-                    <a href="" class="text-dark text-decoration-none">SkyBlock 1.12.2</a>
+                    <a href="" class="text-dark text-decoration-none">SkyBlock 1.7.10</a>
                     <span class="d-flex flex-row position-relative float-end my-auto align-items-center">72<img src="/resources/img/icons/peoples.png" alt="" class="ms-2 wc-wh-1_5rem wc-pb-2px"></span>
                 </div>
                 <div class="text-start wc-h-10px w-100 bg-light rounded-pill overflow-hidden">
