@@ -3,32 +3,32 @@
  * @var App $app
  */
 
-use PHWolfCMS\App;
+use PHWolfCMS\Kernel\Modules\App\App;
 
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand"  href="/">WilyCraft</a>
+        <a class="navbar-brand"  href="<?= $app->router->route('index') ?>">WilyCraft</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse wc-background-gradient z-10" id="navbarNavDropdown">
             <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === '/') ? 'active' : null ?>" aria-current="page" href="/">Главная</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('index')) ? 'active' : null ?>" aria-current="page" href="<?= $app->router->route('index') ?>">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === '/servers') ? 'active' : null ?>" href="/servers">Серверы</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('servers')) ? 'active' : null ?>" href="<?= $app->router->route('servers') ?>">Серверы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === '/rules') ? 'active' : null ?>" href="/rules">Правила</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('rules')) ? 'active' : null ?>" href="<?= $app->router->route('rules') ?>">Правила</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === '/donate') ? 'active' : null ?>" href="/donate">Привелегии</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('donate')) ? 'active' : null ?>" href="<?= $app->router->route('donate') ?>">Привилегии</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($app->requestURI === '/vote') ? 'active' : null ?>" href="/vote">Проголосовать</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('donate')) ? 'active' : null ?>" href="<?= $app->router->route('donate') ?>">Проголосовать</a>
                 </li>
                 <li class="nav-item dropdown" id="nav_drop">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

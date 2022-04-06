@@ -19,7 +19,7 @@ $data = json_decode($app->session->getFlash('loginError'));
             </div>
         <?php endif; ?>
         <?php if (!Auth::check()): ?>
-            <form action="/login" method="POST" id="loginForm">
+            <form action="<?= $app->router->route('post.login') ?>" method="POST" id="loginForm">
                 {{@csrf_token}}
                 <div id="loginFormMessages" class="mb-3 d-none alert">
 
@@ -43,7 +43,7 @@ $data = json_decode($app->session->getFlash('loginError'));
                     event.preventDefault();
                     console.log('123')
                     $.ajax({
-                        url: '/login',
+                        url: '<?= $app->router->route('post.login') ?>',
                         type: 'POST',
                         dataType: 'json',
                         data: $(this).serialize(),
