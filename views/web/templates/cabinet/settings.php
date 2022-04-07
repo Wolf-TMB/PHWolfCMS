@@ -51,20 +51,40 @@ use PHWolfCMS\App;
             <thead>
             <tr>
                 <th>Действие</th>
+                <th>IP</th>
                 <th>Время</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>Вход в аккаунт</td>
-                <td>01.01.2022</td>
-            </tr>
-            <tr>
-                <td>Вход в аккаунт</td>
-                <td>13.02.2022</td>
-            </tr>
+            <tbody id="authLogTable">
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    $.ajax({
+        url: 'https://phwolf.ilya-levin.ru/api/logs/<?= $app->user->id ?>/auth/1/10/get',
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function(data, textStatus, xhr) {
+            console.log(data)
+            for (const datum of data) {
+                let c = '';
+                if (datum.context === 'site') c = 'Аутентификация на сайте';
+                if (datum.context === 'launcher') c = 'Аутентификация в лаунчере';
+                let date = new Date(datum.created_at * 1000);
+                $('#authLogTable').append(`
+                    <tr>
+                        <td>${c}</td>
+                        <td>${datum.ip}</td>
+                        <td>${date.toLocaleDateString() + ' ' + date.toLocaleTimeString()}</td>
+                    </tr>
+                `);
+            }
+        },
+        error: function(e) {
+        }
+    });
+</script>
 

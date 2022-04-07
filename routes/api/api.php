@@ -3,6 +3,7 @@
 global $app;
 
 
+use PHWolfCMS\Http\Controllers\API\LogsController;
 use PHWolfCMS\Http\Controllers\ApiController;
 use PHWolfCMS\Http\Controllers\API\UserController;
 use Sonata\GoogleAuthenticator\GoogleAuthenticator;
@@ -19,12 +20,12 @@ $app->router->group(['prefix' => 'api'], function () use ($app) {
         $app->router->get('{login}/cloak/get', [UserController::class, 'getCloakGet']);
     });
 
+	$app->router->group(['prefix' => 'logs'], function () use ($app) {
+		$app->router->get(['/{userid:i}/{action:[a-z]+}/{from:i}/{count:i}/get', 'testApi'], [LogsController::class, 'getUseridActionPageGet']);
+	});
+
 	$app->router->get('/test', function () {
 		global $app;
-		$logs = $app->logger->get([['action', '=', 'auth', 'AND'], ['user_id', '=', '10']]);
-		echo '<pre>';
-		    print_r($logs);
-		echo '</pre>';
 	});
 	$app->router->post('/test', function () {
 		$code = $_POST['code'];

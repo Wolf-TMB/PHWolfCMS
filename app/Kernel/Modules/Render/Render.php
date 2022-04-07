@@ -43,6 +43,7 @@ class Render {
 	 */
 	public function renderPage(string $template, string $layout, array $args = [], string|null $otherPath = null, bool $notfound = false) {
         global $app;
+		$template = str_replace('.', '/', $template);
         extract($args);
         $layoutPath = $app->rootDir . $this->config->get('RENDER_DIR') . '/' . (($otherPath) ?? $this->config->get('RENDER_DEFAULT_DIR')) . '/' . $this->config->get('RENDER_LAYOUTS_DIR') . '/' . $layout . '.layout.php';
         if (!file_exists($layoutPath)) throw new RenderFileLayoutNotFoundException();

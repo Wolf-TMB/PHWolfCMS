@@ -3,12 +3,13 @@
 namespace PHWolfCMS\Http\Controllers\API;
 
 use JetBrains\PhpStorm\NoReturn;
+use PHWolfCMS\Kernel\Modules\Controller\BaseController;
 use PHWolfCMS\Kernel\Modules\Facade\Auth;
 use PHWolfCMS\Kernel\Modules\Libs\SkinViewer;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileObject;
 use PHWolfCMS\Models\User;
 
-class UserController extends \PHWolfCMS\Kernel\Modules\Controller\BaseController {
+class UserController extends BaseController {
     #[NoReturn] public function getAuth($login, $password, $code2fa = null) {
 		global $app;
 		$autResult = Auth::fakeAttempt($login, $password, 'launcher', $code2fa);

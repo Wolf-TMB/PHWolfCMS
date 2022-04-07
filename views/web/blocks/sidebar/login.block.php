@@ -41,7 +41,6 @@ $data = json_decode($app->session->getFlash('loginError'));
             <script>
                 $('#loginForm').on('submit', function (event) {
                     event.preventDefault();
-                    console.log('123')
                     $.ajax({
                         url: '<?= $app->router->route('post.login') ?>',
                         type: 'POST',
@@ -63,7 +62,7 @@ $data = json_decode($app->session->getFlash('loginError'));
                                     $('#loginForm2faBlock input').attr('type', 'text');
                                     break;
                                 case 'Success':
-                                    window.location.reload();
+                                    window.location.reload(true);
                                     break;
                             }
                         },

@@ -34,4 +34,5 @@ $app->router->get(['/logout', 'logout'], [AuthController::class, 'getLogout']);
 
 $app->router->get('/test', function () {
 	global $app;
+	var_dump(\PHWolfCMS\Kernel\Modules\Facade\Auth::attempt('Wolf_TMB', 'Wolf_TMB123', '144251'));
 });

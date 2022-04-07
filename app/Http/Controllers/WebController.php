@@ -103,7 +103,7 @@ class WebController extends BaseController {
     #[NoReturn] public function getCabinet() {
         global $app;
         $this->render(
-            template: 'cabinet',
+            template: 'cabinet.cabinet',
             layout: 'main',
             params: array(
                 'title' => 'Личный кабинет',
@@ -117,7 +117,7 @@ class WebController extends BaseController {
      */
     #[NoReturn] public function getSettings() {
         $this->render(
-            template: 'settings',
+            template: 'cabinet.settings',
             layout: 'main',
             params: array(
                 'title' => 'Настройки аккаунта'

@@ -45,7 +45,7 @@ class Logger {
 		if (!property_exists($this->actions, $action)) throw new UndefinedLoggerActionException();
 		$app->db->insert('logs', array(
 			'user_id' => $user_id,
-			'action' => $action,
+			'action' => $this->actions->{$action}->id,
 			'data' => $data,
 			'ip' => $ip
 		));
