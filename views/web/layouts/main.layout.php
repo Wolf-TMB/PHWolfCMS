@@ -103,6 +103,16 @@
         height: 30vh;
     }
 
+    .wc-wh-32px {
+        width: 32px;
+        height: 32px;
+    }
+
+    .wc-wh-64px {
+        width: 64px;
+        height: 64px;
+    }
+
     .wc-background-gradient {
         background: linear-gradient(to right, #252449,#24243e);
     }
