@@ -9,7 +9,7 @@
     </div>
 
     <div class="mt-5 fs-2">
-        <div class="d-flex flex-row justify-content-between border-bottom"><span id="descButton">Описание</span><span id="persButton">Персонал</span><span id="modsButton">Моды</span></div>
+        <div class="d-flex flex-row justify-content-between border-bottom bg-dark text-white px-4"><span id="descButton" style="cursor: pointer">Описание</span><span id="persButton" style="cursor: pointer">Персонал</span><span id="modsButton" style="cursor: pointer">Моды</span></div>
         <div class="warp">
             <div id="Desc" class="fs-4 mt-4">
                 <p>Этот сервер позволит вам создать и настроить автоматический завод по производству ресурсов и крафту предметов. Сервер подходит для тех, кто любит создавать большие и сложные механизированные системы по добыче ресурсов и созданию предметов.</p>
