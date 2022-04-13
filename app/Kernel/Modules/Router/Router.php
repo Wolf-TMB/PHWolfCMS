@@ -26,7 +26,7 @@ class Router {
     /**
      * @param string $url URL, на который необходимо совершить переадресацию
      */
-    public static function redirect(string $url) {
+    public function redirect(string $url) {
         header('Location: ' . $url);
     }
 
