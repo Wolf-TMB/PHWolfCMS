@@ -11,6 +11,7 @@
 
 global $app;
 
+use PHWolfCMS\Kernel\Modules\Facade\Auth;
 use PHWolfCMS\Http\Controllers\WebController;
 use PHWolfCMS\Http\Controllers\AuthController;
 
@@ -33,6 +34,5 @@ $app->router->post(['/login', 'post.login'], [AuthController::class, 'postLogin'
 $app->router->get(['/logout', 'logout'], [AuthController::class, 'getLogout']);
 
 $app->router->get('/test', function () {
-	global $app;
-	var_dump(\PHWolfCMS\Kernel\Modules\Facade\Auth::attempt('Wolf_TMB', 'Wolf_TMB123', '144251'));
+	var_dump(Auth::attempt('Wolf_TMB', 'Wolf_TMB123', '144251'));
 });
