@@ -14,6 +14,7 @@ use PHWolfCMS\Kernel\Modules\Security\Security;
 use PHWolfCMS\Kernel\Modules\Validator\Validator;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileRepository;
 use Sonata\GoogleAuthenticator\GoogleAuthenticator;
+use PHWolfCMS\Kernel\Modules\PermissionManager\PermissionsManager;
 
 class App extends BaseApp {
     /**
@@ -55,6 +56,7 @@ class App extends BaseApp {
         $this->fileRepository = new FileRepository();
 	    $this->googleAuthenticator = new GoogleAuthenticator(6, 25);
 	    $this->logger = new Logger();
+        $this->permissionsManager = new PermissionsManager();
 
         return $this;
     }

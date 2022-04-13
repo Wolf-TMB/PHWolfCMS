@@ -5,7 +5,6 @@ namespace PHWolfCMS\Kernel\Modules\App;
 use Google\Authenticator\GoogleAuthenticator;
 use PHWolfCMS\Kernel\Modules\Logger\Logger;
 use PHWolfCMS\Models\User;
-use PHWolfCMS\Kernel\Modules\Html\Html;
 use PHWolfCMS\Kernel\Enums\RequestMethod;
 use PHWolfCMS\Kernel\Modules\Config\Config;
 use PHWolfCMS\Kernel\Modules\Router\Router;
@@ -15,6 +14,7 @@ use PHWolfCMS\Kernel\Modules\Database\Database;
 use PHWolfCMS\Kernel\Modules\Security\Security;
 use PHWolfCMS\Kernel\Modules\Validator\Validator;
 use PHWolfCMS\Kernel\Modules\FileRepository\FileRepository;
+use PHWolfCMS\Kernel\Modules\PermissionManager\PermissionsManager;
 
 class BaseApp {
     public string $rootDir;
@@ -31,6 +31,7 @@ class BaseApp {
     public FileRepository $fileRepository;
     public GoogleAuthenticator $googleAuthenticator;
     public Logger $logger;
+    public PermissionsManager $permissionsManager;
 
     public User|false $user;
 
@@ -40,7 +41,9 @@ class BaseApp {
      */
     public function refreshUserData() {
         if ($this->session->get('userid') !== false) {
-            $this->user = new User($this->session->get('userid'));
+            $this->user = User::find(array(
+                ['id', '=', $this->session->get('userid')]
+            ));
         } else {
             $this->user = false;
         }

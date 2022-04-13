@@ -5,6 +5,7 @@ namespace PHWolfCMS\Kernel\Modules\Router;
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\RouteCollector;
 use PHWolfCMS\Kernel\Modules\Config\Config;
+use PHWolfCMS\Exceptions\NotEnoughRightsException;
 use PHWolfCMS\Exceptions\ConfigKeyNotFoundException;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use PHWolfCMS\Exceptions\RenderFileBlockNotFoundException;
@@ -12,6 +13,7 @@ use PHWolfCMS\Exceptions\RenderMaxIterationLimitException;
 use PHWolfCMS\Exceptions\RenderFileLayoutNotFoundException;
 use Phroute\Phroute\Exception\HttpMethodNotAllowedException;
 use PHWolfCMS\Exceptions\RenderFileTemplateNotFoundException;
+use PHWolfCMS\Exceptions\PermissionsAllowedOnlyForControllerHandlerException;
 
 class Router {
 
@@ -26,15 +28,31 @@ class Router {
     /**
      * @param string $url URL, на который необходимо совершить переадресацию
      */
-    public static function redirect(string $url) {
+    public function redirect(string $url) {
         header('Location: ' . $url);
     }
 
-    public function get($route, $handler, $filters = []) {
+    /**
+     * @throws PermissionsAllowedOnlyForControllerHandlerException
+     */
+    public function get($route, $handler, $filters = [], $permissions = []) {
+        if (!empty($permissions)) {
+            if (gettype($handler) != 'array') throw new PermissionsAllowedOnlyForControllerHandlerException();
+            global $app;
+            $app->permissionsManager->getPagePermissionsManager()->add($handler['0'].'::'.$handler[1], $permissions);
+        }
         $this->router->get($route, $handler, $filters);
     }
 
-    public function post($route, $handler, $filters = []) {
+    /**
+     * @throws PermissionsAllowedOnlyForControllerHandlerException
+     */
+    public function post($route, $handler, $filters = [], $permissions = []) {
+        if (!empty($permissions)) {
+            if (gettype($handler) != 'array') throw new PermissionsAllowedOnlyForControllerHandlerException();
+            global $app;
+            $app->permissionsManager->getPagePermissionsManager()->add($handler['0'].'::'.$handler[1], $permissions);
+        }
         $this->router->post($route, $handler, $filters);
     }
 
@@ -111,10 +129,26 @@ class Router {
         global $app;
         $this->loadRouterFiles();
         $dispatcher = new Dispatcher($this->router->getData());
+
         $URIData = explode('/', rtrim(ltrim($app->requestURI,'/'), '/'));
         try {
-            $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-            echo $response;
+            if (
+                $app
+                    ->permissionsManager
+                    ->getPagePermissionsManager()
+                    ->checkPermissionsForPage(
+                        $dispatcher
+                            ->getHandler(
+                                $_SERVER['REQUEST_METHOD'],
+                                parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+                            )
+                    )
+            ) {
+                $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+                echo $response;
+            } else {
+                throw new NotEnoughRightsException();
+            }
         } catch (HttpRouteNotFoundException) {
             if ($URIData[0] == $this->config->get('ROUTER_API_PREFIX')) {
                 header("HTTP/1.0 404 Not Found");
@@ -139,6 +173,8 @@ class Router {
                     'title' => 404
                 )
             );
+        } catch (NotEnoughRightsException) {
+            die('Permissions denied');
         }
     }
 }
