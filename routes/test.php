@@ -26,7 +26,7 @@ $app->router->get('/test2', function () {
     $f = $repo->getByLogin('Wolf_TMB');
     echo '<pre>';
         print_r($f->getPath());
-    echo '</pre>'; 1 1
+    echo '</pre>'; 1
 });
 $app->router->post('/test2', function () {
     global $app;
