@@ -1,2 +1,6 @@
 
 @import '../../node_modules/bootstrap/scss/bootstrap';
+
+.form-control:focus {
+	box-shadow: none !important;
+}

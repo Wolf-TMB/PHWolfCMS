@@ -1,35 +1,53 @@
-<nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark bg-light" style="--bs-bg-opacity: .5; height: 8vh;">
+<?php
+/**
+ * @var App $app
+ */
+
+use PHWolfCMS\Kernel\Modules\App\App;
+
+?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">PHWolfCMS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand"  href="<?= $app->router->route('index') ?>">WilyCraft</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse wc-background-gradient z-10" id="navbarNavDropdown">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('index')) ? 'active' : null ?>" aria-current="page" href="<?= $app->router->route('index') ?>">Главная</a>
+                </li>
+                <li class="nav-item dropdown" id="nav_drop">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Серверы
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="nav_drop_menu">
+                        <li><a class="dropdown-item" href="/skyblock">SkyBlock 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">TechnoMagic 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">MaxIndustrial 1.7.10</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">SteamPunk 1.16.5</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Правила</a>
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('rules')) ? 'active' : null ?>" href="<?= $app->router->route('rules') ?>">Правила</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('donate')) ? 'active' : null ?>" href="<?= $app->router->route('donate') ?>">Привилегии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($app->requestURI === $app->router->route('donate')) ? 'active' : null ?>" href="<?= $app->router->route('donate') ?>">Проголосовать</a>
+                </li>
+                <li class="nav-item dropdown" id="nav_drop">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Ссылки
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Discord</a></li>
-                        <li><a class="dropdown-item" href="#">VK</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Forum</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="nav_drop_menu">
+                        <li><a class="dropdown-item" href="https://vk.com/wilycraft" target="_blank">VK</a></li>
+                        <li><a class="dropdown-item" href="https://discord.gg/FMd8ySU3q9" target="_blank">Discord</a></li>
                     </ul>
                 </li>
             </ul>
-            <div>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <a href="" class="nav-link">Войти</a>
-                    <a href="" class="nav-link">Регистрация</a>
-                </ul>
-            </div>
         </div>
     </div>
 </nav>

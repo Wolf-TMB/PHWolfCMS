@@ -2,6 +2,6 @@
 
 namespace PHWolfCMS\Exceptions;
 
-class CSRFProtectionException extends \PHWolfCMS\Kernel\BaseException {
+class CSRFProtectionException extends \PHWolfCMS\Kernel\Modules\Exception\BaseException {
 
 }
