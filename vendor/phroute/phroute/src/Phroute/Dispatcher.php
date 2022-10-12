@@ -35,6 +35,11 @@ class Dispatcher {
         }
     }
 
+    public function getHandler($httpMethod, $uri) {
+        list($handler, $filters, $vars) = $this->dispatchRoute($httpMethod, trim($uri, '/'));
+        return $handler[0].'::'.$handler[1];
+    }
+
     /**
      * Dispatch a route for the given HTTP Method / URI.
      *

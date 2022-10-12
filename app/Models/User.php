@@ -11,6 +11,7 @@ use PHWolfCMS\Kernel\Modules\Model\BaseModel;
  * @property string $password Хеш пароля пользователя
  * @property int $money Баланс пользователя
  * @property object $settings Настройки пользователя
+ * @property object $permissions Права пользователя
  * @property string $created_at Дата создания аккаунта пользователя в UNIX
  * @property string $updated_at Дата последнего изменения аккаунта пользователя в UNIX
  *
@@ -23,6 +24,10 @@ use PHWolfCMS\Kernel\Modules\Model\BaseModel;
  * @method User refresh()
  */
 class User extends BaseModel {
+
+    public function hasPermission($permission): bool {
+        return property_exists($this->permissions, $permission);
+    }
 
 	public static function getSettings($object) {
 		global $app;
@@ -39,8 +44,23 @@ class User extends BaseModel {
 		return $settings;
 	}
 
+    public static function getPermissions($object) {
+        global $app;
+        $permissions_raw = $app->db->getRecords('SELECT up.id, p.permission_key, p.permission_name, up.permission_id FROM user_permissions as up LEFT JOIN permissions as p ON p.id = up.permission_id WHERE up.user_id = :user_id', ['user_id' => $object->id]);
+        $permissions = (object) [];
+        foreach ($permissions_raw as $s) {
+            $permissions->{$s->permission_key} = (object) array(
+                'permission_id' => $s->permission_id,
+                'permission_name' => $s->permission_name,
+                'permission_key' => $s->permission_key
+            );
+        }
+        return $permissions;
+    }
+
 	protected static function loadData($object) {
 		$object->settings = static::getSettings($object);
+		$object->permissions = static::getPermissions($object);
 	}
 
 	protected static function tableName(): string {
